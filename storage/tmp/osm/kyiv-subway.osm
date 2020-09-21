@@ -1,0 +1,815 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version="0.6" generator="Osmosis 0.46">
+  <bounds minlon="30.23639" minlat="50.21324" maxlon="30.82765" maxlat="50.59083" origin="0.46"/>
+  <node id="2023187932" version="4" timestamp="2020-02-16T09:45:50Z" uid="0" user="" lat="50.4368656" lon="30.5312971">
+    <tag k="name" v="Кловська"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q2298547"/>
+    <tag k="wikipedia" v="uk:Кловська (станція метро)"/>
+  </node>
+  <node id="2023187944" version="4" timestamp="2020-02-16T09:45:50Z" uid="0" user="" lat="50.4369829" lon="30.5323219">
+    <tag k="name" v="Кловська"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q2298547"/>
+    <tag k="wikipedia" v="uk:Кловська (станція метро)"/>
+  </node>
+  <node id="2715810007" version="8" timestamp="2020-01-14T16:49:39Z" uid="0" user="" lat="50.4030515" lon="30.6678172">
+    <tag k="name" v="Вирлиця"/>
+    <tag k="name:en" v="Vyrlytsia"/>
+    <tag k="name:ru" v="Вырлица"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="325"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wheelchair" v="yes"/>
+    <tag k="wikidata" v="Q2395599"/>
+    <tag k="wikipedia" v="uk:Вирлиця (станція метро)"/>
+  </node>
+  <node id="2718676483" version="8" timestamp="2017-09-08T09:00:06Z" uid="0" user="" lat="50.404905" lon="30.5167543">
+    <tag k="name" v="Деміївська"/>
+    <tag k="name:en" v="Demiivska"/>
+    <tag k="name:ru" v="Демеевская"/>
+    <tag k="name:uk" v="Деміївська"/>
+    <tag k="opening_hours" v="05:49-00:11"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="222"/>
+    <tag k="station" v="subway"/>
+    <tag k="wheelchair" v="yes"/>
+    <tag k="wikidata" v="Q2069065"/>
+    <tag k="wikipedia" v="uk:Деміївська (станція метро)"/>
+  </node>
+  <node id="2738991154" version="10" timestamp="2016-09-23T18:54:57Z" uid="0" user="" lat="50.4412732" lon="30.5595558">
+    <tag k="name" v="Дніпро"/>
+    <tag k="name:ru" v="Днепр"/>
+    <tag k="station" v="subway"/>
+    <tag k="public_transport" v="stop_position"/>
+  </node>
+  <node id="2739056043" version="10" timestamp="2020-01-14T16:42:59Z" uid="0" user="" lat="50.5122216" lon="30.4983658">
+    <tag k="name" v="Мінська"/>
+    <tag k="name:de" v="Minska"/>
+    <tag k="name:en" v="Minska"/>
+    <tag k="name:ru" v="Минская"/>
+    <tag k="name:uk" v="Мінська"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="211"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q2635654"/>
+    <tag k="wikipedia" v="uk:Мінська (станція метро, Київ)"/>
+  </node>
+  <node id="2739061586" version="11" timestamp="2018-02-09T13:10:21Z" uid="0" user="" lat="50.4860911" lon="30.4977637">
+    <tag k="name" v="Почайна"/>
+    <tag k="name:en" v="Pochayna"/>
+    <tag k="name:ru" v="Почайна"/>
+    <tag k="name:uk" v="Почайна"/>
+    <tag k="old_name" v="Петрівка"/>
+    <tag k="old_name:en" v="Petrivka"/>
+    <tag k="old_name:ru" v="Петровка"/>
+    <tag k="old_name:uk" v="Петрівка"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="213"/>
+    <tag k="station" v="subway"/>
+    <tag k="wikidata" v="Q2388672"/>
+    <tag k="wikipedia" v="uk:Почайна (станція метро)"/>
+  </node>
+  <node id="2739062806" version="11" timestamp="2017-09-08T08:59:44Z" uid="0" user="" lat="50.4740301" lon="30.5036226">
+    <tag k="name" v="Тараса Шевченка"/>
+    <tag k="name:en" v="Tarasa Shevchenka"/>
+    <tag k="name:ru" v="Тараса Шевченко"/>
+    <tag k="name:uk" v="Тараса Шевченка"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="214"/>
+    <tag k="station" v="subway"/>
+    <tag k="wikidata" v="Q2046904"/>
+    <tag k="wikipedia" v="uk:Тараса Шевченка (станція метро)"/>
+  </node>
+  <node id="2739064948" version="12" timestamp="2019-11-10T17:34:37Z" uid="0" user="" lat="50.459317" lon="30.5243316">
+    <tag k="name" v="Поштова площа"/>
+    <tag k="name:de" v="Postplatz"/>
+    <tag k="name:en" v="Poshtova Ploshcha"/>
+    <tag k="name:ru" v="Почтовая площадь"/>
+    <tag k="name:uk" v="Поштова площа"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="216"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q2388610"/>
+    <tag k="wikipedia" v="uk:Поштова площа (станція метро)"/>
+  </node>
+  <node id="2739072150" version="11" timestamp="2017-09-08T09:00:06Z" uid="0" user="" lat="50.4311887" lon="30.5167886">
+    <tag k="name" v="Олімпійська"/>
+    <tag k="name:en" v="Olimpiiska"/>
+    <tag k="name:ru" v="Олимпийская"/>
+    <tag k="name:uk" v="Олімпійська"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="219"/>
+    <tag k="station" v="subway"/>
+    <tag k="wheelchair" v="no"/>
+    <tag k="wikidata" v="Q2387897"/>
+    <tag k="wikipedia" v="uk:Олімпійська (станція метро)"/>
+  </node>
+  <node id="2739073765" version="11" timestamp="2017-09-08T09:00:07Z" uid="0" user="" lat="50.4142407" lon="30.5247732">
+    <tag k="name" v="Либідська"/>
+    <tag k="name:en" v="Lybidska"/>
+    <tag k="name:ru" v="Лыбедская"/>
+    <tag k="name:uk" v="Либідська"/>
+    <tag k="opening_hours" v="05:48-00:12"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="221"/>
+    <tag k="station" v="subway"/>
+    <tag k="wikidata" v="Q2503994"/>
+    <tag k="wikipedia" v="uk:Либідська (станція метро)"/>
+  </node>
+  <node id="2739078166" version="9" timestamp="2017-09-08T09:00:07Z" uid="0" user="" lat="50.3973894" lon="30.5080439">
+    <tag k="name" v="Голосіївська"/>
+    <tag k="name:en" v="Holosiivska"/>
+    <tag k="name:ru" v="Голосеевская"/>
+    <tag k="name:uk" v="Голосіївська"/>
+    <tag k="opening_hours" v="05:53-00:09"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="223"/>
+    <tag k="station" v="subway"/>
+    <tag k="wikidata" v="Q1980209"/>
+    <tag k="wikipedia" v="uk:Голосіївська (станція метро)"/>
+  </node>
+  <node id="2739135933" version="8" timestamp="2020-01-14T16:49:39Z" uid="0" user="" lat="50.4034791" lon="30.6844109">
+    <tag k="name" v="Бориспільська"/>
+    <tag k="name:en" v="Boryspilska"/>
+    <tag k="name:ru" v="Бориспольская"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="326"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wheelchair" v="yes"/>
+    <tag k="wikidata" v="Q2328814"/>
+    <tag k="wikipedia" v="uk:Бориспільська (станція метро)"/>
+  </node>
+  <node id="2739161088" version="9" timestamp="2020-01-14T16:49:39Z" uid="0" user="" lat="50.4007627" lon="30.6522278">
+    <tag k="name" v="Харківська"/>
+    <tag k="name:en" v="Kharkivska"/>
+    <tag k="name:ru" v="Харьковская"/>
+    <tag k="name:uk" v="Харківська"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q1982637"/>
+    <tag k="wikipedia" v="uk:Харківська (станція метро)"/>
+  </node>
+  <node id="2739169278" version="9" timestamp="2020-01-14T16:49:39Z" uid="0" user="" lat="50.3980353" lon="30.6347968">
+    <tag k="name" v="Позняки"/>
+    <tag k="name:en" v="Pozniaky"/>
+    <tag k="name:ru" v="Позняки"/>
+    <tag k="name:uk" v="Позняки"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q1982618"/>
+    <tag k="wikipedia" v="uk:Позняки (станція метро)"/>
+  </node>
+  <node id="2739190778" version="13" timestamp="2020-07-16T06:15:10Z" uid="0" user="" lat="50.4020218" lon="30.5605663">
+    <tag k="name" v="Видубичі"/>
+    <tag k="name:en" v="Vydubychi"/>
+    <tag k="name:ru" v="Выдубычи"/>
+    <tag k="name:uk" v="Видубичі"/>
+    <tag k="network" v="КП «Київський метрополітен»"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="stop_position"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="319"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="train" v="yes"/>
+    <tag k="wikidata" v="Q2395463"/>
+    <tag k="wikipedia" v="uk:Видубичі (станція метро)"/>
+  </node>
+  <node id="2739195825" version="12" timestamp="2020-07-05T15:49:32Z" uid="0" user="" lat="50.4167168" lon="30.5472962">
+    <tag k="name" v="Дружби народів"/>
+    <tag k="name:en" v="Druzhby Narodiv"/>
+    <tag k="name:ru" v="Дружбы народов"/>
+    <tag k="name:uk" v="Дружби народів"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="318"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q2395626"/>
+    <tag k="wikipedia" v="uk:Дружби народів (станція метро, Київ)"/>
+  </node>
+  <node id="2739198931" version="16" timestamp="2020-07-05T15:49:32Z" uid="0" user="" lat="50.425777" lon="30.541131">
+    <tag k="name" v="Печерська"/>
+    <tag k="name:en" v="Pecherska"/>
+    <tag k="name:ru" v="Печерская"/>
+    <tag k="name:uk" v="Печерська"/>
+    <tag k="opening_hours" v="Mo-Su 00:00-00:11,05:42-23:59"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="317"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q2217253"/>
+    <tag k="wikipedia" v="uk:Печерська (станція метро)"/>
+  </node>
+  <node id="2739230813" version="10" timestamp="2017-10-04T22:25:47Z" uid="0" user="" lat="50.4611827" lon="30.4841567">
+    <tag k="name" v="Лук&apos;янівська"/>
+    <tag k="name:en" v="Lukianivska"/>
+    <tag k="name:ru" v="Лукьяновская"/>
+    <tag k="name:uk" v="Лук&apos;янівська"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="wikidata" v="Q2384631"/>
+    <tag k="wikipedia" v="uk:Лук&apos;янівська (станція метро)"/>
+  </node>
+  <node id="3803383803" version="3" timestamp="2017-09-08T08:59:23Z" uid="0" user="" lat="50.4518631" lon="30.5981679">
+    <tag k="line" v="Святошинсько-Броварська"/>
+    <tag k="name" v="Лівобережна"/>
+    <tag k="name:en" v="Livoberezhna"/>
+    <tag k="name:ru" v="Левобережная"/>
+    <tag k="name:uk" v="Лівобережна"/>
+    <tag k="network" v="Київський метрополітен"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="124"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q2385351"/>
+    <tag k="wikipedia" v="uk:Лівобережна (станція метро)"/>
+  </node>
+  <node id="3803423898" version="4" timestamp="2019-10-02T09:28:43Z" uid="0" user="" lat="50.445993" lon="30.5770339">
+    <tag k="line" v="Святошинсько-Броварська"/>
+    <tag k="name" v="Гідропарк"/>
+    <tag k="name:ru" v="Гидропарк"/>
+    <tag k="network" v="Київський метрополітен"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="123"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q2249474"/>
+    <tag k="wikipedia" v="uk:Гідропарк (станція метро)"/>
+  </node>
+  <node id="3803601761" version="2" timestamp="2017-09-08T08:59:24Z" uid="0" user="" lat="50.4559397" lon="30.6128423">
+    <tag k="covered" v="yes"/>
+    <tag k="line" v="Святошинсько-Броварська"/>
+    <tag k="name" v="Дарниця"/>
+    <tag k="name:en" v="Darnytsia"/>
+    <tag k="name:ru" v="Дарница"/>
+    <tag k="name:uk" v="Дарниця"/>
+    <tag k="network" v="Київський метрополітен"/>
+    <tag k="opening_hours" v="Mo-Su 00:00-00:06, 05:27-24:00"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="125"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wheelchair" v="yes"/>
+    <tag k="wikidata" v="Q608532"/>
+    <tag k="wikipedia" v="uk:Дарниця (станція метро)"/>
+  </node>
+  <node id="3803615569" version="3" timestamp="2017-09-08T08:59:24Z" uid="0" user="" lat="50.4598903" lon="30.6303119">
+    <tag k="line" v="Святошинсько-Броварська"/>
+    <tag k="name" v="Чернігівська"/>
+    <tag k="name:en" v="Chernihivska"/>
+    <tag k="name:ru" v="Черниговская"/>
+    <tag k="name:uk" v="Чернігівська"/>
+    <tag k="network" v="Київський метрополітен"/>
+    <tag k="old_name" v="Комсомольська"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="126"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wheelchair" v="no"/>
+    <tag k="wikidata" v="Q744366"/>
+    <tag k="wikipedia" v="uk:Чернігівська (станція метро)"/>
+  </node>
+  <node id="3803636265" version="3" timestamp="2020-01-14T16:39:40Z" uid="0" user="" lat="50.4647597" lon="30.6459702">
+    <tag k="line" v="Святошинсько-Броварська"/>
+    <tag k="name" v="Лісова"/>
+    <tag k="name:en" v="Lisova"/>
+    <tag k="name:ru" v="Лесная"/>
+    <tag k="name:uk" v="Лісова"/>
+    <tag k="network" v="Київський метрополітен"/>
+    <tag k="old_name" v="Піонерська"/>
+    <tag k="opening_hours" v="05:45-00:02"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="127"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wheelchair" v="yes"/>
+    <tag k="wikidata" v="Q2720732"/>
+    <tag k="wikipedia" v="uk:Лісова (станція метро, Київ)"/>
+  </node>
+  <node id="3804139642" version="3" timestamp="2016-09-23T18:54:57Z" uid="0" user="" lat="50.4410407" lon="30.5586885">
+    <tag k="ref" v="122"/>
+    <tag k="line" v="Святошинсько-Броварська"/>
+    <tag k="name" v="Дніпро"/>
+    <tag k="subway" v="yes"/>
+    <tag k="name:en" v="Dnipro"/>
+    <tag k="name:ru" v="Днепр"/>
+    <tag k="name:uk" v="Дніпро"/>
+    <tag k="network" v="Київський метрополітен"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="wikidata" v="Q2684139"/>
+    <tag k="wikipedia" v="uk:Дніпро (станція метро)"/>
+    <tag k="public_transport" v="station"/>
+  </node>
+  <node id="3804612585" version="3" timestamp="2019-12-21T11:55:43Z" uid="0" user="" lat="50.4444878" lon="30.5454331">
+    <tag k="line" v="Святошинсько-Броварська"/>
+    <tag k="name" v="Арсенальна"/>
+    <tag k="name:en" v="Arsenalna"/>
+    <tag k="name:ru" v="Арсенальная"/>
+    <tag k="name:uk" v="Арсенальна"/>
+    <tag k="network" v="Київський метрополітен"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="121"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wheelchair" v="yes"/>
+    <tag k="wikidata" v="Q1875185"/>
+    <tag k="wikipedia" v="uk:Арсенальна (станція метро)"/>
+  </node>
+  <node id="3804632655" version="4" timestamp="2019-11-10T17:11:52Z" uid="0" user="" lat="50.4473364" lon="30.5248548">
+    <tag k="line" v="Святошинсько-Броварська"/>
+    <tag k="name" v="Хрещатик"/>
+    <tag k="name:de" v="Chreschtschatyk"/>
+    <tag k="name:en" v="Khreschatyk"/>
+    <tag k="name:ru" v="Крещатик"/>
+    <tag k="name:uk" v="Хрещатик"/>
+    <tag k="network" v="Київський метрополітен"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="120"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q1846051"/>
+    <tag k="wikipedia" v="uk:Хрещатик (станція метро)"/>
+  </node>
+  <node id="3804641568" version="7" timestamp="2019-11-10T17:27:01Z" uid="0" user="" lat="50.4485726" lon="30.5246965">
+    <tag k="covered" v="yes"/>
+    <tag k="line" v="Куренівсько-Червоноармійська"/>
+    <tag k="name" v="Майдан Незалежності"/>
+    <tag k="name:de" v="Platz der Unabhängigkeit"/>
+    <tag k="name:en" v="Independence Square"/>
+    <tag k="name:fr" v="Place de l&apos;Indépendance"/>
+    <tag k="name:ja" v="独立広場"/>
+    <tag k="name:nl" v="Onafhankelijkheidsplein"/>
+    <tag k="name:pl" v="Plac Niepodległości"/>
+    <tag k="name:ru" v="Майдан Незалежности"/>
+    <tag k="name:uk" v="Майдан Незалежності"/>
+    <tag k="network" v="Київський метрополітен"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="217"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q1864476"/>
+    <tag k="wikipedia" v="uk:Майдан Незалежності (станція метро)"/>
+  </node>
+  <node id="3806362030" version="3" timestamp="2017-09-08T08:59:48Z" uid="0" user="" lat="50.4442472" lon="30.5058705">
+    <tag k="covered" v="yes"/>
+    <tag k="line" v="Святошинсько-Броварська"/>
+    <tag k="name" v="Університет"/>
+    <tag k="name:de" v="Universität"/>
+    <tag k="name:en" v="Universytet"/>
+    <tag k="name:ru" v="Университет"/>
+    <tag k="name:uk" v="Університет"/>
+    <tag k="network" v="Київський метрополітен"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="118"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q1825824"/>
+    <tag k="wikipedia" v="uk:Університет (станція метро, Київ)"/>
+  </node>
+  <node id="3806369598" version="4" timestamp="2017-09-08T08:58:58Z" uid="0" user="" lat="50.4416401" lon="30.4882512">
+    <tag k="covered" v="yes"/>
+    <tag k="line" v="Святошинсько-Броварська"/>
+    <tag k="name" v="Вокзальна"/>
+    <tag k="name:en" v="Vokzalna"/>
+    <tag k="name:pl" v="Wokzalna"/>
+    <tag k="name:ru" v="Вокзальная"/>
+    <tag k="name:uk" v="Вокзальна"/>
+    <tag k="network" v="Київський метрополітен"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="117"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q2042690"/>
+    <tag k="wikipedia" v="uk:Вокзальна (станція метро, Київ)"/>
+  </node>
+  <node id="3806396836" version="5" timestamp="2019-11-18T10:57:07Z" uid="0" user="" lat="50.4507932" lon="30.466127">
+    <tag k="covered" v="yes"/>
+    <tag k="line" v="Святошинсько-Броварська"/>
+    <tag k="name" v="Політехнічний інститут"/>
+    <tag k="name:de" v="Polytechnisches Institut"/>
+    <tag k="name:en" v="Politekhnichnyi Instytut"/>
+    <tag k="name:ru" v="Политехнический институт"/>
+    <tag k="network" v="Київський метрополітен"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="116"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wheelchair" v="limited"/>
+    <tag k="wikidata" v="Q2069203"/>
+    <tag k="wikipedia" v="uk:Політехнічний інститут (станція метро)"/>
+  </node>
+  <node id="3806407690" version="5" timestamp="2018-08-02T06:30:15Z" uid="0" user="" lat="50.4550061" lon="30.4454637">
+    <tag k="covered" v="yes"/>
+    <tag k="line" v="Святошинсько-Броварська"/>
+    <tag k="name" v="Шулявська"/>
+    <tag k="name:en" v="Shuliavska"/>
+    <tag k="name:ru" v="Шулявская"/>
+    <tag k="name:uk" v="Шулявська"/>
+    <tag k="network" v="Київський метрополітен"/>
+    <tag k="old_name" v="Завод «Більшовик»"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="115"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q1851611"/>
+    <tag k="wikipedia" v="uk:Шулявська (станція метро)"/>
+  </node>
+  <node id="3806424761" version="3" timestamp="2017-09-08T08:58:59Z" uid="0" user="" lat="50.4590925" lon="30.419688">
+    <tag k="line" v="Святошинсько-Броварська"/>
+    <tag k="name" v="Берестейська"/>
+    <tag k="name:en" v="Beresteiska"/>
+    <tag k="name:ru" v="Берестейская"/>
+    <tag k="name:uk" v="Берестейська"/>
+    <tag k="network" v="Київський метрополітен"/>
+    <tag k="old_name" v="Жовтнева"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="114"/>
+    <tag k="start_date" v="5-11-1971"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q1926240"/>
+    <tag k="wikipedia" v="uk:Берестейська (станція метро)"/>
+  </node>
+  <node id="3806440513" version="3" timestamp="2017-09-08T08:58:59Z" uid="0" user="" lat="50.4585958" lon="30.4042048">
+    <tag k="line" v="Святошинсько-Броварська"/>
+    <tag k="name" v="Нивки"/>
+    <tag k="name:en" v="Nyvky"/>
+    <tag k="name:ru" v="Нивки"/>
+    <tag k="name:uk" v="Нивки"/>
+    <tag k="network" v="Київський метрополітен"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="113"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q2293785"/>
+    <tag k="wikipedia" v="uk:Нивки (станція метро)"/>
+  </node>
+  <node id="3806462121" version="6" timestamp="2018-12-13T08:17:22Z" uid="0" user="" lat="50.4561717" lon="30.3658729">
+    <tag k="covered" v="yes"/>
+    <tag k="fee" v="8 UAH"/>
+    <tag k="internet_access" v="no"/>
+    <tag k="line" v="Святошинсько-Броварська"/>
+    <tag k="name" v="Житомирська"/>
+    <tag k="name:en" v="Zhytomyrska"/>
+    <tag k="name:ru" v="Житомирская"/>
+    <tag k="name:uk" v="Житомирська"/>
+    <tag k="network" v="Київський метрополітен"/>
+    <tag k="opening_hours" v="Mo-Su 00:00-00:05, 05:45-23:59"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="111"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q2386553"/>
+    <tag k="wikipedia" v="uk:Житомирська (станція метро)"/>
+  </node>
+  <node id="3806504759" version="7" timestamp="2019-06-05T10:43:11Z" uid="0" user="" lat="50.4647043" lon="30.3550833">
+    <tag k="covered" v="yes"/>
+    <tag k="esr:user" v="322322"/>
+    <tag k="int_name" v="Akademmistechko"/>
+    <tag k="layer" v="-2"/>
+    <tag k="line" v="Святошинсько-Броварська"/>
+    <tag k="name" v="Академмістечко"/>
+    <tag k="name:en" v="Akademmistechko"/>
+    <tag k="name:ru" v="Академгородок"/>
+    <tag k="name:uk" v="Академмістечко"/>
+    <tag k="network" v="Київський метрополітен"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="110"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="uic_ref" v="2201195"/>
+    <tag k="wikidata" v="Q672013"/>
+    <tag k="wikipedia" v="uk:Академмістечко (станція метро)"/>
+  </node>
+  <node id="5267935777" version="1" timestamp="2017-12-06T13:17:38Z" uid="0" user="" lat="50.3933354" lon="30.488223">
+    <tag k="name" v="Васильківська"/>
+    <tag k="name:en" v="Vasylkivska"/>
+    <tag k="name:ru" v="Васильковская"/>
+    <tag k="name:uk" v="Васильківська"/>
+    <tag k="opening_hours" v="05:50-00:07"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="224"/>
+    <tag k="station" v="subway"/>
+    <tag k="wikidata" v="Q2639661"/>
+    <tag k="wikipedia" v="uk:Васильківська (станція метро)"/>
+  </node>
+  <node id="5267935778" version="3" timestamp="2020-01-26T19:40:53Z" uid="0" user="" lat="50.4397635" lon="30.5197818">
+    <tag k="name" v="Палац спорту"/>
+    <tag k="name:de" v="Sportpalast"/>
+    <tag k="name:en" v="Palats Sportu"/>
+    <tag k="name:es" v="Palacio de los deportes"/>
+    <tag k="name:fr" v="Palais des Sports"/>
+    <tag k="name:ja" v="キエフ・スポーツ宮殿"/>
+    <tag k="name:nl" v="Sportpaleis"/>
+    <tag k="name:pl" v="Pałac Sportu"/>
+    <tag k="name:ro" v="Palatul Sporturilor"/>
+    <tag k="name:ru" v="Дворец спорта"/>
+    <tag k="name:sv" v="Sportpalatset"/>
+    <tag k="name:uk" v="Палац спорту"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="315"/>
+    <tag k="station" v="subway"/>
+    <tag k="wikidata" v="Q2395573"/>
+    <tag k="wikipedia" v="uk:Палац спорту (станція метро)"/>
+  </node>
+  <node id="5267935779" version="2" timestamp="2020-01-14T16:49:39Z" uid="0" user="" lat="50.3942466" lon="30.6051656">
+    <tag k="name" v="Славутич"/>
+    <tag k="name:en" v="Slavutych"/>
+    <tag k="name:ru" v="Славутич"/>
+    <tag k="name:uk" v="Славутич"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="321"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q2098439"/>
+    <tag k="wikipedia" v="uk:Славутич (станція метро)"/>
+  </node>
+  <node id="5267935780" version="1" timestamp="2017-12-06T13:17:38Z" uid="0" user="" lat="50.3951862" lon="30.6162493">
+    <tag k="name" v="Осокорки"/>
+    <tag k="name:en" v="Osokorky"/>
+    <tag k="name:ru" v="Осокорки"/>
+    <tag k="name:uk" v="Осокорки"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="322"/>
+    <tag k="station" v="subway"/>
+    <tag k="wikidata" v="Q2395489"/>
+    <tag k="wikipedia" v="uk:Осокорки (станція метро)"/>
+  </node>
+  <node id="5267935781" version="3" timestamp="2019-05-15T07:20:42Z" uid="0" user="" lat="50.4768568" lon="30.4332837">
+    <tag k="name" v="Сирець"/>
+    <tag k="name:en" v="Syrets"/>
+    <tag k="name:ru" v="Сырец"/>
+    <tag k="name:uk" v="Сирець"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="wikidata" v="Q2635604"/>
+    <tag k="wikipedia" v="uk:Сирець (станція метро)"/>
+  </node>
+  <node id="5267955452" version="2" timestamp="2020-01-14T16:49:39Z" uid="0" user="" lat="50.4094593" lon="30.6961767">
+    <tag k="name" v="Червоний хутір"/>
+    <tag k="name:en" v="Chervonyi Khutir"/>
+    <tag k="name:ru" v="Красный хутор"/>
+    <tag k="name:uk" v="Червоний хутір"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wheelchair" v="yes"/>
+    <tag k="wikidata" v="Q2395585"/>
+    <tag k="wikipedia" v="uk:Червоний хутір (станція метро)"/>
+  </node>
+  <node id="5267955453" version="1" timestamp="2017-12-06T13:24:37Z" uid="0" user="" lat="50.3824987" lon="30.4775836">
+    <tag k="name" v="Виставковий центр"/>
+    <tag k="name:en" v="Vystavkovyi Tsentr"/>
+    <tag k="name:ru" v="Выставочный центр"/>
+    <tag k="name:uk" v="Виставковий центр"/>
+    <tag k="opening_hours" v="05:53-00:04"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="225"/>
+    <tag k="station" v="subway"/>
+    <tag k="wheelchair" v="yes"/>
+    <tag k="wikidata" v="Q4837469"/>
+    <tag k="wikipedia" v="uk:Виставковий центр (станція метро)"/>
+  </node>
+  <node id="5267955454" version="1" timestamp="2017-12-06T13:24:37Z" uid="0" user="" lat="50.3765534" lon="30.4690454">
+    <tag k="name" v="Іподром"/>
+    <tag k="name:en" v="Ipodrom"/>
+    <tag k="name:ru" v="Ипподром"/>
+    <tag k="name:uk" v="Іподром"/>
+    <tag k="opening_hours" v="05:50-00:02"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="226"/>
+    <tag k="station" v="subway"/>
+    <tag k="wheelchair" v="yes"/>
+    <tag k="wikidata" v="Q2070993"/>
+    <tag k="wikipedia" v="uk:Іподром (станція метро)"/>
+  </node>
+  <node id="5267955455" version="1" timestamp="2017-12-06T13:24:37Z" uid="0" user="" lat="50.3669951" lon="30.4541664">
+    <tag k="name" v="Теремки"/>
+    <tag k="name:en" v="Teremky"/>
+    <tag k="name:ru" v="Теремки"/>
+    <tag k="name:uk" v="Теремки"/>
+    <tag k="opening_hours" v="05:48-00:00"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="227"/>
+    <tag k="station" v="subway"/>
+    <tag k="wheelchair" v="yes"/>
+    <tag k="wikidata" v="Q4455579"/>
+    <tag k="wikipedia" v="uk:Теремки (станція метро)"/>
+  </node>
+  <node id="5267955456" version="2" timestamp="2020-07-13T07:57:18Z" uid="0" user="" lat="50.4729404" lon="30.452629">
+    <tag k="name" v="Дорогожичі"/>
+    <tag k="name:en" v="Dorohozhychi"/>
+    <tag k="name:ru" v="Дорогожичи"/>
+    <tag k="name:uk" v="Дорогожичі"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q2107939"/>
+    <tag k="wikipedia" v="uk:Дорогожичі (станція метро)"/>
+  </node>
+  <node id="5362524991" version="4" timestamp="2019-06-05T10:43:04Z" uid="0" user="" lat="50.5015331" lon="30.4982231">
+    <tag k="esr:user" v="320651"/>
+    <tag k="int_name" v="Obolon"/>
+    <tag k="name" v="Оболонь"/>
+    <tag k="name:en" v="Obolon"/>
+    <tag k="name:ru" v="Оболонь"/>
+    <tag k="name:uk" v="Оболонь"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="uic_ref" v="2201230"/>
+    <tag k="wikidata" v="Q2635594"/>
+    <tag k="wikipedia" v="uk:Оболонь (станція метро)"/>
+  </node>
+  <node id="5362526369" version="3" timestamp="2019-10-15T13:03:48Z" uid="0" user="" lat="50.5226701" lon="30.4988991">
+    <tag k="name" v="Героїв Дніпра"/>
+    <tag k="name:en" v="Heroiv Dnipra"/>
+    <tag k="name:ru" v="Героев Днепра"/>
+    <tag k="name:uk" v="Героїв Дніпра"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+  </node>
+  <node id="7104780467" version="1" timestamp="2020-01-03T15:02:08Z" uid="0" user="" lat="50.4578202" lon="30.3908112">
+    <tag k="covered" v="yes"/>
+    <tag k="line" v="Святошинсько-Броварська"/>
+    <tag k="name" v="Святошин"/>
+    <tag k="name:en" v="Sviatoshyn"/>
+    <tag k="name:ru" v="Святошин"/>
+    <tag k="name:uk" v="Святошин"/>
+    <tag k="network" v="Київський метрополітен"/>
+    <tag k="opening_hours" v="Mo-Su 5:35-0:03"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="112"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q2265613"/>
+    <tag k="wikipedia" v="uk:Святошин (станція метро)"/>
+  </node>
+  <node id="7104807495" version="1" timestamp="2020-01-03T15:00:17Z" uid="0" user="" lat="50.4658354" lon="30.5150809">
+    <tag k="name" v="Контрактова площа"/>
+    <tag k="name:de" v="Kontraktowa-Platz"/>
+    <tag k="name:en" v="Kontraktova Ploshcha"/>
+    <tag k="name:ru" v="Контрактовая площадь"/>
+    <tag k="name:uk" v="Контрактова площа"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="215"/>
+    <tag k="station" v="subway"/>
+    <tag k="wikidata" v="Q2634558"/>
+    <tag k="wikipedia" v="uk:Контрактова площа (станція метро)"/>
+  </node>
+  <node id="7160992960" version="1" timestamp="2020-01-26T19:28:06Z" uid="0" user="" lat="50.4458506" lon="30.5151916">
+    <tag k="layer" v="-2"/>
+    <tag k="name" v="Золоті ворота"/>
+    <tag k="name:de" v="Goldenes Tor"/>
+    <tag k="name:en" v="Zoloti Vorota"/>
+    <tag k="name:fr" v="Porte dorée"/>
+    <tag k="name:ru" v="Золотые ворота"/>
+    <tag k="name:uk" v="Золоті ворота"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="wheelchair" v="no"/>
+    <tag k="wikidata" v="Q2388637"/>
+    <tag k="wikipedia" v="uk:Золоті ворота (станція метро)"/>
+  </node>
+  <node id="7161002666" version="3" timestamp="2020-02-20T10:44:54Z" uid="0" user="" lat="50.4407385" lon="30.5184149">
+    <tag k="internet_access" v="wlan"/>
+    <tag k="name" v="Площа Льва Толстого"/>
+    <tag k="name:en" v="Ploshcha Lva Tolstoho"/>
+    <tag k="name:ru" v="Площадь Льва Толстого"/>
+    <tag k="name:uk" v="Площа Льва Толстого"/>
+    <tag k="operator" v="КП &quot;Київський метрополітен&quot;"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="218"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q2388684"/>
+    <tag k="wikipedia" v="uk:Площа Льва Толстого (станція метро)"/>
+  </node>
+  <node id="7161002667" version="1" timestamp="2020-01-26T19:40:53Z" uid="0" user="" lat="50.4447326" lon="30.5158688">
+    <tag k="layer" v="-2"/>
+    <tag k="name" v="Театральна"/>
+    <tag k="name:ru" v="Театральная"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+  </node>
+  <node id="7218139984" version="1" timestamp="2020-02-17T08:52:19Z" uid="0" user="" lat="50.4360478" lon="30.5340049">
+    <tag k="name" v="Кловська"/>
+    <tag k="name:en" v="Klovska"/>
+    <tag k="name:ru" v="Кловская"/>
+    <tag k="name:uk" v="Кловська"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q2298547"/>
+    <tag k="wikipedia" v="uk:Кловська (станція метро)"/>
+  </node>
+  <node id="7247486081" version="2" timestamp="2020-02-27T16:20:32Z" uid="0" user="" lat="50.421326" lon="30.5208188">
+    <tag k="name" v="Палац «Україна»"/>
+    <tag k="name:en" v="Palats Ukraina"/>
+    <tag k="name:ru" v="Дворец «Украина»"/>
+    <tag k="name:uk" v="Палац «Україна»"/>
+    <tag k="operator" v="КП «Київський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="ref" v="220"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="wikidata" v="Q2388593"/>
+    <tag k="wikipedia" v="uk:Палац «Україна» (станція метро)"/>
+  </node>
+</osm>

@@ -1,0 +1,23 @@
+<?php
+return [
+    'type' => 'Тип',
+    'room_count' => 'Кількість кімнат',
+    'total_space' => 'Загальна площа',
+    'living_space' => 'Жила площа',
+    'kitchen_space' => 'Площа кухні',
+    'height' => 'Висота стелі',
+    'floor' => 'Поверх',
+    'total_floors' => 'Поверховість',
+    'heating' => 'Опалення',
+    'build_year' => 'Рік будівництва',
+    'communals' => 'Комунальні платежі',
+    'rent_date' => 'Дата здачі',
+    'rent_term' => 'Термін здачі',
+    'joint_rent' => 'Cпільна оренда',
+    'publish_date' => 'Дата публикації',
+    'not_first_floor' => 'Не перший поверх',
+    'not_last_floor' => 'Не останній поверх',
+    'query' => 'Пошук за ключовими словами',
+    'communals_winter' => 'Зима',
+    'communals_summer' => 'Літо',
+];

@@ -1,0 +1,423 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version="0.6" generator="Osmosis 0.46">
+  <bounds minlon="36.10562" minlat="49.87828" maxlon="36.45606" maxlat="50.10443" origin="0.46"/>
+  <node id="267309437" version="18" timestamp="2020-05-21T14:14:14Z" uid="0" user="" lat="49.9919855" lon="36.2321095">
+    <tag k="colour" v="blue"/>
+    <tag k="name" v="Історичний музей"/>
+    <tag k="name:en" v="Istorychny Muzey"/>
+    <tag k="name:ru" v="Исторический музей"/>
+    <tag k="name:uk" v="Історичний музей"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="start_date" v="1984"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q1980598"/>
+    <tag k="wikipedia" v="uk:Історичний музей (станція метро)"/>
+  </node>
+  <node id="267309438" version="14" timestamp="2020-05-26T10:04:32Z" uid="0" user="" lat="50.0044398" lon="36.2346171">
+    <tag k="colour" v="blue"/>
+    <tag k="name" v="Університет"/>
+    <tag k="name:de" v="Universität"/>
+    <tag k="name:en" v="University"/>
+    <tag k="name:ru" v="Университет"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="start_date" v="1984"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q1982189"/>
+    <tag k="wikipedia" v="uk:Університет (станція метро, Харків)"/>
+  </node>
+  <node id="267309824" version="17" timestamp="2020-01-22T15:19:15Z" uid="0" user="" lat="49.9897819" lon="36.2061776">
+    <tag k="name" v="Південний вокзал"/>
+    <tag k="name:en" v="Pіvdenny Vokzal"/>
+    <tag k="name:ru" v="Южный вокзал"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+  </node>
+  <node id="267309843" version="27" timestamp="2020-05-21T14:14:14Z" uid="0" user="" lat="49.9919023" lon="36.2317971">
+    <tag k="name" v="Майдан Конституції"/>
+    <tag k="name:en" v="Maidan Konstytutsii"/>
+    <tag k="name:ru" v="Площадь Конституции"/>
+    <tag k="name:uk" v="Майдан Конституції"/>
+    <tag k="old_name" v="Радянська"/>
+    <tag k="old_name:en" v="Radianska"/>
+    <tag k="old_name:ru" v="Советская"/>
+    <tag k="old_name:uk" v="Радянська"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="start_date" v="1975"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q1851615"/>
+    <tag k="wikipedia" v="uk:Майдан Конституції (станція метро)"/>
+  </node>
+  <node id="267309844" version="16" timestamp="2020-01-22T15:06:04Z" uid="0" user="" lat="49.9809097" lon="36.2431155">
+    <tag k="name" v="Проспект Гагаріна"/>
+    <tag k="name:en" v="Prospekt Haharіna"/>
+    <tag k="name:ru" v="Проспект Гагарина"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="start_date" v="1975"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q1980939"/>
+    <tag k="wikipedia" v="uk:Проспект Гагаріна (станція метро)"/>
+  </node>
+  <node id="267310306" version="18" timestamp="2020-01-22T14:44:10Z" uid="0" user="" lat="49.9792587" lon="36.2612829">
+    <tag k="name" v="Спортивна"/>
+    <tag k="name:en" v="Sportyvna"/>
+    <tag k="name:ru" v="Спортивная"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="start_date" v="1975"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q2021778"/>
+    <tag k="wikipedia" v="uk:Спортивна (станція метро, Харків)"/>
+  </node>
+  <node id="267310307" version="17" timestamp="2020-05-21T14:26:23Z" uid="0" user="" lat="49.9760109" lon="36.2808823">
+    <tag k="name" v="Завод імені Малишева"/>
+    <tag k="name:en" v="Zavod imeni Malysheva"/>
+    <tag k="name:ru" v="Завод имени Малышева"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="start_date" v="1975"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q1980928"/>
+    <tag k="wikipedia" v="uk:Завод імені Малишева (станція метро)"/>
+  </node>
+  <node id="267310308" version="19" timestamp="2020-04-05T17:11:15Z" uid="0" user="" lat="49.9722445" lon="36.3017627">
+    <tag k="name" v="Турбоатом"/>
+    <tag k="name:en" v="Turboatom"/>
+    <tag k="name:ru" v="Турбоатом"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="start_date" v="1975"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q2295092"/>
+    <tag k="wikipedia" v="uk:Турбоатом (станція метро)"/>
+  </node>
+  <node id="267310326" version="21" timestamp="2020-01-17T12:20:12Z" uid="0" user="" lat="49.9663164" lon="36.3210877">
+    <tag k="name" v="Палац Спорту"/>
+    <tag k="name:en" v="Palats Sportu"/>
+    <tag k="name:ru" v="Дворец Спорта"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q1980634"/>
+    <tag k="wikipedia" v="uk:Палац Спорту (станція метро, Харків)"/>
+  </node>
+  <node id="267310368" version="20" timestamp="2020-05-21T14:26:23Z" uid="0" user="" lat="49.9618582" lon="36.3430092">
+    <tag k="name" v="Армійська"/>
+    <tag k="name:en" v="Armiiska"/>
+    <tag k="name:ru" v="Армейская"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q1980955"/>
+    <tag k="wikipedia" v="uk:Армійська (станція метро)"/>
+  </node>
+  <node id="267310369" version="15" timestamp="2020-05-21T14:26:23Z" uid="0" user="" lat="49.9585202" lon="36.3602592">
+    <tag k="name" v="ім. О.С. Масельського"/>
+    <tag k="name:en" v="іm. O.S. Maselskoho"/>
+    <tag k="name:ru" v="им. А.С. Масельского"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="start_date" v="1978"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+  </node>
+  <node id="267310391" version="17" timestamp="2020-01-22T15:06:04Z" uid="0" user="" lat="49.9927669" lon="36.2195931">
+    <tag k="name" v="Центральний ринок"/>
+    <tag k="name:en" v="Tsentralny Rynok"/>
+    <tag k="name:ru" v="Центральный рынок"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q1981254"/>
+    <tag k="wikipedia" v="uk:Центральний ринок (станція метро)"/>
+  </node>
+  <node id="267465955" version="15" timestamp="2020-05-23T11:49:30Z" uid="0" user="" lat="50.0039554" lon="36.2480681">
+    <tag k="colour" v="blue"/>
+    <tag k="name" v="Пушкінська"/>
+    <tag k="name:en" v="Pushkіnska"/>
+    <tag k="name:ru" v="Пушкинская"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q1984078"/>
+    <tag k="wikipedia" v="uk:Пушкінська (станція метро, Харків)"/>
+  </node>
+  <node id="267465956" version="17" timestamp="2020-05-26T10:04:32Z" uid="0" user="" lat="50.0013684" lon="36.2694714">
+    <tag k="colour" v="blue"/>
+    <tag k="name" v="Київська"/>
+    <tag k="name:en" v="Kyivska"/>
+    <tag k="name:ru" v="Киевская"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q1981672"/>
+    <tag k="wikipedia" v="uk:Київська (станція метро, Харків)"/>
+  </node>
+  <node id="267465957" version="15" timestamp="2013-07-29T09:53:59Z" uid="0" user="" lat="50.0024823" lon="36.3027278">
+    <tag k="name" v="Академіка Барабашова"/>
+    <tag k="colour" v="blue"/>
+    <tag k="subway" v="yes"/>
+    <tag k="name:en" v="Akademіka Barabashova"/>
+    <tag k="name:ru" v="Академика Барабашова"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="transport" v="subway"/>
+    <tag k="public_transport" v="stop_position"/>
+  </node>
+  <node id="267465958" version="19" timestamp="2019-08-17T19:57:37Z" uid="0" user="" lat="50.0095102" lon="36.31863">
+    <tag k="colour" v="blue"/>
+    <tag k="name" v="Академіка Павлова"/>
+    <tag k="name:en" v="Akademіka Pavlova"/>
+    <tag k="name:ru" v="Академика Павлова"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="stop_position"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q1982377"/>
+    <tag k="wikipedia" v="uk:Академіка Павлова"/>
+  </node>
+  <node id="267465960" version="17" timestamp="2020-01-09T10:51:40Z" uid="0" user="" lat="50.0248647" lon="36.3358765">
+    <tag k="colour" v="blue"/>
+    <tag k="name" v="Героїв праці"/>
+    <tag k="name:en" v="Heroiv Pratsi"/>
+    <tag k="name:ru" v="Героев труда"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="stop_position"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+  </node>
+  <node id="267466050" version="17" timestamp="2020-05-26T10:04:32Z" uid="0" user="" lat="50.0048358" lon="36.2322543">
+    <tag k="name" v="Держпром"/>
+    <tag k="name:de" v="Derschprom"/>
+    <tag k="name:en" v="Derzhprom"/>
+    <tag k="name:es" v="Derzhprom"/>
+    <tag k="name:pl" v="Derżprom"/>
+    <tag k="name:ru" v="Госпром"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="start_date" v="1995"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q1984072"/>
+    <tag k="wikipedia" v="uk:Держпром (станція метро)"/>
+  </node>
+  <node id="267466051" version="15" timestamp="2019-08-17T19:57:38Z" uid="0" user="" lat="50.0129669" lon="36.2269874">
+    <tag k="name" v="Наукова"/>
+    <tag k="name:en" v="Naukova"/>
+    <tag k="name:ru" v="Научная"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="stop_position"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q1984058"/>
+    <tag k="wikipedia" v="uk:Наукова (станція метро)"/>
+  </node>
+  <node id="267466052" version="20" timestamp="2020-01-09T10:53:51Z" uid="0" user="" lat="50.0261897" lon="36.2230631">
+    <tag k="name" v="Ботанічний сад"/>
+    <tag k="name:en" v="Botanichny Sad"/>
+    <tag k="name:ru" v="Ботанический сад"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="stop_position"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q1984574"/>
+    <tag k="wikipedia" v="uk:Ботанічний сад (станція метро, Харків)"/>
+  </node>
+  <node id="267466053" version="15" timestamp="2020-05-26T10:04:32Z" uid="0" user="" lat="50.0356993" lon="36.2199803">
+    <tag k="name" v="23 серпня"/>
+    <tag k="name:en" v="23 Serpnya"/>
+    <tag k="name:ru" v="23 августа"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q1984723"/>
+    <tag k="wikipedia" v="uk:23 Серпня (станція метро)"/>
+  </node>
+  <node id="267466054" version="18" timestamp="2020-07-13T17:24:20Z" uid="0" user="" lat="50.0499869" lon="36.2066329">
+    <tag k="name" v="Олексіївська"/>
+    <tag k="name:en" v="Oleksiivska"/>
+    <tag k="name:ru" v="Алексеевская"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q2423534"/>
+    <tag k="wikipedia" v="uk:Олексіївська (станція метро, Харків)"/>
+  </node>
+  <node id="267466152" version="17" timestamp="2020-01-13T16:37:00Z" uid="0" user="" lat="49.9781913" lon="36.262447">
+    <tag k="name" v="Метробудівників"/>
+    <tag k="name:en" v="Metrobudіvnykіv"/>
+    <tag k="name:ru" v="Метростроителей"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q919772"/>
+    <tag k="wikipedia" v="uk:Метробудівників (станція метро, Харків)"/>
+  </node>
+  <node id="267466153" version="17" timestamp="2020-01-21T15:36:37Z" uid="0" user="" lat="49.9887953" lon="36.2648951">
+    <tag k="name" v="Захисників України"/>
+    <tag k="name:en" v="Zakhysnykiv Ukrainy"/>
+    <tag k="name:ru" v="Защитников Украины"/>
+    <tag k="name:uk" v="Захисників України"/>
+    <tag k="old_name" v="Площа Повстання"/>
+    <tag k="old_name:ru" v="Площадь Восстания"/>
+    <tag k="old_name:uk" v="Площа Повстання"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q1984538"/>
+    <tag k="wikipedia" v="uk:Захисників України (станція метро)"/>
+  </node>
+  <node id="267466154" version="19" timestamp="2020-05-26T09:30:40Z" uid="0" user="" lat="49.9997855" lon="36.2401474">
+    <tag k="name" v="Архітектора Бекетова"/>
+    <tag k="name:en" v="Arkhіtektora Beketova"/>
+    <tag k="name:ru" v="Архитектора Бекетова"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q1984580"/>
+    <tag k="wikipedia" v="uk:Архітектора Бекетова (станція метро)"/>
+  </node>
+  <node id="268473514" version="14" timestamp="2020-05-21T14:26:23Z" uid="0" user="" lat="49.9827742" lon="36.1825438">
+    <tag k="name" v="Холодна гора"/>
+    <tag k="name:en" v="Kholodna Hora"/>
+    <tag k="name:ru" v="Холодная гора"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q1980909"/>
+    <tag k="wikipedia" v="uk:Холодна гора (станція метро)"/>
+  </node>
+  <node id="984656672" version="11" timestamp="2020-05-21T14:26:23Z" uid="0" user="" lat="49.9527769" lon="36.3790235">
+    <tag k="name" v="Тракторний завод"/>
+    <tag k="name:en" v="Traktorni Zavod"/>
+    <tag k="name:ru" v="Тракторный завод"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="start_date" v="1978"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q1980948"/>
+    <tag k="wikipedia" v="uk:Тракторний завод (станція метро, Харків)"/>
+  </node>
+  <node id="1283748378" version="16" timestamp="2020-01-22T15:06:04Z" uid="0" user="" lat="49.9465931" lon="36.3980146">
+    <tag k="name" v="Індустріальна"/>
+    <tag k="name:en" v="Industrialna"/>
+    <tag k="name:ru" v="Индустриальная"/>
+    <tag k="name:uk" v="Індустріальна"/>
+    <tag k="old_name" v="Пролетарськая"/>
+    <tag k="old_name:ru" v="Пролетарская"/>
+    <tag k="old_name:uk" v="Пролетарська"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="start_date" v="1978"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q1981278"/>
+    <tag k="wikipedia" v="uk:Індустріальна (станція метро, Харків)"/>
+  </node>
+  <node id="1684642898" version="6" timestamp="2019-08-17T19:57:37Z" uid="0" user="" lat="50.0172511" lon="36.3293814">
+    <tag k="colour" v="blue"/>
+    <tag k="name" v="Студентська"/>
+    <tag k="name:en" v="Studentska"/>
+    <tag k="name:ru" v="Студенческая"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="stop_position"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q1982385"/>
+    <tag k="wikipedia" v="uk:Студентська (станція метро, Харків)"/>
+  </node>
+  <node id="4363629723" version="6" timestamp="2020-05-26T10:04:32Z" uid="0" user="" lat="50.0594605" lon="36.2017094">
+    <tag k="name" v="Перемога"/>
+    <tag k="name:en" v="Peremoha"/>
+    <tag k="name:ru" v="Победа"/>
+    <tag k="operator" v="КП «Харківський метрополітен»"/>
+    <tag k="public_transport" v="station"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="subway" v="yes"/>
+    <tag k="transport" v="subway"/>
+    <tag k="wikidata" v="Q4366196"/>
+    <tag k="wikipedia" v="uk:Перемога (станція метро, Харків)"/>
+  </node>
+</osm>

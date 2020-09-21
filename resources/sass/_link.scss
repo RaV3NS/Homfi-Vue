@@ -1,0 +1,54 @@
+.link {
+    --link-transition: color .2s;
+    color: var(--link-color);
+    cursor: pointer;
+    text-decoration: underline;
+
+    transition: var(--link-transition);
+
+    font-size: var(--link-font-size, 1rem);
+    line-height: var(--link-line-height, 1.375rem);
+    font-weight: var(--link-font-weight, 400);
+    text-decoration: var(--link-decoration, underline);
+
+    &:visited {
+        color: var(--link-color);
+    }
+
+    &:visited:hover,
+    &:hover {
+        color: var(--link-color-hover);
+    }
+
+    &_primary {
+        --link-color: var(--blue-600);
+        --link-color-hover: var(--blue-400);
+    }
+
+    &_secondary {
+        --link-color: var(--blue-900);
+        --link-color-hover: var(--greyish-blue);
+        --link-color-disabled: var(--gray-300);
+    }
+
+    &_light {
+        --link-color: var(--white);
+        --link-color-hover: var(--gray-300);
+    }
+
+    &_info {
+        --link-color: var(--greyish-blue);
+        --link-color-hover: var(--blue-900);
+        --link-color-disabled: var(--gray-300);
+    }
+
+    &_disabled {
+        pointer-events: none;
+
+        color: var(--link-color-disabled, var(--link-color));
+    }
+
+    &_no-underline {
+        --link-decoration: none;
+    }
+}

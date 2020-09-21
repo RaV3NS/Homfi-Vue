@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version="0.6" generator="Osmosis 0.46">
+  <bounds minlon="34.74895" minlat="48.34750" maxlon="35.24220" maxlat="48.57639" origin="0.46"/>
+  <node id="927301101" version="8" timestamp="2017-06-29T21:36:25Z" uid="0" user="" lat="48.4756171" lon="34.9597032">
+    <tag k="name" v="Заводська"/>
+    <tag k="name:en" v="Zavodska"/>
+    <tag k="name:ru" v="Заводская"/>
+    <tag k="name:uk" v="Заводська"/>
+    <tag k="operator" v="КП &quot;Днепропетровский метрополитен&quot;"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="wikidata" v="Q1992249"/>
+    <tag k="wikipedia" v="uk:Заводська (станція метро)"/>
+  </node>
+  <node id="927301134" version="8" timestamp="2017-06-29T21:36:25Z" uid="0" user="" lat="48.4770399" lon="34.9799108">
+    <tag k="name" v="Металургів"/>
+    <tag k="name:en" v="Metalurhiv"/>
+    <tag k="name:ru" v="Металлургов"/>
+    <tag k="name:uk" v="Металургів"/>
+    <tag k="operator" v="КП &quot;Днепропетровский метрополитен&quot;"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="wikidata" v="Q4291606"/>
+    <tag k="wikipedia" v="uk:Металургів (станція метро)"/>
+  </node>
+  <node id="927301152" version="9" timestamp="2018-07-29T10:49:43Z" uid="0" user="" lat="48.475375" lon="35.0160051">
+    <tag k="name" v="Вокзальна"/>
+    <tag k="name:en" v="Vokzalna"/>
+    <tag k="name:ru" v="Вокзальная"/>
+    <tag k="name:uk" v="Вокзальна"/>
+    <tag k="operator" v="КП &quot;Днепропетровский метрополитен&quot;"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="wikidata" v="Q1969301"/>
+    <tag k="wikipedia" v="uk:Вокзальна (станція метро, Дніпро)"/>
+  </node>
+  <node id="927301172" version="8" timestamp="2019-05-28T20:25:51Z" uid="0" user="" lat="48.4753798" lon="34.9954563">
+    <tag k="name" v="Метробудівників"/>
+    <tag k="name:en" v="Metrobudivnykiv"/>
+    <tag k="name:ru" v="Метростроителей"/>
+    <tag k="name:uk" v="Метробудівників"/>
+    <tag k="operator" v="КП &quot;Днепропетровский метрополитен&quot;"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="wikidata" v="Q4292001"/>
+    <tag k="wikipedia" v="uk:Метробудівників (станція метро, Дніпро)"/>
+  </node>
+  <node id="927301279" version="9" timestamp="2017-03-27T09:51:31Z" uid="0" user="" lat="48.4793254" lon="34.9266914">
+    <tag k="layer" v="-2"/>
+    <tag k="name" v="Покровська"/>
+    <tag k="name:en" v="Pokrovska"/>
+    <tag k="name:ru" v="Покровская"/>
+    <tag k="name:uk" v="Покровська"/>
+    <tag k="old_name" v="Комунарівська"/>
+    <tag k="old_name:en" v="Komunarivska"/>
+    <tag k="old_name:ru" v="Коммунаровская"/>
+    <tag k="old_name:uk" v="Комунарівська"/>
+    <tag k="operator" v="КП &quot;Днепропетровский метрополитен&quot;"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="wikidata" v="Q1993847"/>
+    <tag k="wikipedia" v="uk:Покровська (станція метро)"/>
+  </node>
+  <node id="927301378" version="8" timestamp="2017-06-29T21:36:25Z" uid="0" user="" lat="48.4803142" lon="34.9429764">
+    <tag k="name" v="Проспект Свободи"/>
+    <tag k="name:en" v="Prospekt Svobody"/>
+    <tag k="name:ru" v="Проспект Свободы"/>
+    <tag k="name:uk" v="Проспект Свободи"/>
+    <tag k="operator" v="КП &quot;Днепропетровский метрополитен&quot;"/>
+    <tag k="railway" v="station"/>
+    <tag k="station" v="subway"/>
+    <tag k="wikidata" v="Q4381359"/>
+    <tag k="wikipedia" v="uk:Проспект Свободи (станція метро)"/>
+  </node>
+</osm>

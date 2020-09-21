@@ -1,0 +1,181 @@
+#general input[type=text],
+#general input[type=number] {
+  width: 100%;
+  padding: 0 8px;
+}
+
+.lined .form-group.row {
+  border-bottom: 1px solid lightgrey;
+}
+
+.label-success {
+  color: green;
+}
+
+.label-danger {
+  color: red;
+}
+
+.label-warning {
+  color: orange;
+}
+
+.user-block > div {
+  display: inline-block;
+}
+
+.user-block .icon--no-image {
+  font-size: 30px;
+}
+
+.custom-control {
+  min-height: 2rem;
+}
+
+.text-muted {
+  font-size: 0.8rem;
+}
+
+#user_type_filter,
+#advert_type_filter,
+#advert_status_filter,
+#advert_city_filter {
+  margin: 2px 10px;
+  padding: 5px;
+  margin-right: 2%;
+}
+
+.datatable_filter {
+  margin: 2px 10px;
+  padding: 5px;
+  margin-right: 2%;
+}
+
+img.new-image {
+  margin: 5px;
+  padding: 5px;
+}
+
+.image-gallery {
+  margin: 10px;
+}
+
+.user-notifies .dropdown-item {
+  overflow: hidden;
+  white-space: normal;
+}
+
+.user-notifies .dropdown-item .text-muted {
+  color: #1f2d3d !important;
+}
+
+#gallery .block-image {
+  position: relative;
+  padding: 15px;
+}
+
+#gallery .block-thumb {
+  overflow: hidden;
+}
+
+#gallery .new-block-image,
+#gallery .new-image-input {
+  display: none;
+}
+
+#gallery .block-control {
+  position: absolute;
+  bottom: 10px;
+  left: 28%;
+  z-index: 1000;
+  background: #e9ecefad;
+}
+
+#gallery .block-control span,
+#gallery .block-control .fa-flip-horizontal {
+  margin: 5px;
+}
+
+#gallery .block-control i:hover {
+  cursor: pointer;
+  color: grey;
+}
+
+#gallery .block-control i.clicked {
+  font-size: 15px;
+}
+
+.note-popover.popover {
+  position: relative !important;
+}
+
+#advert_date_after_filter,
+#advert_date_before_filter,
+#advert_city_filter,
+#advert_type_filter {
+  float: right;
+}
+
+.dataTable .small-title {
+  font-size: 12px;
+}
+
+button#reset_filter {
+  margin-left: 15px;
+}
+
+input#advert_date_before_filter,
+input#advert_date_after_filter {
+  width: 140px;
+  margin-right: 8px;
+}
+
+#data-table_filter input[type=search] {
+  max-width: 140px;
+}
+
+#notification_type_filter {
+  max-width: 150px;
+}
+
+.custom-control.custom-radio label {
+  font-weight: 500;
+}
+
+input#new_comment_input {
+  margin-right: 20px;
+}
+
+.hidden-comments-block {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .container-bordered {
+    max-width: 48%;
+    margin-right: 3px;
+    padding: 22px;
+    border: 1px solid lightgrey;
+  }
+}
+
+.datepicker-input.datatable_filter {
+  width: 100px;
+}
+
+#user_date_after_filter {
+  margin-left: 50px;
+}
+
+#reset_filter {
+  margin-left: 10px;
+}
+
+.messengers-on-phone label {
+  margin-left: 10px;
+}
+
+.note-popover.popover.in.bottom {
+  display: none;
+}
+
