@@ -60,12 +60,13 @@
             </div>
 
             <div class="filters">
-                <FilterButton text="Тип жилья" store_p="type_filter" store_a="setFilterType"></FilterButton>
-                <FilterButton text="Кол-во комнат" store_p="room_filter" store_a="setRoomType"></FilterButton>
+                <FilterButton text="Тип жилья" store_p="type_filter" store_a="setFilterType" v-on:setFilters="updateFlatFilters" ref="typeFilter"></FilterButton>
+                <FilterButton text="Кол-во комнат" store_p="room_filter" store_a="setRoomType" v-on:setFilters="updateRoomFilters" ref="roomFilter"></FilterButton>
 
-                <FilterButtonRange text="Цена, грн" store_prop="price_filter"></FilterButtonRange>
+                <FilterButtonRange text="Цена, грн" store_prop="price_filter" v-on:filterChange="handleFilterChange"></FilterButtonRange>
+
                 <div>
-                    <a href="#" class="btn btn-filter" @click="openModal">Еще фильтры</a>
+                    <a href="#" class="btn btn-filter" v-on:click.stop.prevent="openModal">Еще фильтры</a>
                 </div>
             </div>
 
@@ -78,12 +79,12 @@
                     </div>
 
                     <div class="grid">
-                        <FormRangeFieldFilters name="all_space" label="Общая кухни" unit="м²" />
-                        <FormRangeFieldFilters name="kitchen_space" label="Площадь кухни" unit="м²" />
-                        <FormRangeFieldFilters name="living_space" label="Жилая площадь" unit="м²" />
+                        <FormRangeFieldFilters name="all_space" label="Общая площадь" unit="м²" v-on:filterChange="handleFilterChange" />
+                        <FormRangeFieldFilters name="kitchen_space" label="Площадь кухни" unit="м²" v-on:filterChange="handleFilterChange" />
+                        <FormRangeFieldFilters name="living_space" label="Жилая площадь" unit="м²" v-on:filterChange="handleFilterChange" />
 
-                        <FormRangeFieldFilters name="build_year" label="Год постройки" unit="г." />
-                        <FormRangeFieldFilters name="wall_height" label="Высота потолков" unit="м" />
+                        <FormRangeFieldFilters name="build_year" label="Год постройки" unit="г." v-on:filterChange="handleFilterChange" />
+                        <FormRangeFieldFilters name="wall_height" label="Высота потолков" unit="м" v-on:filterChange="handleFilterChange" />
 
                         <div class="item">
                             <div class="subitem">
@@ -116,15 +117,15 @@
                         <div class="item"></div>
 
                         <CheckboxAltFilter text="Совместная аренда" name="coop"></CheckboxAltFilter>
-                        <CheckboxAltFilter text="Не первая сдача" name="nofirst"></CheckboxAltFilter>
-                        <CheckboxAltFilter text="Не последняя сдача" name="nolast"></CheckboxAltFilter>
+                        <CheckboxAltFilter text="Не первый этаж" name="nofirst"></CheckboxAltFilter>
+                        <CheckboxAltFilter text="Не последний этаж" name="nolast"></CheckboxAltFilter>
                     </div>
 
                     <hr class="modal_hr">
 
                     <div class="bottom">
-                        <a href="#" class="link link-info" @click="resetAltFilters">Сбросить</a>
-                        <a href="#" class="btn btn-primary">Продолжить</a>
+                        <a href="#" class="link link-info" v-on:click.stop.prevent="resetAltFilters">Сбросить</a>
+                        <a href="#" class="btn btn-primary" v-on:click.stop.prevent="setAltFilters">Продолжить</a>
                     </div>
                 </div>
             </modal>
@@ -201,6 +202,108 @@ export default {
                     this.$store.dispatch("setAltFilter", { prop: el[0], field: "to", value: null });
                 }
             })
+        },
+        handleFilterChange(payload) {
+            let data = [];
+
+            if (payload.prop === "price_filter") {
+                if (payload.data.to && payload.data.to > 0)
+                    data.push({ prop: 'pricemonth_max', value: payload.data.to });
+                if (payload.data.from && payload.data.from > 0)
+                    data.push({ prop: 'pricemonth_min', value: payload.data.from });
+                this.$emit("updateQuery", { data: data });
+            }
+        },
+        setAltFilters() {
+            let altFilters = this.$store.state.alt_filters;
+            let data = [];
+
+            let aliases = {
+               'all_space': { type: 'min-max', name: 'total_space' },
+               'kitchen_space': { type: 'min-max', name: 'kitchen_space' },
+               'living_space': { type: 'min-max', name: 'living_space' },
+               'build_year': { type: 'min-max', name: 'build_year' },
+               'wall_height': { type: 'min-max', name: 'height' },
+               'publish_date': { type: 'select', name: 'publish_date' },
+               'floor': { type: 'min-max', name: 'floor' },
+               'total_floor': { type: 'min-max', name: 'total_floors' },
+               'coop': { type: 'value', name: 'joint_rent' },
+               'nofirst': { type: 'value', name: 'not_first_floor' },
+               'nolast': { type: 'value', name: 'not_last_floor' },
+            };
+
+            Object.entries(altFilters).map((el) => {
+                let alias = aliases[el[0]];
+                if (alias) {
+                    if (alias.type === 'min-max') {
+                        if (el[1].from && el[1].from > 0)
+                            data.push({ prop: alias.name + '_min', value: el[1].from });
+                        if (el[1].to && el[1].to > 0)
+                            data.push({ prop: alias.name + '_max', value: el[1].to });
+                    }
+
+                    if (alias.type === 'select') {
+                        if (el[1].value)
+                            data.push({ prop: alias.name, value: el[1].value.value });
+                    }
+
+                    if (alias.type === 'value') {
+                        if (el[1].value)
+                            data.push({ prop: alias.name, value: el[1].value });
+                    }
+                }
+            });
+
+            this.$emit("updateQuery", { data: data });
+            //this.$modal.hide('more-filters')
+        },
+        updateFlatFilters() {
+            let fullUrl = window.location.href.split("?");
+            let url = fullUrl[0];
+
+            let params = url.split("-");
+
+            if (params.length <= 2) {
+                let get_params = fullUrl[1] ? "?" + fullUrl[1] : "";
+                params[1] = this.$store.state.type_filter_value.value.join(",");
+                let query = params[1].length > 0 ? "-" + params[1] + get_params : "";
+                window.location = params[0] + query;
+            }
+
+            if (params.length === 3) {
+                let get_params = fullUrl[1] ? "?" + fullUrl[1] : "";
+                let query = params[2].length > 0 ? "-" + params[2] + get_params : "";
+                window.location = params[0] + query;
+            }
+        },
+        updateRoomFilters() {
+            // let fullUrl = window.location.href.split("?");
+            // let url = fullUrl[0];
+            //
+            // let params = url.split("-");
+            //
+            // if (params.length === 2) {
+            //     let types = ['odnokomnatnyie', 'dvuhkomnatnyie', 'trehkomnatnyie', 'chetyrehkomnatnyie'];
+            //     let arr = params[1].split(",");
+            //     let found = arr.some( ai => types.includes(ai) );
+            //
+            //     if (found) {
+            //         let get_params = fullUrl[1] ? "?" + fullUrl[1] : "";
+            //         params[1] = this.$store.state.room_filter_value.value.join(",");
+            //         let query = params[1].length > 0 ? "-" + params[1] + get_params : "";
+            //         window.location = params[0] + query;
+            //     } else {
+            //         let get_params = fullUrl[1] ? "?" + fullUrl[1] : "";
+            //         let query = params[2].length > 0 ? "-" + params[2] + get_params : "";
+            //         window.location = params[0] + query;
+            //     }
+            // }
+            //
+            // if (params.length === 3) {
+            //     let get_params = fullUrl[1] ? "?" + fullUrl[1] : "";
+            //     let query = params[2].length > 0 ? "-" + params[2] + get_params : "";
+            //     window.location = params[0] + query;
+            // }
         }
     },
     props: ['advertsCount'],
@@ -335,6 +438,10 @@ export default {
         grid-row-gap: 30px;
         margin-bottom: 45px;
         margin-top: 2rem;
+    }
+
+    .search-settings_header {
+        padding-bottom: 0;
     }
 </style>
 

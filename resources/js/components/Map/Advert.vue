@@ -156,6 +156,7 @@ export default {
     .advert-card {
         border: 1px solid transparent;
         border-radius: 6px;
+        height: fit-content;
     }
 
     .advert-card:hover {

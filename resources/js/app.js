@@ -26,6 +26,7 @@ import Vuex from 'vuex';
 import { BootstrapVue } from 'bootstrap-vue'
 import VModal from 'vue-js-modal/dist/index.nocss.js'
 import VueCarousel from '@chenfengyuan/vue-carousel';
+import ToggleButton from 'vue-js-toggle-button'
 
 import 'leaflet/dist/leaflet.css';
 import "vue-select/src/scss/vue-select.scss";
@@ -46,6 +47,7 @@ Vue.use(Vuex);
 Vue.use(BootstrapVue);
 Vue.use(VModal);
 Vue.use(VueCarousel);
+Vue.use(ToggleButton);
 
 // Reset the main icons
 L.Icon.Default.mergeOptions({
@@ -72,42 +74,67 @@ Vue.component('v-select', vSelect)
 export const store = new Vuex.Store({
     state: {
         city: null,
+        sortBy: {
+            value: 'newest'
+        },
         type_filter: [
             {
+                id: 0,
                 text: 'Квартира',
-                checked: false
+                checked: false,
+                slug: 'kvartiry'
             },
             {
+                id: 1,
                 text: 'Комната',
-                checked: false
+                checked: false,
+                slug: 'komnaty'
             },
             {
+                id: 2,
                 text: 'Дом',
-                checked: false
+                checked: false,
+                slug: 'doma'
             },
             {
+                id: 3,
                 text: 'Часть дома',
-                checked: false
+                checked: false,
+                slug: 'poldoma'
             },
         ],
+        type_filter_value: {
+            value: []
+        },
         room_filter: [
             {
+                id: 0,
                 text: '1 комната',
-                checked: false
+                checked: false,
+                slug: 'odnokomnatnyie'
             },
             {
+                id: 1,
                 text: '2 комнаты',
-                checked: false
+                checked: false,
+                slug: 'dvuhkomnatnyie'
             },
             {
+                id: 2,
                 text: '3 комнаты',
-                checked: false
+                checked: false,
+                slug: 'trehkomnatnyie'
             },
             {
+                id: 3,
                 text: '4+ комнат',
-                checked: false
+                checked: false,
+                slug: 'chetyrehkomnatnyie'
             },
         ],
+        room_filter_value: {
+            value: []
+        },
         price_filter: {
             from: null,
             to: null
@@ -139,12 +166,12 @@ export const store = new Vuex.Store({
             publish_date: {
                 value: null,
                 options: [
-                    {name: "Сегодня", label: "Сегодня"},
-                    {name: "2 дня", label: "Сегодня"},
-                    {name: "3 дня", label: "Сегодня"},
-                    {name: "Неделя", label: "Сегодня"},
-                    {name: "2 недели", label: "Сегодня"},
-                    {name: "Месяц", label: "Сегодня"},
+                    {name: "Сегодня", label: "Сегодня", value: 'today'},
+                    {name: "2 дня", label: "Сегодня", value: '2_days_ago'},
+                    {name: "3 дня", label: "Сегодня", value: '3_days_ago'},
+                    {name: "Неделя", label: "Сегодня", value: "week_ago"},
+                    {name: "2 недели", label: "Сегодня", value: "2_weeks_ago"},
+                    {name: "Месяц", label: "Сегодня", value: "month_ago"},
                 ]
             },
             floor: {
@@ -172,9 +199,19 @@ export const store = new Vuex.Store({
         },
         setFilterType(state, newValue) {
             state.type_filter[newValue.id].checked = newValue.value;
+
+            if (newValue.value)
+                state.type_filter_value.value.push(state.type_filter[newValue.id].slug);
+            else
+                state.type_filter_value.value = state.type_filter_value.value.filter(el => el !== state.type_filter[newValue.id].slug);
         },
         setRoomType(state, newValue) {
             state.room_filter[newValue.id].checked = newValue.value;
+
+            if (newValue.value)
+                state.room_filter_value.value.push(state.room_filter[newValue.id].slug);
+            else
+                state.room_filter_value.value = state.room_filter_value.value.filter(el => el !== state.room_filter[newValue.id].slug);
         },
         setFilter(state, obj) {
             state[obj.prop][obj.field] = obj.value;

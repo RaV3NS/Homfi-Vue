@@ -14,7 +14,7 @@
 
             <div class="control-block">
                 <a href="#" class="link link-info" v-on:click.stop.prevent="handleRefresh">Сбросить</a>
-                <a href="#" class="btn btn-primary">Продолжить</a>
+                <a href="#" class="btn btn-primary" v-on:click.stop.prevent="setFilters">Продолжить</a>
             </div>
         </b-dropdown-text>
     </b-dropdown>
@@ -48,6 +48,9 @@
             })
         },
         methods: {
+            setFilters() {
+                this.$emit("setFilters", 1);
+            },
             handleChecked (payload) {
                 if (payload.value === true)
                     this.selected.push(payload.text);

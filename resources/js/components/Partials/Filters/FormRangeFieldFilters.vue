@@ -20,7 +20,7 @@ export default {
         }
     },
     mounted() {
-        console.log(this.store_prop.from);
+        //
     },
     watch: {
         from: function(newVal, oldVal) {

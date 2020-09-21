@@ -70,4 +70,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.', 'na
     Route::put('parse', 'ParseController@store');
 });
 
+//Route::get('/{city}', 'Front\MapController@index');
+Route::get('/{city}-{params}', 'Front\MapController@index');
 Route::get('/{city}', 'Front\MapController@index');

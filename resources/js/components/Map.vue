@@ -1,5 +1,5 @@
 <template>
-    <div class="map">
+    <div class="map" v-bind:class="{ 'visible_map': visibleMap }">
         <l-map :zoom="zoom" :center="center">
             <l-tile-layer :url="url"></l-tile-layer>
             <l-marker v-for="marker in _markers" :lat-lng="getLatLng(marker)" v-on:click="getAdvert(marker)" :key="marker.id">
@@ -55,6 +55,7 @@ export default {
             markers: null,
             activeMapAdvert: null,
             isAdvertLoading: false,
+            visibleMap: false,
 
             carouselData: [
                 '<div class="slide"><img class="slide_img" src="https://i1.wp.com/itc.ua/wp-content/uploads/2019/11/google-photos.jpg?fit=1000%2C600&quality=100&strip=all&ssl=1" alt="img"></div>',
@@ -65,6 +66,7 @@ export default {
     mounted() {
         //this.markers = JSON.parse(this._markers);
         this.markers = this._markers;
+        setTimeout(function() { window.dispatchEvent(new Event('resize')) }, 250);
     },
     props: ['_markers'],
     methods: {

@@ -1,5 +1,5 @@
 <template>
-    <b-dropdown id="dropdown-text" :text="label" class="m-2 dropdown-filter">
+    <b-dropdown id="dropdown-text" :text="label" class="m-2 dropdown-filter" v-on:blur="updateFilters">
         <b-dropdown-text>
             <div class="range-field">
                 <input
@@ -25,7 +25,7 @@
 
             <div class="control-block">
                 <a href="#" class="link link-info" v-on:click.stop.prevent="handleRefresh">Сбросить</a>
-                <a href="#" class="btn btn-primary">Продолжить</a>
+                <a href="#" class="btn btn-primary" v-on:click.stop.prevent="updateFilters">Продолжить</a>
             </div>
         </b-dropdown-text>
     </b-dropdown>
@@ -80,14 +80,10 @@
                 this.from = "";
             },
             validateInput() {
-                if (this.to < this.from)
-                    this.from = this.from;
-
-                if (this.from > this.to)
-                    this.to = this.from;
+                // #TODO Filter Logic
             },
             updateFilters() {
-                // this.$emit("changeInputValue");
+                this.$emit("filterChange", { prop: this.store_prop, data: { from: this.from, to: this.to } });
             }
         },
         watch: {

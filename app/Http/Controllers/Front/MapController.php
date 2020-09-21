@@ -10,7 +10,6 @@ class MapController extends Controller
 {
     public function index(Request $request) {
         $city = City::where('translit', $request->route('city'))->first();
-        if (!$city) return redirect('/kiev');
         return view('map', ['city' => $city]);
     }
 }

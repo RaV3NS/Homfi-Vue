@@ -15,12 +15,12 @@
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 
-<style lang="scss">
-    button.dropdown-toggle::after {
+<style>
+    .filters button.dropdown-toggle::after {
         display: none !important;
     }
 
-    button.dropdown-toggle {
+    .filters button.dropdown-toggle {
         --border-radius: 6px;
         display: -webkit-flex;
         display: -moz-box;
@@ -39,25 +39,25 @@
         justify-content: center;
     }
 
-    button.dropdown-toggle:focus,
-    button.dropdown-toggle:hover,
-    .btn-secondary:not(:disabled):not(.disabled):active,
-    .btn-secondary:not(:disabled):not(.disabled).active,
-    .show > .btn-secondary.dropdown-toggle {
+    .filters button.dropdown-toggle:focus,
+    .filters button.dropdown-toggle:hover,
+    .filters .btn-secondary:not(:disabled):not(.disabled):active,
+    .filters .btn-secondary:not(:disabled):not(.disabled).active,
+    .filters  .show > .btn-secondary.dropdown-toggle {
         background-color: var(--bg-grey);
         color: var(--greyish-blue);
         border: 1px solid var(--gray-300);
         box-shadow: none;
     }
 
-    .btn-filter:hover, .btn-filter:focus {
+    .filters .btn-filter:hover, .btn-filter:focus {
         background-color: var(--bg-grey) !important;
         color: var(--greyish-blue);
         border: 1px solid var(--gray-300);
         box-shadow: none;
     }
 
-    .dropdown-menu {
+    .filters .dropdown-menu {
         width: 200%;
     }
 
@@ -164,6 +164,18 @@
         width: 100% !important;
     }
 
+    .dropdown-toggle::after {
+        display: inline-block;
+        margin-left: 0.355em;
+        vertical-align: 0.255em;
+        content: "";
+        border-top: 0.25em solid;
+        border-right: 0.25em solid transparent;
+        border-bottom: 0;
+        border-left: 0.25em solid transparent;
+        color: #000;
+    }
+
     @media only screen and (max-width: 1360px) {
         .advert-card {
             flex-direction: column;
@@ -174,8 +186,22 @@
         .advert-card .carousel {
             height: 17rem;
         }
+
+        .map-toggler {
+            display: none;
+        }
     }
 
+    .sort .dropdown-item {
+        padding: 6px 30px;
+        color: var(--greyish-blue);
+        outline: none;
+    }
+
+    .sort .dropdown-item:hover {
+        color: var(--blue-900);
+        background-color: var(--bg-grey);
+    }
 
 </style>
 </html>

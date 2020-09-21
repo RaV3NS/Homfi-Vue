@@ -1,8 +1,28 @@
 <template>
     <div>
-        <filter-bar-map :advertsCount="advertsCount"></filter-bar-map>
+        <filter-bar-map :advertsCount="advertsCount" v-on:updateQuery="updateQuery" ref="bar"></filter-bar-map>
+        <div class="filter-bar-footer">
+            <div class="sort">
+                <span class="sort-title">Сортировать</span>
+                <div>
+                    <b-dropdown variant="link" toggle-class="text-decoration-none">
+                        <template v-slot:button-content>
+                            <span style="color: #000">{{ sortType }}</span>
+                        </template>
+                        <b-dropdown-item @click="sortBy('highest_price')">От дорогих к дешевым</b-dropdown-item>
+                        <b-dropdown-item @click="sortBy('lowest_price')">От дешевых к дорогим</b-dropdown-item>
+                        <b-dropdown-item @click="sortBy('newest')">Сначала самые новые</b-dropdown-item>
+                    </b-dropdown>
+                </div>
+            </div>
 
-        <div class="flex map_cont map-mobile">
+            <div class="map-toggler">
+                <span style="margin-right: 0.5rem">Показать карту</span>
+                <toggle-button v-model="mapToggle" color="var(--blue-400)" :labels="false"/>
+            </div>
+        </div>
+
+        <div class="flex map_cont map-mobile" v-bind:class="{'map_toggle': !mapToggle}">
             <div class="left">
                 <div class="list disable-scrollbars">
                     <Advert
@@ -12,10 +32,10 @@
                     />
                 </div>
             </div>
-            <vue-map :_markers="this.mapAdverts"></vue-map>
+            <vue-map :_markers="this.mapAdverts" ref="map"></vue-map>
         </div>
 
-        <a href="#" class="map_call-mobile">
+        <a href="#" class="map_call-mobile" v-on:click.stop.prevent="toggleMap">
             <img src="/icons/pin.png" alt="png">
         </a>
     </div>
@@ -30,7 +50,9 @@
             return {
                 mapAdverts: [],
                 advertsQuery: [],
-                adverts: []
+                adverts: [],
+                advertsCount: 0,
+                mapToggle: true,
             };
         },
         props: ['city'],
@@ -40,25 +62,139 @@
             let city = JSON.parse(this.city);
 
             axios.get('http://localhost:8000/api/adverts/coordinates?city_id=' + city.id).then((response) => {
+                let params = new URLSearchParams(window.location.search);
+
+                let aliases = {
+                    'pricemonth_min': {action: "setFilter", prop: 'price_filter', field: 'from'},
+                    'pricemonth_max': {action: "setFilter", prop: 'price_filter', field: 'to'},
+                    'total_space_min': {action: "setAltFilter", prop: 'all_space', field: 'from'},
+                    'total_space_max': {action: "setAltFilter", prop: 'all_space', field: 'to'},
+                    'kitchen_space_min': {action: "setAltFilter", prop: 'kitchen_space', field: 'from'},
+                    'kitchen_space_max': {action: "setAltFilter", prop: 'kitchen_space', field: 'to'},
+                    'living_space_min': {action: "setAltFilter", prop: 'living_space', field: 'from'},
+                    'living_space_max': {action: "setAltFilter", prop: 'living_space', field: 'to'},
+                    'build_year_min': {action: "setAltFilter", prop: 'build_year', field: 'from'},
+                    'build_year_max': {action: "setAltFilter", prop: 'build_year', field: 'to'},
+                    'height_min': {action: "setAltFilter", prop: 'wall_height', field: 'from'},
+                    'height_max': {action: "setAltFilter", prop: 'wall_height', field: 'to'},
+                    'floor_min': {action: "setAltFilter", prop: 'floor', field: 'from'},
+                    'floor_max': {action: "setAltFilter", prop: 'floor', field: 'to'},
+                    'total_floors_min': {action: "setAltFilter", prop: 'total_floor', field: 'from'},
+                    'total_floors_max': {action: "setAltFilter", prop: 'total_floor', field: 'to'},
+                    'joint_rent': {action: "setAltFilter", prop: 'coop', field: 'value'},
+                    'not_first_floor': {action: "setAltFilter", prop: 'nofirst', field: 'value'},
+                    'not_last_floor': {action: "setAltFilter", prop: 'nolast', field: 'value'},
+                    'order': {action: "setFilter", prop: 'sortBy', field: 'value'}
+                };
+
+                for (var p of params.entries()) {
+                    let alias = aliases[p[0]];
+
+                    if (alias)
+                        this.$store.dispatch(alias.action, { prop: alias.prop, field: alias.field, value: p[1] })
+
+                    if (p[0] === 'publish_date') {
+                        let types = this.$store.state.alt_filters.publish_date.options;
+                        let result = Object.entries(types).filter(param => param[1].value === p[1]);
+                        console.log(result);
+                        this.$store.dispatch("setAltFilter", { prop: "publish_date", field: 'value', value: result[0] })
+                    }
+                }
+
                 this.mapAdverts = response.data;
             });
 
             this.getAdverts();
 
             let params = new URLSearchParams(window.location.search);
-            for (var p of params.entries()) {
-                if (p[0] == "pricemonth_min") {
-                    this.$store.dispatch("setFilter", { prop: 'price_filter', field: 'from', value: parseFloat(p[1]) })
-                }
 
-                if (p[0] == "pricemonth_max") {
-                    this.$store.dispatch("setFilter", { prop: 'price_filter', field: 'to', value: parseFloat(p[1]) })
+            let aliases = {
+                'pricemonth_min': {action: "setFilter", prop: 'price_filter', field: 'from'},
+                'pricemonth_max': {action: "setFilter", prop: 'price_filter', field: 'to'},
+                'total_space_min': {action: "setAltFilter", prop: 'all_space', field: 'from'},
+                'total_space_max': {action: "setAltFilter", prop: 'all_space', field: 'to'},
+                'kitchen_space_min': {action: "setAltFilter", prop: 'kitchen_space', field: 'from'},
+                'kitchen_space_max': {action: "setAltFilter", prop: 'kitchen_space', field: 'to'},
+                'living_space_min': {action: "setAltFilter", prop: 'living_space', field: 'from'},
+                'living_space_max': {action: "setAltFilter", prop: 'living_space', field: 'to'},
+                'build_year_min': {action: "setAltFilter", prop: 'build_year', field: 'from'},
+                'build_year_max': {action: "setAltFilter", prop: 'build_year', field: 'to'},
+                'height_min': {action: "setAltFilter", prop: 'wall_height', field: 'from'},
+                'height_max': {action: "setAltFilter", prop: 'wall_height', field: 'to'},
+                'floor_min': {action: "setAltFilter", prop: 'floor', field: 'from'},
+                'floor_max': {action: "setAltFilter", prop: 'floor', field: 'to'},
+                'total_floors_min': {action: "setAltFilter", prop: 'total_floor', field: 'from'},
+                'total_floors_max': {action: "setAltFilter", prop: 'total_floor', field: 'to'},
+                'joint_rent': {action: "setAltFilter", prop: 'coop', field: 'value'},
+                'not_first_floor': {action: "setAltFilter", prop: 'nofirst', field: 'value'},
+                'not_last_floor': {action: "setAltFilter", prop: 'nolast', field: 'value'},
+                'order': {action: "setFilter", prop: 'sortBy', field: 'value'}
+            };
+
+            for (var p of params.entries()) {
+                let alias = aliases[p[0]];
+
+                if (alias)
+                    this.$store.dispatch(alias.action, { prop: alias.prop, field: alias.field, value: p[1] })
+
+                if (p[0] === 'publish_date') {
+                    let types = this.$store.state.alt_filters.publish_date.options;
+                    let result = Object.entries(types).filter(param => param[1].value === p[1]);
+                    console.log(result);
+                    this.$store.dispatch("setAltFilter", { prop: "publish_date", field: 'value', value: result[0] })
                 }
+            }
+
+            let fullUrl = window.location.href.split("?");
+            let url = fullUrl[0];
+
+            let urlParams = url.split("-");
+
+            if (urlParams.length === 2) {
+                let arr = urlParams[1].split(",");
+                let filters = this.$store.state.type_filter;
+
+                let types = ['kvartiry', 'komnaty', 'doma', 'poldoma'];
+                let found = arr.some( ai => types.includes(ai) );
+
+                if (found) {
+                    arr.map((el) => {
+                        let filter = filters.filter(entry => {
+                            return entry.slug === el;
+                        });
+
+                        this.$refs.bar.$refs.typeFilter.selected.push(filter[0].text);
+                        this.$store.dispatch("setFilterType", { id: filter[0].id, value: true });
+                    });
+                }
+            }
+
+            if (urlParams.length === 3) {
+                let arr = urlParams[2].split(",");
+                let filters = this.$store.state.type_filter;
+
+                arr.map((el) => {
+                    let filter =  filters.filter(entry => {
+                        return entry.slug === el;
+                    });
+
+                    this.$refs.bar.$refs.typeFilter.selected.push(filter[0].text);
+                    this.$store.dispatch("setFilterType", { id: filter[0].id, value: true });
+                });
             }
         },
         computed: {
-            advertsCount: function() {
-                return this.adverts.length;
+            sortType: function() {
+                switch (this.$store.state.sortBy.value) {
+                    case "newest":
+                        return "Сначала самые новые";
+
+                    case "lowest_price":
+                        return "От дешевых к дорогим";
+
+                    case "highest_price":
+                        return "От дорогих к дешевым";
+                }
             }
         },
         methods: {
@@ -71,7 +207,27 @@
                 axios.get("http://localhost:8000/api/adverts-url?url=" + escape(href)).then((response) => {
                     this.advertsQuery = response.data;
                     this.adverts = this.advertsQuery.result.data;
+                    this.advertsCount = this.advertsQuery.result.total;
                 });
+            },
+            updateQuery(payload) {
+                let url = window.location.href.split("?")[0];
+                let params = new URLSearchParams();
+
+                payload.data.map((el) => {
+                    params.set(el.prop, el.value);
+                });
+
+                //console.log(params.toString());
+
+                let query = params.toString().length > 0 ? "?" + params.toString() : "";
+                window.location = url + query;
+            },
+            sortBy(sort) {
+                this.updateQuery({ data: [{ prop: "order", value: sort }] });
+            },
+            toggleMap() {
+                this.$refs.map.visibleMap = true;
             }
         }
     }
@@ -79,6 +235,10 @@
 
 <style lang="scss" scoped>
     @import "./assets/computed.css";
+
+    .map-toggler {
+        padding: 1rem;
+    }
 
     .map {
         height: 80vh;
@@ -124,7 +284,22 @@
         }
     }
 
+    .filter-bar-footer {
+        padding-left: 1.2rem;
+        display: flex;
+        justify-content: space-between;
+    }
 
+    .sort-title {
+        color: var(--greyish-blue);
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    .sort {
+        display: flex;
+        align-items: center;
+    }
 
 
 //в map_cont по нажатию на чекбокс добавляем/убираем класс map_toggle
