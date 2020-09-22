@@ -70,49 +70,7 @@
                 this.$store.dispatch("setCity", JSON.parse(this.city));
             let city = JSON.parse(this.city);
 
-            axios.get('http://localhost:8000/api/adverts/coordinates?city_id=' + city.id).then((response) => {
-                let params = new URLSearchParams(window.location.search);
-
-                let aliases = {
-                    'pricemonth_min': {action: "setFilter", prop: 'price_filter', field: 'from'},
-                    'pricemonth_max': {action: "setFilter", prop: 'price_filter', field: 'to'},
-                    'total_space_min': {action: "setAltFilter", prop: 'all_space', field: 'from'},
-                    'total_space_max': {action: "setAltFilter", prop: 'all_space', field: 'to'},
-                    'kitchen_space_min': {action: "setAltFilter", prop: 'kitchen_space', field: 'from'},
-                    'kitchen_space_max': {action: "setAltFilter", prop: 'kitchen_space', field: 'to'},
-                    'living_space_min': {action: "setAltFilter", prop: 'living_space', field: 'from'},
-                    'living_space_max': {action: "setAltFilter", prop: 'living_space', field: 'to'},
-                    'build_year_min': {action: "setAltFilter", prop: 'build_year', field: 'from'},
-                    'build_year_max': {action: "setAltFilter", prop: 'build_year', field: 'to'},
-                    'height_min': {action: "setAltFilter", prop: 'wall_height', field: 'from'},
-                    'height_max': {action: "setAltFilter", prop: 'wall_height', field: 'to'},
-                    'floor_min': {action: "setAltFilter", prop: 'floor', field: 'from'},
-                    'floor_max': {action: "setAltFilter", prop: 'floor', field: 'to'},
-                    'total_floors_min': {action: "setAltFilter", prop: 'total_floor', field: 'from'},
-                    'total_floors_max': {action: "setAltFilter", prop: 'total_floor', field: 'to'},
-                    'joint_rent': {action: "setAltFilter", prop: 'coop', field: 'value'},
-                    'not_first_floor': {action: "setAltFilter", prop: 'nofirst', field: 'value'},
-                    'not_last_floor': {action: "setAltFilter", prop: 'nolast', field: 'value'},
-                    'order': {action: "setFilter", prop: 'sortBy', field: 'value'}
-                };
-
-                for (var p of params.entries()) {
-                    let alias = aliases[p[0]];
-
-                    if (alias)
-                        this.$store.dispatch(alias.action, { prop: alias.prop, field: alias.field, value: p[1] })
-
-                    if (p[0] === 'publish_date') {
-                        let types = this.$store.state.alt_filters.publish_date.options;
-                        let result = Object.entries(types).filter(param => param[1].value === p[1]);
-                        console.log(result);
-                        this.$store.dispatch("setAltFilter", { prop: "publish_date", field: 'value', value: result[0] })
-                    }
-                }
-
-                this.mapAdverts = response.data;
-            });
-
+            this.getMarkers(null);
             this.getAdverts();
 
             let params = new URLSearchParams(window.location.search);
@@ -208,6 +166,15 @@
             }
         },
         methods: {
+            getMarkers: function(filters) {
+                let city = JSON.parse(this.city);
+                let filter_query = "&filter=";
+                if (filters === null) filter_query = "";
+                else filter_query += filters;
+                axios.get('http://localhost:8000/api/adverts/coordinates?city_id=' + city.id + filter_query).then((response) => {
+                    this.mapAdverts = response.data;
+                });
+            },
             getLatLng: function(object) {
                 return [object.lat, object.lng];
             },
@@ -218,6 +185,16 @@
                     this.advertsQuery = response.data;
                     this.adverts = this.advertsQuery.result.data;
                     this.advertsCount = this.advertsQuery.result.total;
+
+                    let filters = this.advertsQuery.filter;
+
+                    delete filters.geoObject;
+                    delete filters.city;
+
+                    if (filters.query === null)
+                        delete filters.query;
+
+                    this.getMarkers(JSON.stringify(filters));
                 });
             },
             updateQuery(payload) {
