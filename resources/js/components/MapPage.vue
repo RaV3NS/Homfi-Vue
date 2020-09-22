@@ -1,5 +1,6 @@
 <template>
     <div>
+        <header-vue ref="header"></header-vue>
         <filter-bar-map :advertsCount="advertsCount" v-on:updateQuery="updateQuery" ref="bar"></filter-bar-map>
         <div class="filter-bar-footer">
             <div class="sort">
@@ -22,7 +23,7 @@
             </div>
         </div>
 
-        <div class="flex map_cont map-mobile" v-bind:class="{'map_toggle': !mapToggle}">
+        <div class="flex map_cont map-mobile" v-bind:class="{'map_toggle': !mapToggle}" v-if="advertsCount > 0">
             <div class="left">
                 <div class="list disable-scrollbars">
                     <Advert
@@ -33,6 +34,14 @@
                 </div>
             </div>
             <vue-map :_markers="this.mapAdverts" ref="map"></vue-map>
+        </div>
+        <div v-else>
+            <hr>
+
+            <p class="apartments_not_found">
+                На жаль, Ваш запит не дав результатів. Змініть параметри пошуку і спробуйте ще раз
+                <a :href="'/' + city.translit" class="filter-reset-link">Скинути всі фільтри</a>
+            </p>
         </div>
 
         <a href="#" class="map_call-mobile" v-on:click.stop.prevent="toggleMap">
@@ -128,7 +137,8 @@
                 'joint_rent': {action: "setAltFilter", prop: 'coop', field: 'value'},
                 'not_first_floor': {action: "setAltFilter", prop: 'nofirst', field: 'value'},
                 'not_last_floor': {action: "setAltFilter", prop: 'nolast', field: 'value'},
-                'order': {action: "setFilter", prop: 'sortBy', field: 'value'}
+                'order': { action: "setFilter", prop: 'sortBy', field: 'value' },
+                'query': {action: "setAltFilter", prop: 'search', field: 'value'},
             };
 
             for (var p of params.entries()) {
@@ -228,6 +238,8 @@
             },
             toggleMap() {
                 this.$refs.map.visibleMap = true;
+                this.$refs.header.active = false;
+                this.$refs.map.setSize();
             }
         }
     }
@@ -235,6 +247,29 @@
 
 <style lang="scss" scoped>
     @import "./assets/computed.css";
+
+    .filter-reset-link {
+        display: block;
+        font-size: 16px;
+        line-height: 24px;
+        text-align: center;
+        -webkit-text-decoration-line: underline;
+        -moz-text-decoration-line: underline;
+        text-decoration-line: underline;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        color: #000;
+        font-weight: 400;
+        margin-top: 0.3rem;
+    }
+
+    .apartments_not_found {
+        width: 350px;
+        margin: 1rem auto;
+        text-align: center;
+        color: rgb(12, 36, 85);
+    }
 
     .map-toggler {
         padding: 1rem;
@@ -301,9 +336,6 @@
         align-items: center;
     }
 
-
-//в map_cont по нажатию на чекбокс добавляем/убираем класс map_toggle
-
     @media only screen and (max-width: 1360px) {
         .map-mobile {
             position: relative;
@@ -319,7 +351,12 @@
             }
             .map.visible_map {
                 display: block;
+                position: fixed;
+                height: 100vh;
+                width: 100vw;
+                top: 0;
             }
+
         }
         .map_call-mobile {
             display: block;

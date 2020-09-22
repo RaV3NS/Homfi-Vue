@@ -9,7 +9,6 @@
 </head>
 <body>
     <div id="app">
-        <header-vue></header-vue>
         <map-page city="{{ $city }}"></map-page>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
@@ -176,6 +175,48 @@
         color: #000;
     }
 
+    @media only screen and (max-width: 1280px) {
+        .search-settings_header {
+            display: block !important;
+        }
+
+        #dropdown-text:first-child {
+            margin-left: 0 !important;
+        }
+
+        .filters {
+            margin-top: 0.7rem !important;
+        }
+    }
+
+    .header__advert-link {
+        display: flex;
+        align-items: center;
+    }
+
+    @media only screen and (max-width: 580px) {
+        .dropdown-filter, .btn-filter {
+            width: 100px;
+        }
+
+        .dropdown-filter button, .btn-filter {
+            font-size: 13px;
+        }
+
+        .btn-filter {
+            font-size: 13px !important;
+            width: fit-content !important;
+            padding: 0.6rem 1.2rem !important;
+            margin: 0 !important;
+            height: 40px !important;
+            margin-left: 0.2rem !important;
+        }
+
+        .m-2 {
+            margin: 0 0.2rem !important;
+        }
+    }
+
     @media only screen and (max-width: 1360px) {
         .advert-card {
             flex-direction: column;
@@ -190,6 +231,14 @@
         .map-toggler {
             display: none;
         }
+
+        .leaflet-control-container {
+            display: none;
+        }
+
+        .close-map {
+            display: block;
+        }
     }
 
     .sort .dropdown-item {
@@ -201,6 +250,14 @@
     .sort .dropdown-item:hover {
         color: var(--blue-900);
         background-color: var(--bg-grey);
+    }
+
+    .autocomplete {
+        min-width: 50% !important;
+    }
+
+    .hidden {
+        display: none;
     }
 
 </style>

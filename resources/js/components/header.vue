@@ -1,5 +1,5 @@
 <template>
-    <header class="header">
+    <header class="header" v-bind:class="{ 'hidden': !active }">
         <div class="header__inner">
             <div class="header__container">
                 <div class="header__left">
@@ -37,7 +37,7 @@
 export default {
     data: function () {
         return {
-            //
+            active: true
         }
     }
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="map" v-bind:class="{ 'visible_map': visibleMap }">
-        <l-map :zoom="zoom" :center="center">
+        <l-map :zoom="zoom" :center="center" ref="map">
             <l-tile-layer :url="url"></l-tile-layer>
             <l-marker v-for="marker in _markers" :lat-lng="getLatLng(marker)" v-on:click="getAdvert(marker)" :key="marker.id">
                 <l-popup>
@@ -31,6 +31,10 @@
                 </l-popup>
             </l-marker>
         </l-map>
+
+        <div class="close-map" v-if="visibleMap" @click="closeMap">
+            <img src="/icons/close.svg" alt="">
+        </div>
     </div>
 </template>
 
@@ -66,7 +70,6 @@ export default {
     mounted() {
         //this.markers = JSON.parse(this._markers);
         this.markers = this._markers;
-        setTimeout(function() { window.dispatchEvent(new Event('resize')) }, 250);
     },
     props: ['_markers'],
     methods: {
@@ -121,12 +124,32 @@ export default {
                 floorLabel += ' из ' + total_floor.value.key;
 
             return floorLabel;
+        },
+        closeMap() {
+            this.visibleMap = false;
+            this.$parent.$refs.header.active = true;
+        },
+        setSize() {
+            console.log(this.map);
+            setTimeout(function() { window.dispatchEvent(new Event('resize')) }, 250);
         }
     }
 }
 </script>
 
 <style>
+    .close-map {
+        position: absolute;
+        top: 1.5rem;
+        left: 1.5rem;
+        z-index: 99999;
+        cursor: pointer;
+        background: #fff;
+        border-radius: 50px;
+        padding: 0.5rem;
+        border: 1px solid darkgray;
+    }
+
     .slide {
         align-items: center;
         background-color: transparent;

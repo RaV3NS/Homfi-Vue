@@ -197,7 +197,7 @@ export default {
                 if (el[1].value)
                     this.$store.dispatch("setAltFilter", { prop: el[0], field: "value", value: null });
 
-                if (el[1].from) {
+                if (el[1].from || el[1].to) {
                     this.$store.dispatch("setAltFilter", { prop: el[0], field: "from", value: null });
                     this.$store.dispatch("setAltFilter", { prop: el[0], field: "to", value: null });
                 }
@@ -211,6 +211,7 @@ export default {
                     data.push({ prop: 'pricemonth_max', value: payload.data.to });
                 if (payload.data.from && payload.data.from > 0)
                     data.push({ prop: 'pricemonth_min', value: payload.data.from });
+
                 this.$emit("updateQuery", { data: data });
             }
         },
@@ -219,6 +220,7 @@ export default {
             let data = [];
 
             let aliases = {
+               'search': { type: 'value', name: 'query' },
                'all_space': { type: 'min-max', name: 'total_space' },
                'kitchen_space': { type: 'min-max', name: 'kitchen_space' },
                'living_space': { type: 'min-max', name: 'living_space' },
