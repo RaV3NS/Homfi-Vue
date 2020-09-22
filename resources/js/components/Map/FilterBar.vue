@@ -61,7 +61,7 @@
 
             <div class="filters">
                 <FilterButton text="Тип жилья" store_p="type_filter" store_a="setFilterType" v-on:setFilters="updateFlatFilters" ref="typeFilter"></FilterButton>
-                <FilterButton text="Кол-во комнат" store_p="room_filter" store_a="setRoomType" v-on:setFilters="updateRoomFilters" ref="roomFilter"></FilterButton>
+                <FilterButton text="Кол-во комнат" store_p="room_filter" store_a="setRoomType" v-on:setFilters="updateFlatFilters" ref="roomFilter"></FilterButton>
 
                 <FilterButtonRange text="Цена, грн" store_prop="price_filter" v-on:filterChange="handleFilterChange"></FilterButtonRange>
 
@@ -264,41 +264,40 @@ export default {
             let url = fullUrl[0];
 
             let params = url.split("-");
+            let base_url = params[0];
+            let types = this.$store.state.type_filter;
+            let all_filters = [];
 
-            if (params.length <= 2) {
-                let get_params = fullUrl[1] ? "?" + fullUrl[1] : "";
-                params[1] = this.$store.state.type_filter_value.value.join(",");
-                let query = params[1].length > 0 ? "-" + params[1] + get_params : "";
-                window.location = params[0] + query;
-            }
+            let flat_filter = [];
+            types.map((el) => {
+               if (el.checked)
+                   flat_filter.push(el.slug);
+            });
 
-            if (params.length === 3) {
-                let get_params = fullUrl[1] ? "?" + fullUrl[1] : "";
-                let query = params[2].length > 0 ? "-" + params[2] + get_params : "";
-                window.location = params[0] + query;
-            }
-        },
-        updateRoomFilters() {
-            // let fullUrl = window.location.href.split("?");
-            // let url = fullUrl[0];
-            //
-            // let params = url.split("-");
-            //
-            // if (params.length === 2) {
-            //     let types = ['odnokomnatnyie', 'dvuhkomnatnyie', 'trehkomnatnyie', 'chetyrehkomnatnyie'];
-            //     let arr = params[1].split(",");
-            //     let found = arr.some( ai => types.includes(ai) );
-            //
-            //     if (found) {
-            //         let get_params = fullUrl[1] ? "?" + fullUrl[1] : "";
-            //         params[1] = this.$store.state.room_filter_value.value.join(",");
-            //         let query = params[1].length > 0 ? "-" + params[1] + get_params : "";
-            //         window.location = params[0] + query;
-            //     } else {
-            //         let get_params = fullUrl[1] ? "?" + fullUrl[1] : "";
-            //         let query = params[2].length > 0 ? "-" + params[2] + get_params : "";
-            //         window.location = params[0] + query;
-            //     }
+            let rooms = this.$store.state.room_filter;
+
+            let room_filter = [];
+            rooms.map((el) => {
+                if (el.checked)
+                    room_filter.push(el.slug);
+            });
+
+            if (flat_filter.length > 0)
+                all_filters.push(flat_filter.join(","));
+
+            if (room_filter.length > 0)
+                all_filters.push(room_filter.join(","));
+
+            let get_params = fullUrl[1] ? "?" + fullUrl[1] : "";
+
+            window.location = base_url + "-" + all_filters.join('-') + get_params;
+
+
+            // if (params.length <= 2) {
+            //     let get_params = fullUrl[1] ? "?" + fullUrl[1] : "";
+            //     params[1] = this.$store.state.type_filter_value.value.join(",");
+            //     let query = params[1].length > 0 ? "-" + params[1] + get_params : "";
+            //     window.location = params[0] + query;
             // }
             //
             // if (params.length === 3) {

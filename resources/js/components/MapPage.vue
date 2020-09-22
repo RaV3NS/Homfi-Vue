@@ -112,44 +112,6 @@
                     this.$store.dispatch("setAltFilter", { prop: "publish_date", field: 'value', value: result[0] })
                 }
             }
-
-            let fullUrl = window.location.href.split("?");
-            let url = fullUrl[0];
-
-            let urlParams = url.split("-");
-
-            if (urlParams.length === 2) {
-                let arr = urlParams[1].split(",");
-                let filters = this.$store.state.type_filter;
-
-                let types = ['kvartiry', 'komnaty', 'doma', 'poldoma'];
-                let found = arr.some( ai => types.includes(ai) );
-
-                if (found) {
-                    arr.map((el) => {
-                        let filter = filters.filter(entry => {
-                            return entry.slug === el;
-                        });
-
-                        this.$refs.bar.$refs.typeFilter.selected.push(filter[0].text);
-                        this.$store.dispatch("setFilterType", { id: filter[0].id, value: true });
-                    });
-                }
-            }
-
-            if (urlParams.length === 3) {
-                let arr = urlParams[2].split(",");
-                let filters = this.$store.state.type_filter;
-
-                arr.map((el) => {
-                    let filter =  filters.filter(entry => {
-                        return entry.slug === el;
-                    });
-
-                    this.$refs.bar.$refs.typeFilter.selected.push(filter[0].text);
-                    this.$store.dispatch("setFilterType", { id: filter[0].id, value: true });
-                });
-            }
         },
         computed: {
             sortType: function() {
@@ -178,6 +140,29 @@
             getLatLng: function(object) {
                 return [object.lat, object.lng];
             },
+            getSlugFilters: function(filters) {
+                if (filters.type) {
+                    let types = this.$store.state.type_filter;
+                    filters.type.map((el) => {
+                        let found = types.filter(search => search.prop === el);
+                        if (found) {
+                            this.$store.dispatch("setFilterType", { id: found[0].id, value: true });
+                            this.$refs.bar.$refs.typeFilter.selected.push(found[0].text);
+                        }
+                    });
+                }
+
+                if (filters.room_count) {
+                    let rooms = this.$store.state.room_filter;
+                    filters.room_count.map((el) => {
+                        let found = rooms.filter(search => search.prop === el);
+                        if (found) {
+                            this.$store.dispatch("setRoomType", { id: found[0].id, value: true });
+                            this.$refs.bar.$refs.roomFilter.selected.push(found[0].text);
+                        }
+                    });
+                }
+            },
             getAdverts() {
                 let href = window.location.href;
 
@@ -195,11 +180,12 @@
                         delete filters.query;
 
                     this.getMarkers(JSON.stringify(filters));
+                    this.getSlugFilters(this.advertsQuery.filter);
                 });
             },
             updateQuery(payload) {
                 let url = window.location.href.split("?")[0];
-                let params = new URLSearchParams();
+                let params = new URLSearchParams(window.location.href.split("?")[1]);
 
                 payload.data.map((el) => {
                     params.set(el.prop, el.value);

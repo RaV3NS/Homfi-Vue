@@ -82,25 +82,29 @@ export const store = new Vuex.Store({
                 id: 0,
                 text: 'Квартира',
                 checked: false,
-                slug: 'kvartiry'
+                slug: 'kvartiry',
+                prop: 'flat'
             },
             {
                 id: 1,
                 text: 'Комната',
                 checked: false,
-                slug: 'komnaty'
+                slug: 'komnaty',
+                prop: 'room'
             },
             {
                 id: 2,
                 text: 'Дом',
                 checked: false,
-                slug: 'doma'
+                slug: 'doma',
+                prop: 'house'
             },
             {
                 id: 3,
                 text: 'Часть дома',
                 checked: false,
-                slug: 'poldoma'
+                slug: 'poldoma',
+                prop: 'half-house'
             },
         ],
         type_filter_value: {
@@ -111,25 +115,29 @@ export const store = new Vuex.Store({
                 id: 0,
                 text: '1 комната',
                 checked: false,
-                slug: 'odnokomnatnyie'
+                slug: 'odnokomnatnyie',
+                prop: 1
             },
             {
                 id: 1,
                 text: '2 комнаты',
                 checked: false,
-                slug: 'dvuhkomnatnyie'
+                slug: 'dvuhkomnatnyie',
+                prop: 2
             },
             {
                 id: 2,
                 text: '3 комнаты',
                 checked: false,
-                slug: 'trehkomnatnyie'
+                slug: 'trehkomnatnyie',
+                prop: 3
             },
             {
                 id: 3,
                 text: '4+ комнат',
                 checked: false,
-                slug: 'chetyrehkomnatnyie'
+                slug: 'chetyrehkomnatnyie',
+                prop: 4
             },
         ],
         room_filter_value: {
