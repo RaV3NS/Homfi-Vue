@@ -61,9 +61,10 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('header-vue', require('./components/header.vue').default);
 Vue.component('map-page', require('./components/MapPage.vue').default);
 Vue.component('vue-map', require('./components/Map.vue').default);
+Vue.component('advert-page', require('./components/AdvertPage.vue').default);
 
 Vue.component('filter-bar-map', require('./components/Map/FilterBar.vue').default);
-Vue.component('v-select', vSelect)
+Vue.component('v-select', vSelect);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
