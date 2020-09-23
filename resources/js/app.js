@@ -27,6 +27,7 @@ import { BootstrapVue } from 'bootstrap-vue'
 import VModal from 'vue-js-modal/dist/index.nocss.js'
 import VueCarousel from '@chenfengyuan/vue-carousel';
 import ToggleButton from 'vue-js-toggle-button'
+import moment from 'moment';
 
 import 'leaflet/dist/leaflet.css';
 import "vue-select/src/scss/vue-select.scss";
@@ -35,6 +36,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'vue-js-modal/dist/styles.css'
 
 delete L.Icon.Default.prototype._getIconUrl;
+
+// Prototypes
+Vue.prototype.$moment = moment;
 
 // Set open indicator invisible
 vSelect.props.components.default = () => ({

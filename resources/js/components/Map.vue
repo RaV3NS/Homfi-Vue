@@ -130,7 +130,7 @@ export default {
         },
         getDate: function (advert) {
             let date = new Date(advert.publish_date);
-            return ('0' + date.getDate()).slice(-2) + '.' + ('0' + (date.getMonth() + 1)).slice(-2) + '.' + date.getFullYear();
+            return this.$moment(date).format("DD.MM.YYYY");
 
         },
         getFloor: function (advert) {
@@ -147,7 +147,6 @@ export default {
             this.$parent.$refs.header.active = true;
         },
         setSize() {
-            console.log(this.map);
             setTimeout(function() { window.dispatchEvent(new Event('resize')) }, 250);
         },
         getIcon() {
