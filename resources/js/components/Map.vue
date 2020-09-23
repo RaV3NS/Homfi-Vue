@@ -2,7 +2,13 @@
     <div class="map" v-bind:class="{ 'visible_map': visibleMap }">
         <l-map :zoom="zoom" :center="center" ref="map">
             <l-tile-layer :url="url"></l-tile-layer>
-            <l-marker v-for="marker in _markers" :lat-lng="getLatLng(marker)" v-on:click="getAdvert(marker)" :key="marker.id">
+            <l-marker
+                v-for="marker in _markers"
+                :lat-lng="getLatLng(marker)"
+                v-on:click="getAdvert(marker)"
+                :key="marker.id"
+                :icon="getIcon()"
+            >
                 <l-popup>
                     <div v-if="isAdvertLoading">Loading...</div>
                     <div v-else>
@@ -29,6 +35,14 @@
                         </div>
                     </div>
                 </l-popup>
+            </l-marker>
+
+            <l-marker
+                v-if="hover"
+                :lat-lng="hover_coords"
+                :icon="getHoverIcon()"
+            >
+
             </l-marker>
         </l-map>
 
@@ -61,6 +75,9 @@ export default {
             isAdvertLoading: false,
             visibleMap: false,
 
+            hover: false,
+            hover_coords: [],
+
             carouselData: [
                 '<div class="slide"><img class="slide_img" src="https://i1.wp.com/itc.ua/wp-content/uploads/2019/11/google-photos.jpg?fit=1000%2C600&quality=100&strip=all&ssl=1" alt="img"></div>',
                 '<div class="slide"><img class="slide_img" src="https://www.ixbt.com/img/n1/news/2019/11/3/5cc86f31768b3e05177244e3.jpg"></div>'
@@ -79,7 +96,7 @@ export default {
         getAdvert: function (marker) {
             this.isAdvertLoading = true;
 
-            axios.get('http://localhost:8000/api/adverts/' + marker.id).then((response) => {
+            axios.get(window.backend_url + 'api/adverts/' + marker.id).then((response) => {
                 this.activeMapAdvert = response.data.advert;
                 this.isAdvertLoading = false;
                 this.center = this.getLatLng(marker);
@@ -132,12 +149,49 @@ export default {
         setSize() {
             console.log(this.map);
             setTimeout(function() { window.dispatchEvent(new Event('resize')) }, 250);
+        },
+        getIcon() {
+            return L.divIcon({
+                className: "marker-homfi",
+                html: `<img src="/icons/marker-icon.svg" alt="marker">`
+            });
+        },
+        getHoverIcon() {
+            return L.divIcon({
+                className: "marker-homfi-hovered",
+                html: `<img src="/icons/marker-icon.svg" alt="marker">`
+            });
         }
     }
 }
 </script>
 
 <style>
+    .marker-homfi {
+        margin-left: -12px;
+        margin-top: -41px;
+        width: 25px;
+        height: 41px;
+        transform: translate3d(565px, 74px, 0px);
+        z-index: 74;
+        outline: none;
+    }
+
+    .marker-homfi img {
+        width: 25px;
+        height: 42px;
+        left: -6px;
+        position: relative;
+    }
+
+    .marker-homfi-hovered img {
+        width: 50px;
+        height: 50px;
+        position: relative;
+        left: -16px;
+        top: -5px;
+    }
+
     .close-map {
         position: absolute;
         top: 1.5rem;

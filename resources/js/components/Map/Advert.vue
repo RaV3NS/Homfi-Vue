@@ -1,5 +1,5 @@
 <template>
-    <div class="advert-card flex">
+    <div class="advert-card flex" @mouseenter="hoverMarker" @mouseleave="unHover">
         <div class="left-card">
             <carousel :autoplay="false" :data="carouselData" indicator-type="disc"></carousel>
         </div>
@@ -51,6 +51,13 @@ export default {
         }
     },
     methods: {
+        hoverMarker() {
+            this.$parent.$refs.map.hover_coords = [parseFloat(this.advert.lat), parseFloat(this.advert.lng)];
+            this.$parent.$refs.map.hover = true;
+        },
+        unHover() {
+            this.$parent.$refs.map.hover = false;
+        },
         getAdvertParameter(advert, key) {
             let obj = advert.parameters.filter(obj => {
                 return obj.key === key

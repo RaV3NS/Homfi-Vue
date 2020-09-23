@@ -132,7 +132,7 @@
                 let filter_query = "&filter=";
                 if (filters === null) filter_query = "";
                 else filter_query += filters;
-                axios.get('http://localhost:8000/api/adverts/coordinates?city_id=' + city.id + filter_query).then((response) => {
+                axios.get(window.backend_url + 'api/adverts/coordinates?city_id=' + city.id + filter_query).then((response) => {
                     this.mapAdverts = response.data;
                 });
             },
@@ -165,7 +165,7 @@
             getAdverts() {
                 let href = window.location.href;
 
-                axios.get("http://localhost:8000/api/adverts-url?url=" + escape(href)).then((response) => {
+                axios.get(window.backend_url + "api/adverts-url?url=" + escape(href)).then((response) => {
                     this.advertsQuery = response.data;
                     this.adverts = this.advertsQuery.result.data;
                     this.advertsCount = this.advertsQuery.result.total;

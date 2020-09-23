@@ -72,6 +72,8 @@ Vue.component('v-select', vSelect);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+window.backend_url = "http://localhost:8000/";
+
 export const store = new Vuex.Store({
     state: {
         city: null,

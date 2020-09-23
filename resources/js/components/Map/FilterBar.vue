@@ -3,7 +3,7 @@
         <div class="search-settings_header">
             <div class="title_wrap">
                 <h1 class="search_title search_title-wrap">Оренда квартир, Київ - {{ advertsCount }} об'яв</h1>
-                <button type="button" class="group_sort" @click="sortModalActive = true">
+                <button type="button" class="group_sort" @click="showSortModal">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.72374 7.79066C5.11426 8.18119 5.74743 8.18119 6.13795 7.79066L8.04259 5.88602V21.5806C8.04259 22.1328 8.49031 22.5806 9.04259 22.5806H9.06642C9.6187 22.5806 10.0664 22.1328 10.0664 21.5806V1L4.70705 6.35982C4.31655 6.75035 4.31656 7.38349 4.70708 7.774L4.72374 7.79066Z" fill="#0C2455"></path><path d="M19.1654 16.2093C18.7748 15.8188 18.1417 15.8188 17.7512 16.2093L15.8465 18.114V2.41944C15.8465 1.86715 15.3988 1.41943 14.8465 1.41943H14.8227C14.2704 1.41943 13.8227 1.86715 13.8227 2.41943V23L19.1821 17.6402C19.5726 17.2497 19.5725 16.6165 19.182 16.226L19.1654 16.2093Z" fill="#0C2455"></path></svg>
                 </button>
 
@@ -158,13 +158,13 @@ export default {
         return {
             cities: [],
             selectedCity: null,
-            fetch_city_url: "http://localhost:8000/api/geo/cities?query=",
+            fetch_city_url: window.backend_url + "api/geo/cities?query=",
             city_placeholder: "Город, область",
             sortModalActive: false,
 
             streets: [],
             selectedStreet: null,
-            fetch_street_url: "http://localhost:8000/api/geo/search?city_id=9744&query=",
+            fetch_street_url: window.backend_url + "api/geo/search?city_id=9744&query=",
             street_active: false,
             street_placeholder: "Район, метро, улица",
 
@@ -174,13 +174,17 @@ export default {
     mounted() {
         this.selectedCity = JSON.parse(this.$parent.city);
         if (this.selectedCity)
-            this.fetch_street_url = "http://localhost:8000/api/geo/search?city_id=" + this.selectedCity.id + "&query=";
+            this.fetch_street_url = window.backend_url + "api/geo/search?city_id=" + this.selectedCity.id + "&query=";
         else
             this.street_active = false;
 
         this.type_data = this.$store.state.type_filter;
     },
     methods: {
+        showSortModal() {
+            if (!this.sortModalActive)
+                this.sortModalActive = true;
+        },
         hideModal() {
             this.sortModalActive = false;
         },
