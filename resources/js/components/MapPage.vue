@@ -40,7 +40,7 @@
 
             <p class="apartments_not_found">
                 На жаль, Ваш запит не дав результатів. Змініть параметри пошуку і спробуйте ще раз
-                <a :href="'/' + city.translit" class="filter-reset-link">Скинути всі фільтри</a>
+                <a @click="resetAllFilters" class="filter-reset-link">Скинути всі фільтри</a>
             </p>
         </div>
 
@@ -108,7 +108,6 @@
                 if (p[0] === 'publish_date') {
                     let types = this.$store.state.alt_filters.publish_date.options;
                     let result = Object.entries(types).filter(param => param[1].value === p[1]);
-                    console.log(result);
                     this.$store.dispatch("setAltFilter", { prop: "publish_date", field: 'value', value: result[0] })
                 }
             }
@@ -173,6 +172,11 @@
 
                     let filters = this.advertsQuery.filter;
 
+                    if (filters.total_floor) {
+                        filters.total_floors = filters.total_floor;
+                        delete filters.total_floor;
+                    }
+
                     delete filters.geoObject;
                     delete filters.city;
 
@@ -188,10 +192,11 @@
                 let params = new URLSearchParams(window.location.href.split("?")[1]);
 
                 payload.data.map((el) => {
-                    params.set(el.prop, el.value);
+                    if (el.value)
+                        params.set(el.prop, el.value);
+                    else
+                        params.delete(el.prop);
                 });
-
-                //console.log(params.toString());
 
                 let query = params.toString().length > 0 ? "?" + params.toString() : "";
                 window.location = url + query;
@@ -203,7 +208,10 @@
                 this.$refs.map.visibleMap = true;
                 this.$refs.header.active = false;
                 this.$refs.map.setSize();
-            }
+            },
+            resetAllFilters() {
+               window.location = "/" + JSON.parse(this.city).translit;
+            },
         }
     }
 </script>

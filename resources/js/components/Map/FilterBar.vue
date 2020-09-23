@@ -207,10 +207,8 @@ export default {
             let data = [];
 
             if (payload.prop === "price_filter") {
-                if (payload.data.to && payload.data.to > 0)
-                    data.push({ prop: 'pricemonth_max', value: payload.data.to });
-                if (payload.data.from && payload.data.from > 0)
-                    data.push({ prop: 'pricemonth_min', value: payload.data.from });
+                data.push({ prop: 'pricemonth_max', value: payload.data.to });
+                data.push({ prop: 'pricemonth_min', value: payload.data.from });
 
                 this.$emit("updateQuery", { data: data });
             }
@@ -218,6 +216,8 @@ export default {
         setAltFilters() {
             let altFilters = this.$store.state.alt_filters;
             let data = [];
+
+            console.log(this.$store.state.alt_filters);
 
             let aliases = {
                'search': { type: 'value', name: 'query' },
@@ -238,26 +238,24 @@ export default {
                 let alias = aliases[el[0]];
                 if (alias) {
                     if (alias.type === 'min-max') {
-                        if (el[1].from && el[1].from > 0)
-                            data.push({ prop: alias.name + '_min', value: el[1].from });
-                        if (el[1].to && el[1].to > 0)
-                            data.push({ prop: alias.name + '_max', value: el[1].to });
+                       data.push({ prop: alias.name + '_min', value: el[1].from });
+                       data.push({ prop: alias.name + '_max', value: el[1].to });
                     }
 
                     if (alias.type === 'select') {
                         if (el[1].value)
                             data.push({ prop: alias.name, value: el[1].value.value });
+                        else
+                            data.push({ prop: alias.name, value: null });
                     }
 
                     if (alias.type === 'value') {
-                        if (el[1].value)
-                            data.push({ prop: alias.name, value: el[1].value });
+                        data.push({ prop: alias.name, value: el[1].value });
                     }
                 }
             });
 
             this.$emit("updateQuery", { data: data });
-            //this.$modal.hide('more-filters')
         },
         updateFlatFilters() {
             let fullUrl = window.location.href.split("?");
@@ -291,20 +289,6 @@ export default {
             let get_params = fullUrl[1] ? "?" + fullUrl[1] : "";
 
             window.location = base_url + "-" + all_filters.join('-') + get_params;
-
-
-            // if (params.length <= 2) {
-            //     let get_params = fullUrl[1] ? "?" + fullUrl[1] : "";
-            //     params[1] = this.$store.state.type_filter_value.value.join(",");
-            //     let query = params[1].length > 0 ? "-" + params[1] + get_params : "";
-            //     window.location = params[0] + query;
-            // }
-            //
-            // if (params.length === 3) {
-            //     let get_params = fullUrl[1] ? "?" + fullUrl[1] : "";
-            //     let query = params[2].length > 0 ? "-" + params[2] + get_params : "";
-            //     window.location = params[0] + query;
-            // }
         }
     },
     props: ['advertsCount'],

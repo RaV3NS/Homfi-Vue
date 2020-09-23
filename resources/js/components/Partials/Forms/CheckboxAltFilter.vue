@@ -23,7 +23,6 @@
                     return this.$store.state.alt_filters[this.name].value;
                 },
                 set(value) {
-                    console.log(value);
                     this.$store.dispatch("setAltFilter", {prop: this.name, field: "value", value: value})
                 }
             }
