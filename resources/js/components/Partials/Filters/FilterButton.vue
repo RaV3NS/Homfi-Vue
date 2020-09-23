@@ -1,23 +1,55 @@
 <template>
-    <b-dropdown id="dropdown-text" :text="label" class="m-2 dropdown-filter">
-        <b-dropdown-text>
-            <CheckboxFilter
-                v-for="(check, index) in store_prop"
-                :text="check.text"
-                :key="check.text"
-                :id="index"
-                :model="check.checked"
-                :store_prop="store_p"
-                :store_action="store_a"
-                v-on:checked="handleChecked"
-            ></CheckboxFilter>
+    <div>
+        <b-dropdown id="dropdown-text" :text="label" class="m-2 dropdown-filter" v-if="windowWidth > 600">
+            <b-dropdown-text>
+                <CheckboxFilter
+                    v-for="(check, index) in store_prop"
+                    :text="check.text"
+                    :key="check.text"
+                    :id="index"
+                    :model="check.checked"
+                    :store_prop="store_p"
+                    :store_action="store_a"
+                    v-on:checked="handleChecked"
+                ></CheckboxFilter>
 
-            <div class="control-block">
-                <a href="#" class="link link-info" v-on:click.stop.prevent="handleRefresh">Сбросить</a>
-                <a href="#" class="btn btn-primary" v-on:click.stop.prevent="setFilters">Продолжить</a>
-            </div>
-        </b-dropdown-text>
-    </b-dropdown>
+                <div class="control-block">
+                    <a href="#" class="link link-info" v-on:click.stop.prevent="handleRefresh">Сбросить</a>
+                    <a href="#" class="btn btn-primary" v-on:click.stop.prevent="setFilters">Продолжить</a>
+                </div>
+            </b-dropdown-text>
+        </b-dropdown>
+
+        <div class="dropdown-filter" v-else>
+            <button class="btn dropdown-toggle dropdown-filter" style="font-size: 13px" @click="openModal">{{ label }}</button>
+
+            <modal :name="store_p + '-modal'" height="auto" :adaptive="true">
+                <div class="modal-filter-header">
+                    <h2>{{ text }}</h2>
+                    <img src="/icons/close.svg" alt="close" class="close_modal_btn" @click="$modal.hide(store_p + '-modal')">
+                </div>
+
+                <div class="wrapper">
+                    <CheckboxFilter
+                        v-for="(check, index) in store_prop"
+                        :text="check.text"
+                        :key="check.text"
+                        :id="index"
+                        :model="check.checked"
+                        :store_prop="store_p"
+                        :store_action="store_a"
+                        v-on:checked="handleChecked"
+                    ></CheckboxFilter>
+
+                    <div class="filter-toolbar">
+                        <a href="#" class="link link-info" v-on:click.stop.prevent="handleRefresh">Сбросить</a>
+                        <a href="#" class="btn btn-primary" v-on:click.stop.prevent="setFilters">Продолжить</a>
+                    </div>
+                </div>
+            </modal>
+        </div>
+
+    </div>
 </template>
 
 <script>
@@ -29,16 +61,22 @@
         data: function () {
             return {
                 selected: [],
-                label: null
+                label: null,
+                windowWidth: window.innerWidth
             }
         },
         props: ["text", "store_p", "store_a"],
         mounted() {
+            console.log(this.store_p + '-filters')
             this.label = this.text;
             this.store_prop.map((el, index) => {
                 if (el.checked)
                     this.selected.push(el.text);
             });
+
+            this.$nextTick(() => {
+                window.addEventListener('resize', this.onResize);
+            })
         },
         computed: {
             ...mapState({
@@ -63,6 +101,12 @@
                    return el;
                 });
                 this.selected = [];
+            },
+            onResize() {
+                this.windowWidth = window.innerWidth;
+            },
+            openModal() {
+                this.$modal.show(this.store_p + '-modal');
             }
         },
         watch: {
@@ -83,9 +127,50 @@
     @import '../../../../sass/header.scss';
     @import '../../../../sass/base.scss';
 
+    .filter-toolbar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: .625rem 1.25rem;
+        background-color: var(--white);
+        box-shadow: 0 0 1.25rem rgba(100,110,148,.2);
+        display: -webkit-flex;
+        display: -moz-box;
+        display: flex;
+        -webkit-justify-content: space-between;
+        -moz-box-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -moz-box-align: center;
+        align-items: center;
+    }
+
+    .filter-toolbar .link-info {
+        text-decoration: none;
+    }
+
+    .modal-filter-header {
+        display: flex;
+        align-items: center;
+    }
+
+    .modal-filter-header .close_modal_btn {
+        padding: 0 1rem !important;
+    }
+
+    .modal-filter-header h2 {
+        padding: 1rem 2rem;
+        line-height: 24px;
+        color: var(--text-color-primary);
+    }
+
     .dropdown-filter {
         text-align: center;
         width: fit-content;
+        font-size: 18px;
+        font-weight: 400;
+        margin-bottom: 10px;
     }
 
     .control-block {

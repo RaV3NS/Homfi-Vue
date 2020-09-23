@@ -24,7 +24,7 @@
         </div>
 
         <div class="flex map_cont map-mobile" v-bind:class="{'map_toggle': !mapToggle}" v-if="advertsCount > 0">
-            <div class="left">
+            <div class="left" id="left">
                 <div class="list disable-scrollbars">
                     <Advert
                         v-for="advert in adverts"
@@ -305,6 +305,12 @@
     .sort {
         display: flex;
         align-items: center;
+    }
+
+    @media only screen and (max-width: 1280px) {
+        .sort {
+            display: none;
+        }
     }
 
     @media only screen and (max-width: 1360px) {

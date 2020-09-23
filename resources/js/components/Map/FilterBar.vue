@@ -1,7 +1,18 @@
 <template>
     <div>
         <div class="search-settings_header">
-            <h1 class="search_title search_title-wrap">Оренда квартир, Київ - {{ advertsCount }} об'яв</h1>
+            <div class="title_wrap">
+                <h1 class="search_title search_title-wrap">Оренда квартир, Київ - {{ advertsCount }} об'яв</h1>
+                <button type="button" class="group_sort" @click="sortModalActive = !sortModalActive">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.72374 7.79066C5.11426 8.18119 5.74743 8.18119 6.13795 7.79066L8.04259 5.88602V21.5806C8.04259 22.1328 8.49031 22.5806 9.04259 22.5806H9.06642C9.6187 22.5806 10.0664 22.1328 10.0664 21.5806V1L4.70705 6.35982C4.31655 6.75035 4.31656 7.38349 4.70708 7.774L4.72374 7.79066Z" fill="#0C2455"></path><path d="M19.1654 16.2093C18.7748 15.8188 18.1417 15.8188 17.7512 16.2093L15.8465 18.114V2.41944C15.8465 1.86715 15.3988 1.41943 14.8465 1.41943H14.8227C14.2704 1.41943 13.8227 1.86715 13.8227 2.41943V23L19.1821 17.6402C19.5726 17.2497 19.5725 16.6165 19.182 16.226L19.1654 16.2093Z" fill="#0C2455"></path></svg>
+                </button>
+
+                <div class="sort-modal" v-click-outside="console.log(1)" v-if="sortModalActive">
+                    <div id="highest_price" class="group_sort__item">От дорогих к дешевым</div>
+                    <div id="lowest_price" class="group_sort__item">От дешевых к дорогим</div>
+                    <div id="newest" class="group_sort__item">Сначала самые новые</div>
+                </div>
+            </div>
             <div class="search-bar">
                 <v-select
                     @search="onCitySearch"
@@ -139,6 +150,7 @@ import FilterButton from "../Partials/Filters/FilterButton";
 import FilterButtonRange from "../Partials/Filters/FilterButtonRange";
 import FormRangeFieldFilters from "../Partials/Filters/FormRangeFieldFilters";
 import CheckboxAltFilter from "../Partials/Forms/CheckboxAltFilter";
+import ClickOutside from 'vue-click-outside';
 
 export default {
     components: { FilterButton, FilterButtonRange, FormRangeFieldFilters, CheckboxAltFilter },
@@ -148,6 +160,7 @@ export default {
             selectedCity: null,
             fetch_city_url: "http://localhost:8000/api/geo/cities?query=",
             city_placeholder: "Город, область",
+            sortModalActive: false,
 
             streets: [],
             selectedStreet: null,
@@ -287,8 +300,9 @@ export default {
                 all_filters.push(room_filter.join(","));
 
             let get_params = fullUrl[1] ? "?" + fullUrl[1] : "";
+            let flat_query = all_filters.length > 0 ? "-" + all_filters.join('-') : '';
 
-            window.location = base_url + "-" + all_filters.join('-') + get_params;
+            window.location = base_url + flat_query + get_params;
         }
     },
     props: ['advertsCount'],
@@ -309,6 +323,9 @@ export default {
                 this.$store.dispatch("setAltFilter", { prop: "search", field: "value", value: value });
             }
         },
+    },
+    directives: {
+        ClickOutside
     }
 }
 </script>
@@ -317,6 +334,45 @@ export default {
 <style lang="scss" scoped>
     @import '../../../sass/header.scss';
     @import '../../../sass/base.scss';
+
+
+    .sort-modal {
+        position: absolute;
+        right: 10px;
+        top: 56px;
+        min-width: 240px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        max-height: -webkit-calc(100vh - 152px);
+        max-height: calc(100vh - 152px);
+        z-index: 10;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        border: 1px solid #d5dbe5;
+        box-shadow: 0 0 20px rgba(100,110,148,.2);
+        border-radius: 6px;
+        background: var(--white);
+    }
+
+    .group_sort__item {
+        padding: 6px 20px;
+        color: var(--greyish-blue);
+        cursor: pointer;
+    }
+
+    .title_wrap {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .group_sort {
+        display: none;
+        font-weight: 400;
+        grid-row-start: 3;
+
+        background: none;
+        border: none;
+    }
 
     .bottom {
         display: flex;
@@ -427,6 +483,12 @@ export default {
 
     .search-settings_header {
         padding-bottom: 0;
+    }
+
+    @media only screen and (max-width: 1280px) {
+        .group_sort {
+            display: block;
+        }
     }
 </style>
 

@@ -1,42 +1,95 @@
 <template>
-    <b-dropdown id="dropdown-text" :text="label" class="m-2 dropdown-filter" v-on:blur="updateFilters">
-        <b-dropdown-text>
-            <div class="range-field">
-                <input
-                    class="range-field-input"
-                    type="number"
-                    placeholder="от"
-                    pattern="[0-9]*"
-                    v-model="from"
-                    v-on:blur="validateInput"
-                    v-on:change="validateInput"
-                />
+    <div>
+        <b-dropdown
+            id="dropdown-text"
+            :text="label"
+            class="m-2 dropdown-filter"
+            v-on:blur="updateFilters"
+            v-if="windowWidth > 600">
 
-                <input
-                    class="range-field-input"
-                    type="number"
-                    placeholder="до"
-                    pattern="[0-9]*"
-                    v-model="to"
-                    v-on:blur="validateInput"
-                    v-on:change="validateInput"
-                />
-            </div>
+            <b-dropdown-text>
+                <div class="range-field">
+                    <input
+                        class="range-field-input"
+                        type="number"
+                        placeholder="от"
+                        pattern="[0-9]*"
+                        v-model="from"
+                        v-on:blur="validateInput"
+                        v-on:change="validateInput"
+                    />
 
-            <div class="control-block">
-                <a href="#" class="link link-info" v-on:click.stop.prevent="handleRefresh">Сбросить</a>
-                <a href="#" class="btn btn-primary" v-on:click.stop.prevent="updateFilters">Продолжить</a>
-            </div>
-        </b-dropdown-text>
-    </b-dropdown>
+                    <input
+                        class="range-field-input"
+                        type="number"
+                        placeholder="до"
+                        pattern="[0-9]*"
+                        v-model="to"
+                        v-on:blur="validateInput"
+                        v-on:change="validateInput"
+                    />
+                </div>
+
+                <div class="control-block">
+                    <a href="#" class="link link-info" v-on:click.stop.prevent="handleRefresh">Сбросить</a>
+                    <a href="#" class="btn btn-primary" v-on:click.stop.prevent="updateFilters">Продолжить</a>
+                </div>
+            </b-dropdown-text>
+        </b-dropdown>
+
+        <div class="dropdown-filter" v-else>
+            <button class="btn dropdown-toggle dropdown-filter" style="font-size: 13px" @click="openModal">{{ label }}</button>
+
+            <modal :name="store_p + '-modal'" height="auto" :adaptive="true">
+                <div class="modal-filter-header">
+                    <h2>{{ text }}</h2>
+                    <img src="/icons/close.svg" alt="close" class="close_modal_btn" @click="$modal.hide(store_p + '-modal')">
+                </div>
+
+                <div class="wrapper">
+                    <div class="range-field">
+                        <input
+                            class="range-field-input"
+                            type="number"
+                            placeholder="от"
+                            pattern="[0-9]*"
+                            v-model="from"
+                            v-on:blur="validateInput"
+                            v-on:change="validateInput"
+                        />
+
+                        <input
+                            class="range-field-input"
+                            type="number"
+                            placeholder="до"
+                            pattern="[0-9]*"
+                            v-model="to"
+                            v-on:blur="validateInput"
+                            v-on:change="validateInput"
+                        />
+                    </div>
+
+                    <div class="filter-toolbar">
+                        <a href="#" class="link link-info" v-on:click.stop.prevent="handleRefresh">Сбросить</a>
+                        <a href="#" class="btn btn-primary" v-on:click.stop.prevent="updateFilters">Продолжить</a>
+                    </div>
+                </div>
+            </modal>
+        </div>
+    </div>
 </template>
 
 <script>
     export default {
         data: function () {
             return {
-                //
+                windowWidth: window.innerWidth
             }
+        },
+        mounted() {
+            this.$nextTick(() => {
+                window.addEventListener('resize', this.onResize);
+            })
         },
         props: ["text", "store_prop"],
         computed: {
@@ -84,6 +137,12 @@
             },
             updateFilters() {
                 this.$emit("filterChange", { prop: this.store_prop, data: { from: this.from, to: this.to } });
+            },
+            onResize() {
+                this.windowWidth = window.innerWidth;
+            },
+            openModal() {
+                this.$modal.show(this.store_p + '-modal');
             }
         },
         watch: {
@@ -98,6 +157,52 @@
 <style lang="scss" scoped>
     @import '../../../../sass/header.scss';
     @import '../../../../sass/base.scss';
+
+    .filter-toolbar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: .625rem 1.25rem;
+        background-color: var(--white);
+        box-shadow: 0 0 1.25rem rgba(100,110,148,.2);
+        display: -webkit-flex;
+        display: -moz-box;
+        display: flex;
+        -webkit-justify-content: space-between;
+        -moz-box-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -moz-box-align: center;
+        align-items: center;
+    }
+
+    .filter-toolbar .link-info {
+        text-decoration: none;
+    }
+
+    .modal-filter-header {
+        display: flex;
+        align-items: center;
+    }
+
+    .modal-filter-header .close_modal_btn {
+        padding: 0 1rem !important;
+    }
+
+    .modal-filter-header h2 {
+        padding: 1rem 2rem;
+        line-height: 24px;
+        color: var(--text-color-primary);
+    }
+
+    .dropdown-filter {
+        text-align: center;
+        width: fit-content;
+        font-size: 18px;
+        font-weight: 400;
+        margin-bottom: 10px;
+    }
 
     .dropdown-filter {
         text-align: center;

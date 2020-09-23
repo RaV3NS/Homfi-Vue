@@ -24,7 +24,7 @@ $z-index-select-expanded: 10;
     $root: &;
 
     position: relative;
-    z-index: $z-index-header;
+    z-index: 0;
 
     &__container {
         height: var(--header-height);
