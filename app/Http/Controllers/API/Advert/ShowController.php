@@ -82,7 +82,7 @@ class ShowController extends Controller
     {
         try{
             $advert = Advert::query()
-                //->where('status', Advert::STATUS_ENABLED)
+                ->where('status', Advert::STATUS_ENABLED)
                 ->with([
                     'options',
                     'parameters',

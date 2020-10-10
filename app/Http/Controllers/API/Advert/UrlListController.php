@@ -3,17 +3,14 @@
 namespace App\Http\Controllers\API\Advert;
 
 use App\Advert;
-use App\City;
-use App\Exceptions\ApiException;
 use App\Filters\AdvertFilter;
 use App\Filters\GeoFilter;
 use App\Filters\OptionFilter;
 use App\Filters\ParameterFilter;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\Advert\ListRequest;
 use App\Http\Requests\API\Advert\UrlListRequest;
-use App\Traits\Seo;
 use App\Traits\AdvertListUrlParser;
+use App\Traits\Seo;
 use Illuminate\Contracts\Pagination\Paginator;
 
 /**
@@ -212,26 +209,28 @@ class UrlListController extends Controller
             $adverts->orderBy('updated_at', 'desc');
         }
 
+        $filter = $this->getTotalFilter();
+
         $result = $adverts->paginate(null, ['*'], 'page', $this->getPage());
         $result->map(function ($advert) {
             $advert->parameters->append('value');
             $advert->getImageUrls();
+
 
             unset($advert->media);
         });
 
         $replaces['city'] = $this->city->name;
         $replaces['count'] = $result->total();
+        $replaces['from_price'] = $result->min('price_month');
         $this->setReplaces($replaces);
-
-        $filter = $this->getTotalFilter();
 
         $filter['city'] = $this->city;
         $filter['geoObject'] = $this->geoObject;
 
         $this->setFilters($filter);
 
-        if (empty($filter)) {
+        if ($this->isEmptyFilter()) {
             $seo = $this->advertCityTemplate();
         } else {
             $seo = $this->advertFilterTemplate();
@@ -243,5 +242,10 @@ class UrlListController extends Controller
     public function getTotalFilter()
     {
         return array_merge($this->advertFilter, $this->paramFilter, $this->geoFilter, $this->optionFilter, ['query' => $this->query_body]);
+    }
+
+    public function isEmptyFilter()
+    {
+        return !$this->geoFilter AND !in_array('room_count', array_keys($this->advertFilter)) AND !in_array('type', array_keys($this->advertFilter));
     }
 }

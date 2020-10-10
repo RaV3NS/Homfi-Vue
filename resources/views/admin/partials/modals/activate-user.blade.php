@@ -17,7 +17,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('adminlte::admin.button.cancel') }}</button>
-                    <button type="submit" class="btn btn-success">{{ __('adminlte::admin.button.activate_user') }}</button>
+                    <button type="submit" class="btn btn-success">{{ __('adminlte::admin.button.activate') }}</button>
                 </div>
             </form>
         </div>

@@ -19,6 +19,13 @@ use Illuminate\Validation\Rule;
  */
 class Update extends ApiRequest
 {
+
+    public function authorize()
+    {
+        //return auth('api')->user()->id == request()->route()->user;
+        return true;
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -34,12 +41,12 @@ class Update extends ApiRequest
             ],
             'city_id' => ['sometimes', 'exists:cities,id'],
             'street_id' => ['sometimes', 'exists:streets,id'],
-            'subway_id' => ['sometimes', 'exists:subways,id'],
-            'administrative_id' => ['sometimes', 'exists:administrative,id'],
+            'subway_id' => ['nullable', 'exists:subways,id'],
+            'administrative_id' => ['nullable', 'exists:administrative,id'],
             'price_month' => ['sometimes', 'numeric'],
             'first_name' => ['sometimes'],
             'last_name' => ['sometimes'],
-            //'email' => ['email'],
+            'email' => ['email'],
             'social_links' => ['sometimes', 'array'],
             'phones' => ['sometimes'],
             'phones.*.number' => ['required_with:phones'],

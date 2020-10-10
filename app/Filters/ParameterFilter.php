@@ -153,7 +153,7 @@ class ParameterFilter extends Filter
      */
     protected function build_year($build_year)
     {
-        $parameter = Parameter::where('key', 'living_space')->first();
+        $parameter = Parameter::where('key', 'build_year')->first();
 
         $this->builder->where(function ($queryId) use ($parameter, $build_year) {
             $query = DB::table('advert_parameter')->where('advert_parameter.parameter_id', $parameter->id);

@@ -3,7 +3,11 @@
 namespace App\Providers;
 
 use App\Events\EmailChanged;
+use App\Events\UserActive;
+use App\Events\UserBlocked;
 use App\Listeners\SendEmailChangedVerificationNotification;
+use App\Listeners\SendEmailUserActiveNotification;
+use App\Listeners\SendEmailUserBlockedNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -21,6 +25,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         EmailChanged::class => [
             SendEmailChangedVerificationNotification::class,
+        ],
+        UserBlocked::class => [
+            SendEmailUserBlockedNotification::class,
+        ],
+        UserActive::class => [
+            SendEmailUserActiveNotification::class,
         ],
     ];
 

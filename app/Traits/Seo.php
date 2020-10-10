@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: dev
- * Date: 18.06.20
- * Time: 17:57
- */
 
 namespace App\Traits;
-
 
 use App\Administrative;
 use App\Street;
@@ -51,13 +44,13 @@ trait Seo
         'type' => '',
         'address' => '',
         'pricemin' => '',
+        'from_price' => '',
         'offer_name' => '',
         'offer_description' => '',
         'image_number' => ''
     ];
 
     public $activeFilters = [];
-    public $wildcards = [];
 
     public function setReplaces($replaces)
     {
@@ -80,6 +73,10 @@ trait Seo
                     $this->replaces['pricemin'] = $activeValue['from'] ?? '';
                     $this->replaces['pricemax'] = $activeValue['to'] ?? '';
                 } elseif ($activeFilter == 'room_count') {
+                    foreach ($activeValue as $value) {
+                        $this->replaces['filter'][] = trans('parameter_values.' . $activeFilter . '.filter.' . $value);
+                    }
+                } elseif ($activeFilter == 'type') {
                     foreach ($activeValue as $value) {
                         $this->replaces['filter'][] = trans('parameter_values.' . $activeFilter . '.filter.' . $value);
                     }
@@ -111,6 +108,7 @@ trait Seo
         if(!empty($this->replaces['filter'])){
             $filter = join(' ', $this->replaces['filter']);
         }
+
         $this->replaces['filter'] = $filter;
     }
 
@@ -144,7 +142,7 @@ trait Seo
         }
 
         $result = compact($this->meta);
-        if(!empty($advert->images)){
+        if(!empty($advert->images)) {
             foreach ($advert->images as $index => $image) {
                 $this->replaces['image_number'] = $index + 1;
                 $result['images'][$index] = $this->advertImageAlt();

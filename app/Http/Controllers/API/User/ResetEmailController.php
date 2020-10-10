@@ -7,10 +7,8 @@ use App\Events\EmailChanged;
 use App\Exceptions\ApiException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\User\ResetEmail;
-use App\Http\Requests\API\User\Update;
 use App\User;
 use Exception;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -133,7 +131,7 @@ class ResetEmailController extends Controller
                 'password' => $validated['password']
             ];
 
-            if (Auth::validate($credentials)) {
+            if ($user->password == bcrypt($credentials['password'])) {
                 event(new EmailChanged($user));
                 $user->update(['email' => $validated['email'], 'email_verified_at' => NULL]);
             } else {

@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\API\User\Update;
 use App\User;
 use Exception;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 
@@ -26,12 +25,6 @@ use Illuminate\Support\Facades\Log;
  *          ),
  *          @OA\Property(
  *              property="last_name",
- *              type="array",
- *              description="It contains an array of errors, if any, for this field",
- *              @OA\Items(type="string")
- *          ),
- *          @OA\Property(
- *              property="email",
  *              type="array",
  *              description="It contains an array of errors, if any, for this field",
  *              @OA\Items(type="string")
@@ -95,11 +88,6 @@ class UpdateController extends Controller
      *                      example="Doe",
      *                  ),
      *                  @OA\Property(
-     *                      property="email",
-     *                      type="string",
-     *                      nullable=true
-     *                  ),
-     *                  @OA\Property(
      *                      property="phones",
      *                      type="object",
      *                      @OA\Schema(
@@ -148,6 +136,16 @@ class UpdateController extends Controller
      *         )
      *     ),
      *     @OA\Response(
+     *         response=403,
+     *         description="Forbidden",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 ref="#/components/schemas/CommonError"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
      *         response=404,
      *         description="Not Found",
      *         @OA\MediaType(
@@ -176,7 +174,6 @@ class UpdateController extends Controller
         try {
             $user = User::findOrFail($userId);
             $validated = $request->validated();
-
             $user->update($validated);
 
             if(!empty($validated['phones'])) {

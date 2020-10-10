@@ -1,20 +1,74 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Map</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        <map-page city="{{ $city }}"></map-page>
+        <v-app>
+            <map-page city="{{ $city }}"></map-page>
+        </v-app>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 
 <style>
+    .v-menu__content {
+        border-radius: 6px !important;
+    }
+
+    .fixed-pagination {
+        position: fixed;
+        bottom: 25px;
+        left: 0;
+        margin: 5px auto;
+        right: 0;
+    }
+
+    .v-list-item:hover {
+        background-color: #f1f1f4;
+    }
+
+    .v-list-item {
+        padding: 0.7rem 1.2rem;
+    }
+
+    .v-select-list {
+        padding: 0;
+    }
+
+    .v-list-item::before {
+        background: none;
+    }
+
+    .date-select fieldset {
+        border: 1px solid #d5dbe5;
+    }
+
+    .date-select {
+        position: relative;
+        top: 5px;
+    }
+
+    .advert-input-street fieldset {
+        border-radius: 0 4px 4px 0;
+        border-left: none;
+        outline: none !important;
+        border: 1px solid color: rgba(0,0,0,.87);
+    }
+
+    .advert-input-city fieldset {
+        border-radius: 4px 0 0 4px;
+        outline: none !important;
+        border: 1px solid color: rgba(0,0,0,.87);
+    }
+
     .filters button.dropdown-toggle::after {
         display: none !important;
     }
@@ -36,6 +90,10 @@
 
         min-width: 120px;
         justify-content: center;
+    }
+
+    .marker-homfi-hovered {
+        z-index: 9999 !important;
     }
 
     .filters button.dropdown-toggle:focus,
@@ -235,9 +293,15 @@
         }
     }
 
+    @media only screen and (max-width: 750px) {
+        .dropdown-filter, .btn-filter {
+            font-size: 14px !important;
+        }
+    }
+
     @media only screen and (max-width: 656px) {
         .dropdown-filter, .btn-filter {
-            width: 100px;
+            width: 135px !important;
         }
 
         .left {
@@ -245,7 +309,7 @@
         }
 
         .dropdown-filter button, .btn-filter {
-            font-size: 13px;
+            font-size: 13px !important;
         }
 
         .btn-filter {

@@ -1,49 +1,60 @@
 <template>
     <div>
-        <b-dropdown
-            id="dropdown-text"
-            :text="label"
-            class="m-2 dropdown-filter"
-            v-on:blur="updateFilters"
-            v-if="windowWidth > 600">
+        <div v-if="windowWidth > 600">
+            <v-menu
+                offset-y
+                transition="scale-transition"
+                :close-on-content-click="false"
+            >
+                <template v-slot:activator="{ on }">
+                    <button
+                        v-on="on"
+                        class="btn btn-filter v-btn-filter"
+                    >
+                        {{ label }}
+                    </button>
+                </template>
 
-            <b-dropdown-text>
-                <div class="range-field">
-                    <input
-                        class="range-field-input"
-                        type="number"
-                        placeholder="от"
-                        pattern="[0-9]*"
-                        v-model="from"
-                        v-on:blur="validateInput"
-                        v-on:change="validateInput"
-                    />
+                <v-card width="300px">
+                    <div class="v-filter-block">
+                        <div class="range-field">
+                            <input
+                                class="range-field-input"
+                                type="number"
+                                placeholder="от"
+                                pattern="[0-9]*"
+                                v-model="from"
+                                v-on:blur="validateInput"
+                                v-on:change="validateInput"
+                            />
 
-                    <input
-                        class="range-field-input"
-                        type="number"
-                        placeholder="до"
-                        pattern="[0-9]*"
-                        v-model="to"
-                        v-on:blur="validateInput"
-                        v-on:change="validateInput"
-                    />
-                </div>
+                            <input
+                                class="range-field-input"
+                                type="number"
+                                placeholder="до"
+                                pattern="[0-9]*"
+                                v-model="to"
+                                v-on:blur="validateInput"
+                                v-on:change="validateInput"
+                            />
+                        </div>
 
-                <div class="control-block">
-                    <a href="#" class="link link-info" v-on:click.stop.prevent="handleRefresh">Сбросить</a>
-                    <a href="#" class="btn btn-primary" v-on:click.stop.prevent="updateFilters">Продолжить</a>
-                </div>
-            </b-dropdown-text>
-        </b-dropdown>
+                        <div class="control-block">
+                            <a href="#" class="link link-info" v-on:click.stop.prevent="handleRefresh">Сбросить</a>
+                            <a href="#" class="btn btn-primary" v-on:click.stop.prevent="updateFilters">Продолжить</a>
+                        </div>
+                    </div>
+                </v-card>
+            </v-menu>
+        </div>
 
         <div class="dropdown-filter" v-else>
             <button class="btn dropdown-toggle dropdown-filter" style="font-size: 13px" @click="openModal">{{ label }}</button>
 
-            <modal :name="store_p + '-modal'" height="auto" :adaptive="true">
+            <modal :name="store_prop + '-modal'" height="auto" :adaptive="true">
                 <div class="modal-filter-header">
                     <h2>{{ text }}</h2>
-                    <img src="/icons/close.svg" alt="close" class="close_modal_btn" @click="$modal.hide(store_p + '-modal')">
+                    <img src="/icons/close.svg" alt="close" class="close_modal_btn" @click="$modal.hide(store_prop + '-modal')">
                 </div>
 
                 <div class="wrapper">
@@ -142,7 +153,7 @@
                 this.windowWidth = window.innerWidth;
             },
             openModal() {
-                this.$modal.show(this.store_p + '-modal');
+                this.$modal.show(this.store_prop + '-modal');
             }
         },
         watch: {
@@ -157,6 +168,31 @@
 <style lang="scss" scoped>
     @import '../../../../sass/header.scss';
     @import '../../../../sass/base.scss';
+
+    .v-btn-filter {
+        border-color: var(--gray-300) !important;
+        --border-radius: 6px;
+        display: flex;
+        box-sizing: border-box;
+        border: 1px solid var(--gray-300);
+        background-color: var(--white) !important;
+        text-align: left;
+        height: 45px;
+        color: var(--greyish-blue);
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
+        padding: 0.6rem 1.2rem;
+        justify-content: center;
+        margin: 0.5rem 0;
+        min-width: 144px;
+        margin-left: 0.5rem;
+    }
+
+    .v-filter-block {
+        padding: 1.5rem;
+        z-index: 12000;
+    }
 
     .filter-toolbar {
         position: fixed;

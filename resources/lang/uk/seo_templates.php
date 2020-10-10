@@ -8,7 +8,7 @@ return [
     ],
     'advertFilterTemplate' => [
         'title' => "Оренда квартир - {filter} у місті {city}",
-        'meta_description' => "Актуальні об'яви оренди квартир - {filter}. Всього знайдено {count} пропозицій за ціною від {pricemin} гривень.",
+        'meta_description' => "Актуальні об'яви оренди квартир - {filter}. Всього знайдено {count} пропозицій за ціною від {from_price} гривень.",
         'h1' => "{filter} - оренда квартир - {count} об'яв",
     ],
     'advertPageTemplate' => [

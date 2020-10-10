@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.', 'na
     Route::get('users/search', 'UsersController@searchAjax')->name('users.search');
     Route::get('users/list', 'UsersController@listAjax')->name('users.list');
     Route::post('users/note/{user}', 'UserNotesController@store')->name('users.note');
+    Route::post('users/resend-email/{user}', 'UsersController@resendEmail')->name('users.resend-email');
     Route::resource('users', 'UsersController');
 
     Route::get('adverts/search', 'AdvertsController@searchAjax')->name('adverts.search');
@@ -70,7 +71,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.', 'na
     Route::put('parse', 'ParseController@store');
 });
 
+Route::get('/profile', 'Front\MapController@profile');
+Route::get('/profile/{page}', 'Front\MapController@profile');
+Route::get('/advert/create', 'Front\MapController@createAdvert');
+Route::get('/advert/edit/{advertId}', 'Front\MapController@editAdvert');
 //Route::get('/{city}', 'Front\MapController@index');
 Route::get('/{city}-{params}', 'Front\MapController@index');
 Route::get('/{city}', 'Front\MapController@index');
 Route::get('/{city}/{advertId}', 'Front\MapController@viewAdvert');
+Route::get('/adverts/preview/{advertId}', 'Front\MapController@preview');

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\UserActive;
+use App\Events\UserBlocked;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\User\Update;
 use App\User;
 use Exception;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -75,7 +78,8 @@ class UsersController extends Controller
                         'route' => route('admin.users.show', [$user->id]),
                         'class' => 'primary',
                         'glyphicon' => 'show',
-                        'name' => 'show'
+                        'name' => 'show',
+                        'target' => '_blank'
                     ],
                 ];
 
@@ -199,6 +203,12 @@ class UsersController extends Controller
             $user_log['type'] = $validated['status'] ?: '';
             $user->history()->create($user_log);
 
+            if($validated['status'] === $user::STATUS_BLOCKED) {
+                event(new UserBlocked($user));
+            }elseif($validated['status'] === $user::STATUS_ACTIVE) {
+                event(new UserActive($user));
+            }
+
             $messageType = 'success';
             $messageText = trans('adminlte::admin.user_updated_successfully');
         } catch (Exception $e) {
@@ -234,5 +244,16 @@ class UsersController extends Controller
 
         return redirect(route('candidates.show',
             ['id' => $id]))->with('success', 'Notification has been read');
+    }
+
+    public function resendEmail(int $userId)
+    {
+        $user = User::find($userId);
+        event(new Registered($user));
+
+        $messageType = 'success';
+        $messageText = 'Письмо успешно отправлено';
+        session()->flash($messageType, $messageText);
+        return redirect()->back();//->with($messageType, $messageText);
     }
 }

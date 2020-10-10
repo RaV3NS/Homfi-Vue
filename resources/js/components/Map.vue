@@ -10,14 +10,19 @@
                 :icon="getIcon()"
             >
                 <l-popup>
-                    <div v-if="isAdvertLoading">Loading...</div>
+                    <div v-if="isAdvertLoading">
+                        <div style="padding: 3rem 1rem; display: flex; justify-content: center">
+                            <Preloader></Preloader>
+                        </div>
+                    </div>
                     <div v-else>
                         <div v-if="activeMapAdvert">
 
                             <carousel :data="carouselData" :autoplay="false" indicator-type="disc"></carousel>
                             <div class="advertInfo">
                                 <div class="title_wrap">
-                                    <a href="#" class="advert-map-title">{{ activeMapAdvert.title.uk }}</a>
+                                    <a :href="`/${activeMapAdvert.city.translit}/${activeMapAdvert.id}`"
+                                       class="advert-map-title">{{ activeMapAdvert.title.uk }}</a>
                                 </div>
                                 <div class="row">
                                     <div class="price-box">
@@ -47,7 +52,13 @@
         </l-map>
 
         <div class="close-map" v-if="visibleMap" @click="closeMap">
-            <img src="/icons/close.svg" alt="">
+            <img src="/icons/close.svg" alt="close_map">
+        </div>
+
+        <div class="more-filters" v-if="visibleMap" @click="moreFilters">
+            <svg width="13.33" height="20">
+                <use xlink:href="/icons/sprite.svg#all-filters"></use>
+            </svg>
         </div>
     </div>
 </template>
@@ -55,6 +66,7 @@
 <script>
 import { LMap, LTileLayer, LMarker, LPopup } from 'vue2-leaflet';
 import VueCarousel from "./assets/VueCarousel";
+import Preloader from "./Partials/Preloader";
 
 export default {
     components: {
@@ -62,7 +74,8 @@ export default {
         LTileLayer,
         LMarker,
         LPopup,
-        VueCarousel
+        VueCarousel,
+        Preloader
     },
     data () {
         return {
@@ -74,6 +87,7 @@ export default {
             activeMapAdvert: null,
             isAdvertLoading: false,
             visibleMap: false,
+            moreFiltersModal: false,
 
             hover: false,
             hover_coords: [],
@@ -85,10 +99,11 @@ export default {
         };
     },
     mounted() {
+        this.center = [this.city.lat, this.city.lng];
         //this.markers = JSON.parse(this._markers);
         this.markers = this._markers;
     },
-    props: ['_markers'],
+    props: ['_markers', 'city'],
     methods: {
         getLatLng: function(object) {
             return [object.lat, object.lng];
@@ -160,12 +175,40 @@ export default {
                 className: "marker-homfi-hovered",
                 html: `<img src="/icons/marker-icon.svg" alt="marker">`
             });
+        },
+        moreFilters() {
+            this.$modal.show('more-filters-map');
+            this.moreFiltersModal = true;
+            this.visibleMap = false;
+            this.$parent.$refs.header.active = true;
+        },
+        closeModal() {
+            this.moreFiltersModal = false;
+            this.visibleMap = true;
+            this.$parent.$refs.header.active = false;
         }
     }
 }
 </script>
 
 <style>
+    .more-filters {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        z-index: 99999;
+        cursor: pointer;
+        background: #fff;
+        border-radius: 50px;
+        padding: 0.7rem;
+        border: 1px solid darkgray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+    }
+
     .marker-homfi {
         margin-left: -12px;
         margin-top: -41px;

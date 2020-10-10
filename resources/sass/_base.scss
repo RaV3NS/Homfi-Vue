@@ -113,6 +113,7 @@
     justify-self: end;
     grid-row-start: 3;
     padding-top: 10px;
+
     @include at-768 {
         padding-top: 0;
     }
@@ -178,6 +179,7 @@
     display: flex;
     align-self: center;
     grid-row-start: 2;
+    height: 40px;
     @include at-768 {
         grid-column: 1 / span 2;
     }

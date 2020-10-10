@@ -323,13 +323,18 @@
                                                     {{ __("adminlte::admin.advert.event.$event->type") }}
 
                                                 </h3>
-                                                <div class="timeline-body">
-                                                    <div>
-                                                        {{ __("adminlte::admin.advert.$event->type"."_reason") }}:
-                                                        {{ __('reasons.' . $event->title) }}
-                                                    </div>
-                                                    {{ $event->body }}
-                                                </div>
+                                                {{--<div class="timeline-body">--}}
+                                                    {{--<div>--}}
+                                                        {{--{{ __("adminlte::admin.advert.$event->type"."_reason") }}:--}}
+
+                                                        {{--@if(trans_fb("reasons." . $event->title))--}}
+                                                            {{--{{ __("reasons." . $event->title) }}--}}
+                                                        {{--@else--}}
+                                                            {{--{{ $event->title }}--}}
+                                                        {{--@endif--}}
+                                                    {{--</div>--}}
+                                                    {{--{{ $event->body }}--}}
+                                                {{--</div>--}}
                                             </div>
                                         @elseif($event->type === 'advert_' . \App\Advert::STATUS_BLOCKED)
                                             <i class="fas fa-ban bg-danger"></i>
@@ -348,7 +353,12 @@
                                                 <div class="timeline-body">
                                                     <div>
                                                         {{ __("adminlte::admin.advert.$event->type"."_reason") }}:
-                                                        {{ __('reasons.' . $event->title) }}
+
+                                                        @if(trans_fb("reasons." . $event->title))
+                                                            {{ __("reasons." . $event->title) }}
+                                                        @else
+                                                            {{ $event->title }}
+                                                        @endif
                                                     </div>
 
                                                     {{ $event->body }}
@@ -371,7 +381,11 @@
                                                 <div class="timeline-body">
                                                     <div>
                                                         {{ __("adminlte::admin.advert.$event->type"."_reason") }}:
-                                                        {{ __("reasons." . $event->title) }}
+                                                        @if(trans_fb("reasons." . $event->title))
+                                                            {{ __("reasons." . $event->title) }}
+                                                        @else
+                                                            {{ $event->title }}
+                                                        @endif
                                                     </div>
                                                     {{ $event->body }}
                                                 </div>
@@ -392,7 +406,11 @@
 
                                                 <div class="timeline-body">
                                                     <div>
-                                                        {{ __("reasons." . $event->title) }}
+                                                        @if(trans_fb("reasons." . $event->title))
+                                                            {{ __("reasons." . $event->title) }}
+                                                        @else
+                                                            {{ $event->title }}
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -443,7 +461,7 @@
 
                     @elseif($advert->status === $advert::STATUS_BLOCKED)
                         <div class="alert alert-danger text-center">
-                            <h6><i class="icon fas fa-check"></i>{{ __('adminlte::admin.advert_blocked_status') }}</h6>
+                            <h6><i class="icon fas fa-ban"></i>{{ __('adminlte::admin.advert_blocked_status') }}</h6>
                         </div>
 
                     @elseif($advert->status === $advert::STATUS_DISABLED)
@@ -475,7 +493,7 @@
                     @endif
 
                     @if($advert->status !== $advert::STATUS_DRAFT)
-                        @if($advert->status == $advert::STATUS_ENABLED)
+                        @if($advert->status != $advert::STATUS_BLOCKED)
                             <div class="mb-4">
                                 <form action="{{ route('admin.adverts.update.status', $advert->id) }}" method="post">
                                     @csrf
@@ -541,6 +559,32 @@
                             </div>
 
                         @endif
+                    @elseif($advert->status === $advert::STATUS_DRAFT)
+                        <div class="mb-4">
+                            <div class="alert alert-warning text-center">
+                                <h6><i class="icon fas fa-edit"></i>{{ __('adminlte::admin.advert_status.draft') }}
+                                </h6>
+                            </div>
+                        </div>
+
+                        @if($advert->front_editing)
+                            <div class="alert alert-warning alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4><i class="icon fa exclamation-triangle"></i> Внимание!</h4>
+                                В данный момент владелец объявления вносит изменения в это объявление.
+                            </div>
+                        @endif
+
+                        <div class="mb-4">
+                            <a href="{{ route('admin.adverts.edit', $advert->id) }}">
+
+                                <button type="button"
+                                        class="btn btn-block btn-primary js-edit-advert"
+                                        data-uid="{{ $advert->id }}">
+                                    {{ __('adminlte::admin.button.edit') }}
+                                </button>
+                            </a>
+                        </div>
                     @endif
                     <hr>
                 </div>
@@ -663,7 +707,7 @@
                 "lengthMenu": "{{ __('adminlte::admin.dt_menu_title') }}",
                 "emptyTable": "Нет жалоб",
                 "info": "{{ __('adminlte::admin.showing_info_dt') }}",
-                "infoEmpty": "К сожалению, Ваш запрос не дал результатов. Измените параметры поиска и попробуйте еще раз",
+                "infoEmpty": "Нет жалоб",//"К сожалению, Ваш запрос не дал результатов. Измените параметры поиска и попробуйте еще раз",
                 "paginate": {
                     "first": "{{ __('adminlte::admin.dt_first') }}",
                     "last": "{{ __('adminlte::admin.dt_last') }}",
@@ -712,11 +756,6 @@
             },
         });
         var complainRoute = '{{route('admin.complains.update', ['id'])}}'.replace(/^(.*\/)[^\/]+$/ig, '$1');
-
-
-        function getComplainsExcept() {
-            return '/complains/search?except=' + except;
-        }
 
         function renderDate(data) {
             return data === null ? null : moment(data).format('DD.MM.YYYY HH:mm');

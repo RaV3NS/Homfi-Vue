@@ -108,14 +108,16 @@ class ChangePasswordController extends Controller
      */
     public function execute(ChangePassword $request)
     {
+        $currentUser = User::find(193);
         $validated = $request->validated();
         try {
-            if ((Hash::check(request('old_password'), Auth::user()->password)) == false) {
+            if ((Hash::check(request('old_password'), $currentUser->password)) == false) {
                 $response = ["status" => 400, "message" => trans('auth.wrong_old_password')];
-            } else if ((Hash::check(request('new_password'), Auth::user()->password)) == true) {
+            } else if ((Hash::check(request('new_password'), $currentUser->password)) == true) {
                 $response = ["status" => 400, "message" => trans('auth.password_similar_as_old')];
             } else {
-                User::where('id', Auth::guard('api')->user()->id)->update(['password' => Hash::make($validated['new_password'])]);
+                User::where('id', $currentUser->id)->update(['password' => Hash::make($validated['new_password'])]);
+                // Auth::guard('api')->user()->id
                 $response = ["status" => 200, "message" => trans('auth.password_updated')];
             }
         } catch (\Exception $ex) {

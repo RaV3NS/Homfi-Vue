@@ -96,6 +96,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    a {
+        text-decoration: none;
+    }
+
     .flex {
         display: flex;
     }
@@ -172,6 +176,10 @@ export default {
     }
 
 
-
+    @media only screen and (min-width: 1280px) {
+        .flex {
+            flex-direction: row;
+        }
+    }
 
 </style>

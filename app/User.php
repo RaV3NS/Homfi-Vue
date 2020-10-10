@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Mails\UserActiveEmail;
+use App\Mails\UserBlockedEmail;
 use App\Mails\UserResetPassword;
 use App\Mails\UserVerifyEmail;
 use App\Mails\UserVerifyEmailChanged;
@@ -233,6 +235,26 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail, CanRe
     public function sendEmailChangedVerificationNotification()
     {
         $this->notify(new UserVerifyEmailChanged(app()->getLocale()));
+    }
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailUserBlockedNotification()
+    {
+        $this->notify(new UserBlockedEmail());
+    }
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailUserActiveNotification()
+    {
+        $this->notify(new UserActiveEmail());
     }
 
     /**

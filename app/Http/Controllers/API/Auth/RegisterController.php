@@ -117,29 +117,16 @@ class RegisterController extends Controller
     {
         $validated = $request->validated();
 
-//        $validated['first_name'] = '';
-//        $validated['last_name'] = '';
-
         if($request->has('lang')) {
             app()->setLocale($validated['lang']);
         }
 
         $validated['password'] = Hash::make($validated['password']);
+        $validated['status'] = 'disabled';
+
         $user = User::create($validated);
         event(new Registered($user));
 
-        //$token = auth('api')->login($user);
-        //$this->respondWithToken($token);
-
         return response()->json([]);
     }
-
-    protected function respondWithToken($token)
-    {
-        return response()->json([
-            'access_token' => $token,
-            'expires_in'   => auth('api')->factory()->getTTL() * 60
-        ]);
-    }
-
 }

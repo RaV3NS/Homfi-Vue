@@ -150,19 +150,45 @@ class ParameterController extends Controller
             $parameters = $request->get('parameters');
             $advertParameters = [];
 
-            foreach($parameters as $parameter) {
+//            foreach($parameters as $parameter) {
+//                $parameterModel['parameter_id'] = $parameter['id'];
+//                $parameterModel['advert_id'] = $advertId;
+//                $parameterModel['value'] = $parameter['value'];
+//
+//                if(in_array($parameter['key'], Advert::$parameters)) {
+//                    $advertParameters[$parameter['key']] = $parameterModel['value'];
+//                }
+//
+//                DB::table('advert_parameter')->insertOrIgnore($parameterModel);
+//            }
+
+            foreach ($parameters as $parameter) {
                 $parameterModel['parameter_id'] = $parameter['id'];
                 $parameterModel['advert_id'] = $advertId;
                 $parameterModel['value'] = $parameter['value'];
 
-                if(in_array($parameter['key'], Advert::$parameters)) {
-                    $advertParameters[$parameter['key']] = $parameterModel['value'];
+                if (in_array($parameter['key'], Advert::$parameters)) {
+                    $validated[$parameter['key']] = $parameterModel['value'];
                 }
 
-                DB::table('advert_parameter')->insertOrIgnore($parameterModel);
+                if ($parameter['value'] === null) {
+                    DB::table('advert_parameter')
+                        ->where('parameter_id', $parameterModel['parameter_id'])
+                        ->where('advert_id', $parameterModel['advert_id'])
+                        ->delete();
+                } else {
+                    DB::table('advert_parameter')
+                        ->updateOrInsert(
+                            [
+                                'parameter_id' => $parameterModel['parameter_id'],
+                                'advert_id' => $parameterModel['advert_id']
+                            ],
+                            ['value' => $parameterModel['value']]
+                        );
+                }
             }
 
-            $advertParameters['price_month'] = $request->get('price_month');
+            $advertParameters['price_month'] = $request->get('price_month') ?? 0;
             $advertParameters['body'] = $request->get('body') ?? '';
 
             $advert->update($advertParameters);

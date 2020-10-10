@@ -29,7 +29,7 @@ return [
         'living_space',
         'kitchen_space',
         'floor',
-        'total_floor',
+        'total_floors',
         'height',
         'building_year',
         'heating',

@@ -58,7 +58,8 @@ class ComplainsController extends Controller
                         'route' => route('admin.complains.show', [$complain->id]),
                         'class' => 'primary',
                         'glyphicon' => 'show',
-                        'name' => 'show'
+                        'name' => 'show',
+                        'target' => '_blank'
                     ],
                 ];
 

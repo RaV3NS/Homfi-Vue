@@ -60,8 +60,13 @@ class UserNotification extends Model
     public function getTitleAttribute($value)
     {
         $result = new \StdClass;
-        $result->uk = trans('reasons.' . $value, [], 'uk');
-        $result->ru = trans('reasons.' . $value, [], 'ru');
+        if(!empty(trans_fb('reasons.' . $value))){
+            $result->uk = trans('reasons.' . $value, [], 'uk');
+            $result->ru = trans('reasons.' . $value, [], 'ru');
+        }else{
+            $result->uk = $value;
+            $result->ru = $value;
+        }
 
         return $result;
     }

@@ -200,6 +200,8 @@ return [
         'time'                  => 'Время',
         'available'             => 'Доступно',
         'size'                  => 'Размер',
-        'patronymic'            => 'Отчество'
+        'patronymic'            => 'Отчество',
+        'old_password'          => 'Старый пароль',
+        'new_password'          => 'Новый пароль',
     ],
 ];

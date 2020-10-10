@@ -300,11 +300,32 @@
                                     <form action="{{ route('admin.adverts.add-image', $advert->id) }}" method="POST"
                                           enctype="multipart/form-data">
                                         @csrf
-                                        <div class="row mb-3 image-gallery">
+                                        <div class="row mb-3 image-gallery js-grid sortable grid clearfix ml4 myn1">
 
-                                        @if($advert->getMedia('images'))
-                                            @foreach($advert->getMedia('images') as $image)
-                                                <div class="block-image" data-id="{{ $image->id }}">
+                                            @if($advert->getMedia('images'))
+                                                @foreach($advert->getMedia('images') as $image)
+                                                    <div class="block-image" data-id="{{ $image->id }}">
+                                                        <div class="block-control">
+                                                            <span class="rotate-image">
+                                                                <span class="js-rotate-left"><i class="fa fa-undo"></i></span>
+                                                                <span class="js-rotate-right"><i class="fa fa-undo fa-rotate-90 fa-flip-horizontal"></i>
+                                                                </span>
+                                                            </span>
+
+                                                            <span class="delete-image js-delete-image">
+                                                                <i class="fa fa-trash-alt"></i>
+                                                            </span>
+
+                                                            <input type="hidden" name="degrees[{{ $image->id }}]" value="0">
+                                                            <input type="hidden" class="image-order-column" name="order[{{ $image->id }}]" value="{{$image->order_column}}">
+                                                        </div>
+                                                        <div class="block-thumb">
+                                                            {{ $image('thumb') }}
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+
+                                                <div class="new-block-image" data-id="">
                                                     <div class="block-control">
                                                         <span class="rotate-image">
                                                             <span class="js-rotate-left"><i class="fa fa-undo"></i></span>
@@ -316,36 +337,17 @@
                                                             <i class="fa fa-trash-alt"></i>
                                                         </span>
 
-                                                        <input type="hidden" name="degrees[{{ $image->id }}]" value="0">
+                                                        <input type="hidden" name="degrees[]" value="0">
                                                     </div>
                                                     <div class="block-thumb">
-                                                        {{ $image('thumb') }}
+                                                        <img class="new-image" src="" />
+                                                        <input class="new-image-input" type="file" name="new-image[]" onchange="readURL(this);" >
                                                     </div>
                                                 </div>
-                                            @endforeach
+                                            <!-- /.col -->
+                                            @endif
 
-                                            <div class="new-block-image" data-id="">
-                                                <div class="block-control">
-                                                    <span class="rotate-image">
-                                                        <span class="js-rotate-left"><i class="fa fa-undo"></i></span>
-                                                        <span class="js-rotate-right"><i class="fa fa-undo fa-rotate-90 fa-flip-horizontal"></i>
-                                                        </span>
-                                                    </span>
-
-                                                    <span class="delete-image js-delete-image">
-                                                        <i class="fa fa-trash-alt"></i>
-                                                    </span>
-
-                                                    <input type="hidden" name="degrees[]" value="0">
-                                                </div>
-                                                <div class="block-thumb">
-                                                    <img class="new-image" src="" />
-                                                    <input class="new-image-input" type="file" name="new-image[]" onchange="readURL(this);" >
-                                                </div>
-                                            </div>
-                                        <!-- /.col -->
-                                        @endif
-                                    </div>
+                                        </div>
 
 
                                         <div class="input-group mb-3">
@@ -394,6 +396,23 @@
                             </div>
 
                         </div>
+                    @elseif($advert->status === App\Advert::STATUS_DRAFT)
+                        <div class="mb-4">
+                            <div class="alert alert-warning">
+                                <h6><i class="icon fas fa-edit"></i>{{ __('adminlte::admin.advert_status.draft') }}
+                                </h6>
+                            </div>
+
+                        </div>
+                    @endif
+
+                    @if($advert->front_editing)
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-ban"></i> Внимание!</h4>
+                            В данный момент владелец объявления вносит изменения в это объявление.
+                            Вы перезатрете все его изменения.
+                        </div>
                     @endif
 
                     <div class="mb-4">
@@ -403,6 +422,7 @@
                             {{ __('adminlte::admin.button.save') }}
                         </button>
                     </div>
+
                     <div class="mb-4">
                         <a href="{{ route('admin.adverts.show', $advert->id) }}">
                             <button type="button"
@@ -423,13 +443,14 @@
 @stop
 
 @section('css')
-    {{--    <link rel="stylesheet" href="/css/admin_custom.css">--}}
     <link rel="stylesheet" href="/vendor/summernote/summernote.css">
+    <link rel="stylesheet" href="/vendor/html5sortable/basscss.css">
 @stop
 
 @section('js')
     <script src="/vendor/jsl-image/load-image.all.min.js"></script>
     <script src="/vendor/summernote/summernote-bs4.min.js"></script>
+    <script src="/vendor/html5sortable/html5sortable.js"></script>
 
     @error('advert_log.title')
     <script>
@@ -486,11 +507,6 @@
 
         const advertRoute = '{{route('admin.adverts.update', $advert->id)}}';
         let except = null;
-
-        function getAdvertsExcept() {
-            return '/adverts/search?except=' + except;
-        }
-
 
         //////////////////////////////////////////////////////
         $('.js-add-image').on('click', function (e) {
@@ -707,32 +723,20 @@
         $('.text-editor').summernote({
             height: 250,
         });
-        // e.returnValue = '';
-        {{--window.addEventListener('beforeunload', function (e) {--}}
-            {{--// Cancel the event--}}
-            {{--e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown--}}
-            {{--localStorage.setItem('finishEditing', {{$advert->id}});--}}
-            {{--finishEditing();--}}
-            {{--// Chrome requires returnValue to be set--}}
-        {{--});--}}
-
-        // window.addEventListener('beforeunload', function (e) {
-        //     if(finish) {
-        //         console.log('beforeunload call finishEditing');
-        //         console.log('result ', finishEditing());
-        //     }
-        //     console.log('finish', finish);
-        // });
-
-        // window.addEventListener('unload', function (e) {
         //
-        //     if(finish) {
-        //         console.log('unload call finishEditing');
-        //         console.log('result ', finishEditing());
-        //     }
-        //     console.log('finish', finish);
-        // });
-
-
+        sortable("#gallery .image-gallery", {
+            forcePlaceholderSize: true,
+            placeholderClass: 'ph-class',
+            hoverClass: 'bg-maroon yellow',
+            orientation: 'horizontal',
+        })[0].addEventListener('sortupdate', function(e) {
+            console.log('drag', e.detail);
+            $(e.detail.destination.items).each(function (index, item){
+                console.log('index', index);
+                console.log('item', item);
+                let blockImage = $(item);
+                blockImage.find('input.image-order-column').val(index);
+            });
+        });
     </script>
 @stop

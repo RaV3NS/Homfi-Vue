@@ -51,6 +51,14 @@ class AdvertImageController extends Controller
             }
         }
 
+        foreach($request->get('order') as $imageId => $order) {
+            foreach($oldImages as $oldImage) {
+                if($oldImage->id == $imageId) {
+                    $oldImage->order_column = $order;
+                    $oldImage->save();
+                }
+            }
+        }
         foreach($request->get('degrees') as $imageId => $degree) {
             if(!empty($degree)) {
                 $degree = $this->normalizeDegree($degree);

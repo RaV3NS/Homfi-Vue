@@ -176,7 +176,12 @@
         });
 
         function getAhref(url, name = url) {
-            return '<a href="' + url + '">' + name + '</a>';
+            console.log('name', name);
+            if(name !== null){
+                return '<a href="' + url + '" target="_blank">' + name + '</a>';
+            } else {
+                return 'Не указан';
+            }
         }
 
         function renderDate(data) {

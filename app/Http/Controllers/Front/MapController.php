@@ -17,4 +17,21 @@ class MapController extends Controller
     public function viewAdvert(Request $request) {
         return view('advert', ['id' => $request->route('advertId')]);
     }
+
+    public function createAdvert() {
+        return view('create-advert');
+    }
+
+    public function editAdvert(Request $request) {
+        $advert = Advert::findOrFail($request->advertId);
+        return view('edit-advert', ['id' => $advert->id]);
+    }
+
+    public function preview(Request $request) {
+        return view('preview', ['id' => $request->route('advertId')]);
+    }
+
+    public function profile(Request $request) {
+        return view('profile');
+    }
 }

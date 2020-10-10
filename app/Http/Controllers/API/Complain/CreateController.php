@@ -134,7 +134,7 @@ class CreateController extends Controller
      * @return JsonResponse
      * @throws ApiException
      */
-    public function execute(int $advertId, CreateRequest $request): JsonResponse
+    public function execute(int $advertId, CreateRequest $request)
     {
         $validated = $request->validated();
         $validated['status'] = Complain::STATUS_PENDING;

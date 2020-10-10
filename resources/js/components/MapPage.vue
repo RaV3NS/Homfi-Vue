@@ -1,19 +1,43 @@
 <template>
     <div>
+        <pageloader v-if="loading"></pageloader>
         <header-vue ref="header"></header-vue>
         <filter-bar-map :advertsCount="advertsCount" v-on:updateQuery="updateQuery" ref="bar"></filter-bar-map>
         <div class="filter-bar-footer">
             <div class="sort">
                 <span class="sort-title">Сортировать</span>
                 <div>
-                    <b-dropdown variant="link" toggle-class="text-decoration-none">
-                        <template v-slot:button-content>
-                            <span style="color: #000">{{ sortType }}</span>
+                    <v-menu
+                        offset-y
+                        transition="scale-transition"
+                    >
+                        <template v-slot:activator="{ on }">
+                            <a class="sort-label" v-on="on">{{ sortType }}</a>
+                            <svg fill="#0C2455" width="12" height="7.02" class="arrow"><use xlink:href="/icons/sprite.svg#arrow"></use></svg>
                         </template>
-                        <b-dropdown-item @click="sortBy('highest_price')">От дорогих к дешевым</b-dropdown-item>
-                        <b-dropdown-item @click="sortBy('lowest_price')">От дешевых к дорогим</b-dropdown-item>
-                        <b-dropdown-item @click="sortBy('newest')">Сначала самые новые</b-dropdown-item>
-                    </b-dropdown>
+
+                        <v-card width="300px">
+                            <v-list>
+                                <v-list-item-group color="primary">
+                                    <v-list-item>
+                                        <v-list-item-content>
+                                            <v-list-item-title @click="sortBy('highest_price')" v-text="'От дорогих к дешевым'"></v-list-item-title>
+                                        </v-list-item-content>
+                                    </v-list-item>
+                                    <v-list-item>
+                                        <v-list-item-content>
+                                            <v-list-item-title @click="sortBy('lowest_price')" v-text="'От дешевых к дорогим'"></v-list-item-title>
+                                        </v-list-item-content>
+                                    </v-list-item>
+                                    <v-list-item>
+                                        <v-list-item-content>
+                                            <v-list-item-title @click="sortBy('newest')" v-text="'Сначала самые новые'"></v-list-item-title>
+                                        </v-list-item-content>
+                                    </v-list-item>
+                                </v-list-item-group>
+                            </v-list>
+                        </v-card>
+                    </v-menu>
                 </div>
             </div>
 
@@ -23,7 +47,7 @@
             </div>
         </div>
 
-        <div class="flex map_cont map-mobile" v-bind:class="{'map_toggle': !mapToggle}" v-if="advertsCount > 0">
+        <div class="flex map_cont map-mobile" v-bind:class="{'map_toggle': !mapToggle}" v-if="pageAdvertsCount > 0">
             <div class="left" id="left">
                 <div class="list disable-scrollbars">
                     <Advert
@@ -31,9 +55,17 @@
                         :advert="advert"
                         :key="advert.id"
                     />
+
+                    <v-pagination
+                        class="pagination"
+                        v-model="page"
+                        :length="pages"
+                        circle
+                    ></v-pagination>
                 </div>
             </div>
-            <vue-map :_markers="this.mapAdverts" ref="map"></vue-map>
+
+            <vue-map :_markers="this.mapAdverts" :city="JSON.parse(this.city)" ref="map"></vue-map>
         </div>
         <div v-else>
             <hr>
@@ -57,21 +89,29 @@
         components: { Advert },
         data () {
             return {
+                page: 1,
+                pages: 1,
                 mapAdverts: [],
                 advertsQuery: [],
                 adverts: [],
                 advertsCount: 0,
+                pageAdvertsCount: 0,
                 mapToggle: true,
+                windowWidth: window.innerWidth,
+                loading: true
             };
         },
         props: ['city'],
         mounted() {
             if (this.city)
                 this.$store.dispatch("setCity", JSON.parse(this.city));
-            let city = JSON.parse(this.city);
 
             this.getMarkers(null);
             this.getAdverts();
+
+            this.$nextTick(() => {
+                window.addEventListener('resize', this.onResize);
+            })
 
             let params = new URLSearchParams(window.location.search);
 
@@ -127,6 +167,9 @@
             }
         },
         methods: {
+            onResize() {
+                this.windowWidth = window.innerWidth;
+            },
             getMarkers: function(filters) {
                 let city = JSON.parse(this.city);
                 let filter_query = "&filter=";
@@ -134,6 +177,11 @@
                 else filter_query += filters;
                 axios.get(window.backend_url + 'api/adverts/coordinates?city_id=' + city.id + filter_query).then((response) => {
                     this.mapAdverts = response.data;
+
+                    // убрать/скорректировать на проде
+                    setTimeout(() => {
+                        this.loading = false;
+                    }, 1000);
                 });
             },
             getLatLng: function(object) {
@@ -161,6 +209,12 @@
                         }
                     });
                 }
+
+                if (filters.geoObject) {
+                    this.$refs.bar.streets.push({ text: filters.geoObject.name_ru, value: filters.geoObject.translit });
+                    this.$refs.bar.selectedStreet = { text: filters.geoObject.name_ru, value: filters.geoObject.translit };
+                    this.$refs.bar.streetUrlValue = filters.geoObject.translit;
+                }
             },
             getAdverts() {
                 let href = window.location.href;
@@ -169,25 +223,38 @@
                     this.advertsQuery = response.data;
                     this.adverts = this.advertsQuery.result.data;
                     this.advertsCount = this.advertsQuery.result.total;
+                    this.pageAdvertsCount = this.advertsQuery.result.data.length;
+
+                    this.$refs.bar.h1 = response.data.seo.h1;
+                    this.pages = response.data.result.last_page;
+                    this.page = response.data.result.current_page;
+
+                    let city = JSON.parse(this.city);
+                    this.$refs.bar.updateCity(city, this.advertsCount);
 
                     let filters = this.advertsQuery.filter;
+                    let geoObject = response.data.filter.geoObject;
+                    let queryFilters = _.cloneDeep(filters);
 
                     if (filters.total_floor) {
                         filters.total_floors = filters.total_floor;
                         delete filters.total_floor;
                     }
 
-                    delete filters.geoObject;
-                    delete filters.city;
+                    delete queryFilters.city;
+                    delete queryFilters.geoObject;
 
-                    if (filters.query === null)
-                        delete filters.query;
+                    if (queryFilters.query === null)
+                        delete queryFilters.query;
 
-                    this.getMarkers(JSON.stringify(filters));
-                    this.getSlugFilters(this.advertsQuery.filter);
+                    if (geoObject)
+                        filters.geoObject = geoObject;
+
+                    this.getSlugFilters(filters);
+                    this.getMarkers(JSON.stringify(queryFilters));
                 });
             },
-            updateQuery(payload) {
+            updateQuery(payload, redirect = true) {
                 let url = window.location.href.split("?")[0];
                 let params = new URLSearchParams(window.location.href.split("?")[1]);
 
@@ -199,7 +266,11 @@
                 });
 
                 let query = params.toString().length > 0 ? "?" + params.toString() : "";
-                window.location = url + query;
+
+                if (redirect)
+                    window.location = url + query;
+                else
+                    return query;
             },
             sortBy(sort) {
                 this.updateQuery({ data: [{ prop: "order", value: sort }] });
@@ -211,13 +282,29 @@
             },
             resetAllFilters() {
                window.location = "/" + JSON.parse(this.city).translit;
-            },
+            }
+        },
+        watch: {
+            page: function(value) {
+                if (value != this.advertsQuery.result.current_page)
+                    this.updateQuery({data: [{ prop: "page", value: value }]});
+            }
         }
     }
 </script>
 
 <style lang="scss" scoped>
     @import "./assets/computed.css";
+
+    .pagination {
+        grid-column: 1 / -1;
+    }
+
+    .sort-label {
+        margin-left: 0.7rem;
+        margin-right: 0.3rem;
+        color: #000;
+    }
 
     .filter-reset-link {
         display: block;
@@ -305,6 +392,8 @@
     .sort {
         display: flex;
         align-items: center;
+        position: relative;
+        top: -10px;
     }
 
     @media only screen and (max-width: 1280px) {

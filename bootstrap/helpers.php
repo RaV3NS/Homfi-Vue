@@ -11,7 +11,7 @@ if (! function_exists('trans_fb')) {
      * @param  string  $locale
      * @return \Symfony\Component\Translation\TranslatorInterface|string
      */
-    function trans_fb($id, $fallback, $parameters = [], $locale = 'uk')
+    function trans_fb($id, $fallback = '', $parameters = [], $locale = 'uk')
     {
         return ($id === ($translation = trans($id, $parameters, $locale))) ? $fallback : $translation;
     }
@@ -24,3 +24,32 @@ if(! function_exists('mb_ucfirst')) {
         return $fc.mb_substr($str, 1);
     }
 }
+
+if(! function_exists('parseUrl')) {
+    function parseUrl($url) {
+
+        $path = explode('/', parse_url($url, PHP_URL_PATH));
+
+        array_shift($path);
+
+        if(reset($path) === 'ru') {
+            app()->setLocale('ru');
+            array_shift($path);
+        }
+
+        $path = explode('-', reset($path));
+        //$this->getCity();
+
+        if(!empty(parse_url($url, PHP_URL_QUERY))){
+            $query = explode('&', parse_url($url, PHP_URL_QUERY));
+        } else {
+            $query = '';
+        }
+
+        $locale = app()->getLocale();
+
+        return compact('path', 'query', 'locale');
+    }
+}
+
+

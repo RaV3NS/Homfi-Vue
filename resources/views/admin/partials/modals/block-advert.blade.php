@@ -72,6 +72,7 @@
                                    name="user_log[title]"
                                    data-required="required-comment"
                                    disabled="disabled"
+                                   minlength="2"
                                    placeholder="{{ __('adminlte::admin.advert.reason.another_placeholder') }}"/>
                             <div class="">
                                 Комментарий:

@@ -184,6 +184,8 @@ return [
         'time'                  => 'Час',
         'available'             => 'Доступно',
         'size'                  => 'Розмір',
-        'patronymic'            => 'По батькові'
+        'patronymic'            => 'По батькові',
+        'old_password'          => 'Старий пароль',
+        'new_password'          => 'Новий пароль',
     ],
 ];

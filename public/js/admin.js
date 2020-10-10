@@ -425,7 +425,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/dev/projects/restate/resources/js/admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! C:\projects\reales\resources\js\admin.js */"./resources/js/admin.js");
 
 
 /***/ })

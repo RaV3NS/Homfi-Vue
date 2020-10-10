@@ -2,11 +2,8 @@
 
 namespace App\Http\Requests\API\Advert;
 
-use App\Advert;
 use App\Http\Requests\API\ApiRequest;
-use App\Rules\AdvertFilterRule;
-use App\Rules\GeoSearchRule;
-use Illuminate\Contracts\Validation\Rule;
+use App\Rules\AdvertUrlFilterRule;
 
 class UrlListRequest extends ApiRequest
 {
@@ -18,7 +15,7 @@ class UrlListRequest extends ApiRequest
     public function rules(): array
     {
         return [
-            'url' => ['required', 'url']
+            'url' => ['required', 'url', new AdvertUrlFilterRule]
         ];
     }
 }

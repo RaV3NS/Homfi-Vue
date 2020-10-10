@@ -34,7 +34,7 @@ class UpdateStatus extends FormRequest
                 'required',
                 Rule::in(Advert::$statuses)
             ],
-            'user_log.title' => 'sometimes|string|min:2',
+            'user_log.title' => 'sometimes|string',
             'user_log.body' => Rule::requiredIf($userLog['title'] ===  trans('adminlte::admin.user.reason.another'))
         ];
     }

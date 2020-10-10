@@ -9,6 +9,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Throwable;
@@ -73,7 +74,7 @@ class Handler extends ExceptionHandler
      */
     protected function isApiCall(Request $request): bool
     {
-        return strpos($request->getUri(), '/api/v') !== false;
+        return strpos($request->getUri(), '/api') !== false;
     }
 
     /**
@@ -106,6 +107,10 @@ class Handler extends ExceptionHandler
             case $exception instanceof UnauthorizedHttpException:
                 $message = $exception->getMessage();
                 $statusCode = 401;
+                break;
+            case $exception instanceof AccessDeniedHttpException:
+                $message = $exception->getMessage();
+                $statusCode = 403;
                 break;
         }
         return response()->json(['error' => $message], $statusCode);

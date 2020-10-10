@@ -1,24 +1,42 @@
 <template>
     <div>
-        <b-dropdown id="dropdown-text" :text="label" class="m-2 dropdown-filter" v-if="windowWidth > 600">
-            <b-dropdown-text>
-                <CheckboxFilter
-                    v-for="(check, index) in store_prop"
-                    :text="check.text"
-                    :key="check.text"
-                    :id="index"
-                    :model="check.checked"
-                    :store_prop="store_p"
-                    :store_action="store_a"
-                    v-on:checked="handleChecked"
-                ></CheckboxFilter>
+        <div v-if="windowWidth > 600">
+            <v-menu
+                v-model="menu"
+                offset-y
+                transition="scale-transition"
+                :close-on-content-click="false"
+            >
+            <template v-slot:activator="{ on }">
+                <button
+                    v-on="on"
+                    class="btn btn-filter v-btn-filter"
+                >
+                    {{ label }}
+                </button>
+            </template>
 
-                <div class="control-block">
-                    <a href="#" class="link link-info" v-on:click.stop.prevent="handleRefresh">Сбросить</a>
-                    <a href="#" class="btn btn-primary" v-on:click.stop.prevent="setFilters">Продолжить</a>
+            <v-card width="300px">
+                <div class="v-filter-block">
+                    <CheckboxFilter
+                        v-for="(check, index) in store_prop"
+                        :text="check.text"
+                        :key="check.text"
+                        :id="index"
+                        :model="check.checked"
+                        :store_prop="store_p"
+                        :store_action="store_a"
+                        v-on:checked="handleChecked"
+                    ></CheckboxFilter>
+
+                    <div class="control-block">
+                        <a href="#" class="link link-info" v-on:click.stop.prevent="handleRefresh">Сбросить</a>
+                        <a href="#" class="btn btn-primary" v-on:click.stop.prevent="setFilters">Продолжить</a>
+                    </div>
                 </div>
-            </b-dropdown-text>
-        </b-dropdown>
+            </v-card>
+        </v-menu>
+        </div>
 
         <div class="dropdown-filter" v-else>
             <button class="btn dropdown-toggle dropdown-filter" style="font-size: 13px" @click="openModal">{{ label }}</button>
@@ -48,7 +66,6 @@
                 </div>
             </modal>
         </div>
-
     </div>
 </template>
 
@@ -62,12 +79,12 @@
             return {
                 selected: [],
                 label: null,
-                windowWidth: window.innerWidth
+                windowWidth: window.innerWidth,
+                menu: false,
             }
         },
         props: ["text", "store_p", "store_a"],
         mounted() {
-            console.log(this.store_p + '-filters')
             this.label = this.text;
             this.store_prop.map((el, index) => {
                 if (el.checked)
@@ -126,6 +143,31 @@
 <style lang="scss" scoped>
     @import '../../../../sass/header.scss';
     @import '../../../../sass/base.scss';
+
+    .v-btn-filter {
+        border-color: var(--gray-300) !important;
+        --border-radius: 6px;
+        display: flex;
+        box-sizing: border-box;
+        border: 1px solid var(--gray-300);
+        background-color: var(--white) !important;
+        text-align: left;
+        height: 45px;
+        color: var(--greyish-blue);
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
+        padding: 0.6rem 1.2rem;
+        justify-content: center;
+        margin: 0.5rem 0;
+        min-width: 144px;
+        margin-left: 0.5rem;
+    }
+
+    .v-filter-block {
+        padding: 1rem;
+        z-index: 12000;
+    }
 
     .filter-toolbar {
         position: fixed;

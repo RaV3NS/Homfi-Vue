@@ -131,10 +131,10 @@ class PhotoController extends Controller
     public function execute(int $userId, int $advertId, CreatePhoto $request): JsonResponse
     {
         $user = User::findOrFail($userId);
-        $advert = $user->adverts()->findOrFail($advertId);
+        $advert = $user->adverts()->with('media')->findOrFail($advertId);
         $validated = $request->validated();
         $result = [];
-        
+
         try {
             $advert->addAllMediaFromRequest()->each(function ($fileAdder, $index) use ($validated, &$result) {
 
@@ -146,11 +146,18 @@ class PhotoController extends Controller
                }
 
                $image = $fileAdder->toMediaCollection('images');
-               $result[] = $image->id;
+               $result[] = [
+                   'id' => $image->id,
+                   'rotation' => $validated['rotation'][$index]
+               ];
             });
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             throw new ApiException('Cant create advert photo', 400);
+        }
+
+        if ($advert->status != 'draft' AND empty($validated['status']) AND !empty($validated)) {
+            $advert->update(['status' => 'draft']);
         }
 
         return response()->json($result);

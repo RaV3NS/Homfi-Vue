@@ -23,17 +23,21 @@ window.Vue = require('vue');
 import L from 'leaflet';
 import vSelect from 'vue-select'
 import Vuex from 'vuex';
-import { BootstrapVue } from 'bootstrap-vue'
 import VModal from 'vue-js-modal/dist/index.nocss.js'
-import VueCarousel from '@chenfengyuan/vue-carousel';
+
 import ToggleButton from 'vue-js-toggle-button'
 import moment from 'moment';
+import VueSlideToggle from 'vue-slide-toggle';
+import VueCarousel from '@chenfengyuan/vue-carousel';
+import VueAwesomeSwiper from 'vue-awesome-swiper';
+import VueToast from 'vue-toast-notification';
 
 import 'leaflet/dist/leaflet.css';
 import "vue-select/src/scss/vue-select.scss";
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'vue-js-modal/dist/styles.css'
+import 'swiper/swiper-bundle.css'
+import 'vuetify/dist/vuetify.min.css'
+import 'vue-toast-notification/dist/theme-default.css';
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -47,11 +51,17 @@ vSelect.props.components.default = () => ({
     },
 });
 
-Vue.use(Vuex);
-Vue.use(BootstrapVue);
-Vue.use(VModal);
+Vue.use(VueToast);
 Vue.use(VueCarousel);
+Vue.use(Vuex);
+Vue.use(VModal);
 Vue.use(ToggleButton);
+Vue.use(VueSlideToggle);
+Vue.use(VueAwesomeSwiper, /* { default options with global component } */);
+
+// Directives
+import { VueMaskDirective } from 'v-mask'
+Vue.directive('mask', VueMaskDirective);
 
 // Reset the main icons
 L.Icon.Default.mergeOptions({
@@ -66,9 +76,15 @@ Vue.component('header-vue', require('./components/header.vue').default);
 Vue.component('map-page', require('./components/MapPage.vue').default);
 Vue.component('vue-map', require('./components/Map.vue').default);
 Vue.component('advert-page', require('./components/AdvertPage.vue').default);
-
+Vue.component('preview-page', require('./components/PreviewPage.vue').default);
+Vue.component('create-advert', require('./components/CreateAdvert/CreateAdvert.vue').default);
+Vue.component('edit-advert', require('./components/CreateAdvert/EditAdvert.vue').default);
+Vue.component('pageloader', require('./components/Partials/Pageloader.vue').default);
+Vue.component('profile', require('./components/Profile.vue').default);
 Vue.component('filter-bar-map', require('./components/Map/FilterBar.vue').default);
-Vue.component('v-select', vSelect);
+Vue.component('vue-select', vSelect);
+
+Vue.component('settings', require('./components/Settings.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -77,6 +93,17 @@ Vue.component('v-select', vSelect);
  */
 
 window.backend_url = "http://localhost:8000/";
+window.user = {
+    first_name: 'Александр',
+    last_name: 'Франчук',
+    email: 'archyzero@gmail.com',
+    id: 193
+};
+window.authUser = {};
+// axios.get( window.backend_url + 'api/user/193').then((response) => {
+//    window.authUser = response.data;
+// });
+window.home_url_adverts = '/';
 
 export const store = new Vuex.Store({
     state: {
@@ -181,12 +208,12 @@ export const store = new Vuex.Store({
             publish_date: {
                 value: null,
                 options: [
-                    {name: "Сегодня", label: "Сегодня", value: 'today'},
-                    {name: "2 дня", label: "Сегодня", value: '2_days_ago'},
-                    {name: "3 дня", label: "Сегодня", value: '3_days_ago'},
-                    {name: "Неделя", label: "Сегодня", value: "week_ago"},
-                    {name: "2 недели", label: "Сегодня", value: "2_weeks_ago"},
-                    {name: "Месяц", label: "Сегодня", value: "month_ago"},
+                    {text: "Сегодня", value: 'today'},
+                    {text: "2 дня", value: '2_days_ago'},
+                    {text: "3 дня", value: '3_days_ago'},
+                    {text: "Неделя", value: "week_ago"},
+                    {text: "2 недели", value: "2_weeks_ago"},
+                    {text: "Месяц", value: "month_ago"},
                 ]
             },
             floor: {
@@ -254,7 +281,10 @@ export const store = new Vuex.Store({
     }
 });
 
+import vuetify from './vuetify'
+
 const app = new Vue({
     el: '#app',
-    store
+    store,
+    vuetify
 });

@@ -104,12 +104,12 @@
                     },
                     {
                         data: 'status', name: 'status',
-                        render: function (data, type, row) {
+                        render: function (data) {
                             var className = 'success',
                                 cellValue = '{{ trans('adminlte::admin.active') }}';
-                            if (data === 'notactive') {
+                            if (data === 'disabled') {
                                 className = 'warning';
-                                cellValue = '{{ trans('adminlte::admin.notactive') }}';
+                                cellValue = '{{ trans('adminlte::admin.disabled') }}';
                             }
                             if (data === 'blocked') {
                                 className = 'danger';

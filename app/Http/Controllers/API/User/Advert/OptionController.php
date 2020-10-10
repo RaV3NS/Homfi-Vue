@@ -124,10 +124,21 @@ class OptionController extends Controller
 
         try {
             $options = $request->get('options');
-            foreach($options as $option) {
+            $oldOptionIds = $advert->options->pluck('id')->toArray();
+            $toAddOptions = array_diff($options, $oldOptionIds);
+            $toDeleteOptions = array_diff($oldOptionIds, $options);
+            foreach($toAddOptions as $option) {
                 $optionModel['option_id'] = $option;
                 $optionModel['advert_id'] = $advertId;
-                DB::table('advert_option')->insertOrIgnore($optionModel);
+
+                DB::table('advert_option')->insert($optionModel);
+            }
+
+            foreach($toDeleteOptions as $option) {
+                DB::table('advert_option')
+                    ->where('advert_id', $advertId)
+                    ->where('option_id', $option)
+                    ->delete();
             }
         } catch (\Exception $e) {
             Log::error($e->getMessage());

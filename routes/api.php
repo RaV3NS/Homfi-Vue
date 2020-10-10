@@ -95,39 +95,60 @@ Route::group(['namespace'=>'API\Auth'], function() {
 
 Route::group(['middleware'=>['auth:api'], 'namespace'=>'API'], function(){
     Route::post('/logout', 'Auth\LogoutController@execute');
-    Route::post('/change-password', 'Auth\ChangePasswordController@execute');
+    //Route::post('/change-password', 'Auth\ChangePasswordController@execute');
 
-    Route::get('/user/{user}', 'User\ShowController@execute');
+    //Route::get('/user/{user}', 'User\ShowController@execute');
     Route::post('/user/phone/{cypher}', 'User\PhoneListController@execute');
-    Route::post('/user/{user}/reset-email', 'User\ResetEmailController@execute');
-    Route::put('/user/{user}', 'User\UpdateController@execute');
-    Route::delete('/user/{user}', 'User\DeleteController@execute');
+    //Route::post('/user/{user}/reset-email', 'User\ResetEmailController@execute');
+    //Route::put('/user/{user}', 'User\UpdateController@execute');
+    //Route::delete('/user/{user}', 'User\DeleteController@execute');
 
     //Route::post('/user/lastAdvert', 'User\Advert\LastAdvertController@execute');
 
-    Route::get('/user/{user}/adverts', 'User\Advert\ListController@execute');
-    Route::get('/user/{user}/adverts/{advert}', 'User\Advert\ShowController@execute');
-    Route::put('/user/{user}/adverts/{advert}', 'User\Advert\UpdateController@execute');
+    //Route::get('/user/{user}/adverts', 'User\Advert\ListController@execute');
+    //Route::get('/user/{user}/adverts/{advert}', 'User\Advert\ShowController@execute');
+    //Route::put('/user/{user}/adverts/{advert}', 'User\Advert\UpdateController@execute');
 
-    Route::post('/user/{user}/adverts/address', 'User\Advert\AddressController@execute');
-    Route::post('/user/{user}/adverts/{advert}/contact', 'User\Advert\ContactController@execute');
-    Route::post('/user/{user}/adverts/{advert}/parameter', 'User\Advert\ParameterController@execute');
-    Route::post('/user/{user}/adverts/{advert}/option', 'User\Advert\OptionController@execute');
-    Route::post('/user/{user}/adverts/{advert}/photo', 'User\Advert\PhotoController@execute');
-    Route::put('/user/{user}/adverts/{advert}/photo', 'User\Advert\UpdatePhotoController@execute');
-    Route::post('/user/{user}/adverts', 'User\Advert\CreateController@execute');
+    //Route::post('/user/{user}/adverts/address', 'User\Advert\AddressController@execute');
+    //Route::post('/user/{user}/adverts/{advert}/contact', 'User\Advert\ContactController@execute');
+    //Route::post('/user/{user}/adverts/{advert}/parameter', 'User\Advert\ParameterController@execute');
+    //Route::post('/user/{user}/adverts/{advert}/option', 'User\Advert\OptionController@execute');
+    //Route::post('/user/{user}/adverts/{advert}/photo', 'User\Advert\PhotoController@execute');
+    //Route::put('/user/{user}/adverts/{advert}/photo', 'User\Advert\UpdatePhotoController@execute');
+    //Route::post('/user/{user}/adverts', 'User\Advert\CreateController@execute');
     Route::delete('/user/{user}/adverts/{advert}', 'User\Advert\DeleteAdvertController@execute');
 
-    Route::get('/user/{user}/notifications', 'User\NotificationListController@execute');
-    Route::put('/user/{user}/notifications/{notification_id}', 'User\NotificationUpdateController@execute');
+    //Route::get('/user/{user}/notifications', 'User\NotificationListController@execute');
+    //Route::put('/user/{user}/notifications/{notification_id}', 'User\NotificationUpdateController@execute');
 
-    Route::get('/user/{user}/favorites', 'User\Favorite\ListController@execute');
+    //Route::get('/user/{user}/favorites', 'User\Favorite\ListController@execute');
     Route::post('/user/{user}/favorites', 'User\Favorite\CreateController@execute');
     Route::delete('/user/{user}/favorites/{advert}', 'User\Favorite\DeleteController@execute');
     Route::get('/user/{user}/favorites/ids', 'User\Favorite\ListIdController@execute');
 });
 
 Route::group(['namespace' => 'API'], function () {
+    Route::get('/user/{user}/adverts', 'User\Advert\ListController@execute');
+    Route::put('/user/{user}/notifications/{notification_id}', 'User\NotificationUpdateController@execute');
+    Route::get('/user/{user}/notifications', 'User\NotificationListController@execute');
+    Route::get('/user/{user}/favorites', 'User\Favorite\ListController@execute');
+    Route::delete('/user/{user}', 'User\DeleteController@execute');
+    Route::post('/change-password', 'Auth\ChangePasswordController@execute');
+    Route::post('/user/{user}/reset-email', 'User\ResetEmailController@execute');
+    Route::get('/user/{user}', 'User\ShowController@execute');
+    Route::put('/user/{user}', 'User\UpdateController@execute');
+
+    Route::get('/user/{user}/adverts/{advert}', 'User\Advert\ShowController@execute');
+    Route::put('/user/{user}/adverts/{advert}', 'User\Advert\UpdateController@execute');
+    Route::post('/user/{user}/adverts', 'User\Advert\CreateController@execute');
+    Route::post('/user/{user}/adverts/{advert}/parameter', 'User\Advert\ParameterController@execute');
+    Route::post('/user/{user}/adverts/{advert}/option', 'User\Advert\OptionController@execute');
+    Route::post('/user/{user}/adverts/{advert}/contact', 'User\Advert\ContactController@execute');
+    Route::post('/user/{user}/adverts/{advert}/photo', 'User\Advert\PhotoController@execute');
+    Route::post('/user/{user}/adverts/create', 'User\Advert\CreateAdvertController@execute');
+    Route::put('/user/{user}/adverts/{advert}/photo', 'User\Advert\UpdatePhotoController@execute');
+
+    Route::post('/user/{user}/adverts/address', 'User\Advert\AddressController@execute');
     Route::get('/adverts', 'Advert\ListController@execute');
     Route::get('/adverts-url', 'Advert\UrlListController@execute');
     Route::get('/adverts/coordinates', 'Advert\CoordinatesController@execute');

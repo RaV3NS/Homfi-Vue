@@ -452,6 +452,20 @@
                         </p>
                     @endif
                     <hr>
+
+                    @if(!$user->hasVerifiedEmail())
+                        <form action="{{ route('admin.users.resend-email', $user->id) }}" method="post">
+                            @csrf
+                            @method('POST')
+
+                            <button type="submit"
+                                    class="btn btn-block btn-info" data-uid="{{ $user->id }}">
+                                Отправить письмо еще раз
+                            </button>
+                        </form>
+
+                        <small class="text-muted">Письмо для подтверждения Email</small>
+                    @endif
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -493,6 +507,18 @@
         })
     </script>
     @enderror
+
+    @if (Session::has('success'))
+    <script>
+        $(document).Toasts('create', {
+            class: 'bg-success',
+            title: 'Отправлено',
+            subtitle: '',
+            body: '{{Session::get("success")}}'
+        })
+    </script>
+    @endif
+
     <script>
         $('.js-profile-block-user').click(function (e) {
             e.preventDefault();

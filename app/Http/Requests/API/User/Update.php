@@ -19,6 +19,13 @@ use Illuminate\Validation\Rule;
  */
 class Update extends ApiRequest
 {
+
+    public function authorize()
+    {
+        return true;
+        //return auth('api')->user()->id == request()->route()->user;
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *

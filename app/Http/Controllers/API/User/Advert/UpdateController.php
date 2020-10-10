@@ -176,6 +176,16 @@ class UpdateController extends Controller
      *         )
      *     ),
      *     @OA\Response(
+     *         response=403,
+     *         description="Forbidden",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 ref="#/components/schemas/CommonError"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
      *         response=404,
      *         description="Not Found",
      *         @OA\MediaType(

@@ -27,4 +27,12 @@ class ChangePassword extends ApiRequest
            'confirm_password.same' => trans('auth.not_the_same_password')
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'old_password' => trans('validation.attributes.old_password'),
+            'new_password' => trans('validation.attributes.new_password'),
+        ];
+    }
 }

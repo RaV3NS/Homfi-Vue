@@ -127,6 +127,7 @@ class VerifyEmailController extends Controller
             }
 
             if ($user->markEmailAsVerified()) {
+                $user->update(['status' => User::STATUS_ACTIVE]);
                 event(new Verified($user));
             } else {
                 throw new ApiException('Can\'t verify email', 400);

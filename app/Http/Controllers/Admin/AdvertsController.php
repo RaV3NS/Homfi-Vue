@@ -87,7 +87,8 @@ class AdvertsController extends Controller
                         'route' => route('admin.adverts.show', [$advert->id]),
                         'class' => 'primary',
                         'glyphicon' => 'show',
-                        'name' => 'show'
+                        'name' => 'show',
+                        'target' => '_blank'
                     ],
                 ];
 
@@ -185,7 +186,6 @@ class AdvertsController extends Controller
             }
         }
 
-        $advert->update($validated);
         $phones = $request->only('phone');
 
         foreach (reset($phones) as $id => $phone) {
@@ -233,8 +233,13 @@ class AdvertsController extends Controller
             }
         }
 
-        $advert->editing = 0;
-        $advert->save();
+        $validated['editing'] = 0;
+        if($advert->status === $advert::STATUS_REJECTED
+            OR $advert->status === $advert::STATUS_DISABLED) {
+            $validated['status'] = $advert::STATUS_MODERATE;
+        }
+
+        $advert->update($validated);
 
         return redirect(route('admin.adverts.show', $advert->id));
     }

@@ -162,9 +162,11 @@ trait AdvertListUrlParser
                     case 'pricemonth_min':
                         $this->advertFilter['price_month']['from'] = $value;
                         break;
+
                     case 'pricemonth_max':
                         $this->advertFilter['price_month']['to'] = $value;
                         break;
+
                     case 'publish_date':
                         $this->advertFilter['publish_date'] = $value;
                         break;
@@ -172,48 +174,62 @@ trait AdvertListUrlParser
                     case 'total_space_min':
                         $this->paramFilter['total_space']['from'] = $value;
                         break;
+
                     case 'total_space_max':
                         $this->paramFilter['total_space']['to'] = $value;
                         break;
+
                     case 'living_space_min':
                         $this->paramFilter['living_space']['from'] = $value;
                         break;
+
                     case 'living_space_max':
                         $this->paramFilter['living_space']['to'] = $value;
                         break;
+
                     case 'kitchen_space_min':
                         $this->paramFilter['kitchen_space']['from'] = $value;
                         break;
+
                     case 'kitchen_space_max':
                         $this->paramFilter['kitchen_space']['to'] = $value;
                         break;
+
                     case 'build_year_min':
                         $this->paramFilter['build_year']['from'] = $value;
                         break;
+
                     case 'build_year_max':
                         $this->paramFilter['build_year']['to'] = $value;
                         break;
+
                     case 'height_min':
                         $this->paramFilter['height']['from'] = $value;
                         break;
+
                     case 'height_max':
                         $this->paramFilter['height']['to'] = $value;
                         break;
+
                     case 'floor_min':
                         $this->paramFilter['floor']['from'] = $value;
                         break;
                     case 'floor_max':
                         $this->paramFilter['floor']['to'] = $value;
                         break;
+
                     case 'total_floors_min':
-                        $this->paramFilter['total_floor']['from'] = $value;
+                        $this->paramFilter['total_floors']['from'] = $value;
                         break;
+
                     case 'total_floors_max':
-                        $this->paramFilter['total_floor']['to'] = $value;
+                        $this->paramFilter['total_floors']['to'] = $value;
                         break;
+
                     case 'not_first_floor':
                         $this->paramFilter['not_first_floor'] = $value;
                         break;
+
                     case 'not_last_floor':
                         $this->paramFilter['not_last_floor'] = $value;
                         break;
@@ -225,11 +241,14 @@ trait AdvertListUrlParser
                     case 'query':
                         $this->query_body = $value;
                         break;
+
                     case 'order':
                         $this->order = $value;
                         break;
+
                     case 'page':
                         $this->page = $value;
+                        break;
                 }
             }
         }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\API\User\Advert\CreatePhoto;
 use App\Http\Requests\API\User\Advert\UpdatePhoto;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Intervention\Image\Facades\Image;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -152,9 +153,9 @@ class UpdatePhotoController extends Controller
                 } else {
                     $image->order_column = $store['index'][$image->id];
 
-                    if(!empty($store['rotation'][$image->id])) {
+                    if(isset($store['rotation'][$image->id])) {
                         $image->manipulations = [
-                            '*' => ['orientation' => $this->calcRotation($image->getFullUrl(), $store['rotation'][$image->id])],
+                            '*' => ['orientation' => $store['rotation'][$image->id]],
                         ];
                     }
 
@@ -192,7 +193,6 @@ class UpdatePhotoController extends Controller
         } catch (\Exception $e) {
             Log::error('calc photo rotation: ' . $e->getMessage());
         }
-
 
         return $rotation;
     }

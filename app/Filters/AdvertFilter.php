@@ -26,11 +26,11 @@ class AdvertFilter extends Filter
 
     protected function price_month($price)
     {
-        if(!empty($price['from'])) {
+        if(isset($price['from'])) {
             $this->builder->where('adverts.price_month', '>=', $price['from']);
         }
 
-        if(!empty($price['to'])) {
+        if(isset($price['to'])) {
             $this->builder->where('adverts.price_month', '<=', $price['to']);
         }
 
@@ -45,6 +45,10 @@ class AdvertFilter extends Filter
     protected function publish_date($date)
     {
         switch ($date) {
+            case 'today':
+                $startDate  = Carbon::now()->format('Y-m-d');
+                break;
+
             case '2_days_ago':
                 $startDate  = Carbon::now()->subDays(2)->format('Y-m-d');
                 break;
@@ -69,6 +73,6 @@ class AdvertFilter extends Filter
                 $startDate = date('Y-m-d', strtotime($date));
         }
 
-        return $this->builder->whereBetween('adverts.publish_date', [$startDate, now()]);
+        return $this->builder->whereBetween('adverts.updated_at', [$startDate, now()]);
     }
 }

@@ -163,6 +163,7 @@ class SearchController
                 $subways->withCount('activeAdverts as advert_count')
                     ->having('advert_count', '>', '0');
             }
+            $subways->orderBy('name_uk');
 
             $result['subways'] = $subways->get();
         }
@@ -184,6 +185,8 @@ class SearchController
                 $administratives->withCount('activeAdverts as advert_count')
                     ->having('advert_count', '>', '0');
             }
+
+            $administratives->orderBy('name_uk');
 
             $result['administratives'] = $administratives->get();
         }

@@ -460,10 +460,10 @@ class Advert extends Model implements HasMedia
     public function registerMediaCollections()
     {
         $this->addMediaCollection('images')
-//            ->acceptsFile(function (File $file) {
-//                return $file->mimeType === 'image/jpeg';
-//            })
-            ->registerMediaConversions(function (Media $media) {
+            ->registerMediaConversions(function () {
+                $this->addMediaConversion('thumb')
+                    ->width(200)
+                    ->height(130);
                 $this->addMediaConversion('card')
                     ->width(400)
                     ->height(300);
@@ -473,10 +473,11 @@ class Advert extends Model implements HasMedia
                 $this->addMediaConversion('720p')
                     ->width(1280)
                     ->height(720);
-                $this->addMediaConversion('thumb')
+                $this->addMediaConversion('thumb2')
+                    ->width(300)
                     ->height(200);
+                    //->nonQueued();
             });
-
     }
 
     public function getImageUrls()
@@ -605,7 +606,7 @@ class Advert extends Model implements HasMedia
         $resultUk = $resultRu = [];
 
         $locale = 'uk';
-        $fieldNameLocale = 'name_' . $locale;
+        $fieldNameLocale = 'name_uk';
 
         $type = trans_fb('parameter_values.type.' . $this->type, '', [], '', $locale);
         if(!empty($type)) {
@@ -621,7 +622,7 @@ class Advert extends Model implements HasMedia
             $resultUk[] = $this->street->{$fieldNameLocale} . ',';
         }
         if (!empty($this->subway)) {
-            $resultUk[] = 'станція метро ' . $this->subway->name . ',';
+            $resultUk[] = 'станція метро ' . $this->subway->{$fieldNameLocale} . ',';
         }
         if (!empty($this->administrative)) {
             $resultUk[] = $this->administrative->{$fieldNameLocale} . ',';
@@ -632,7 +633,7 @@ class Advert extends Model implements HasMedia
         $resultUk = mb_ucfirst(join(' ', array_values($resultUk)));
 
         $locale = 'ru';
-        $fieldNameLocale = 'name_' . $locale;
+        $fieldNameLocale = 'name_ru';
 
         $type = trans_fb('parameter_values.type.' . $this->type, '', [], $locale);
         if(!empty($type)) {

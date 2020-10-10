@@ -150,6 +150,10 @@ class LoginController extends Controller
             return response()->json(['error' => 'Unverified'], 403);
         }
 
+        if(auth('api')->user()->status == User::STATUS_DELETED) {
+            return response()->json(['error' => 'Deleted'], 403);
+        }
+
         if(auth('api')->user()->status !== User::STATUS_ACTIVE) {
             return response()->json(['error' => 'Blocked'], 403);
         }

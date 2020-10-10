@@ -6,7 +6,7 @@ return [
     'washing_machine' => 'Пральна машина',
     'boiler' => 'Бойлер',
     'air_conditioner' => 'Кондиціонер',
-    'two_place_bed' => 'Двуспальне ліжко',
+    'two_place_bed' => 'Ліжко двоспальне',
     'furniture' => 'Меблі',
     'armour_door' => 'Броньовані двері',
     'tv' => 'Телевізор',
