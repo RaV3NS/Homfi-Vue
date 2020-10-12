@@ -34,4 +34,8 @@ class MapController extends Controller
     public function profile(Request $request) {
         return view('profile');
     }
+
+    public function main() {
+        return view('main');
+    }
 }

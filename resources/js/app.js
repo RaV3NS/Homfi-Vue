@@ -75,6 +75,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('header-vue', require('./components/header.vue').default);
 Vue.component('map-page', require('./components/MapPage.vue').default);
 Vue.component('vue-map', require('./components/Map.vue').default);
+Vue.component('main-form', require('./components/MainForm.vue').default);
 Vue.component('advert-page', require('./components/AdvertPage.vue').default);
 Vue.component('preview-page', require('./components/PreviewPage.vue').default);
 Vue.component('create-advert', require('./components/CreateAdvert/CreateAdvert.vue').default);

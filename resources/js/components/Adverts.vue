@@ -27,7 +27,7 @@
                         <v-col cols="2">Действия</v-col>
                     </v-row>
                 </div>
-                <v-row v-for="advert in adverts" class="advert-item">
+                <v-row v-for="advert in adverts" class="advert-item" :key="advert.id">
                     <v-col cols="1" lg="1" sm="1">{{ advert.id }}</v-col>
                     <v-col cols="10" lg="2" sm="11" class="no-padding">
                         <span class="unread" :class="advert.status"></span>

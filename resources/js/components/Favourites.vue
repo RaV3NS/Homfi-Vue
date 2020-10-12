@@ -5,11 +5,10 @@
 
             <div class="adverts-wrapper" v-if="adverts.length > 0">
                 <v-row class="adverts-row">
-                    <v-col cols="12" md="6" lg="4" v-for="advert in adverts">
+                    <v-col cols="12" md="6" lg="4" v-for="advert in adverts" :key="advert.id">
                         <Advert :advert="advert"></Advert>
                     </v-col>
                 </v-row>
-
             </div>
 
             <div class="no-data-block" v-else>
@@ -38,7 +37,6 @@
             this.getUser(this.user_id);
             this.getAdverts();
         },
-
         methods: {
             getUser() {
                 axios.get( window.backend_url + 'api/user/' + this.user_id).then((response) => {

@@ -86,7 +86,7 @@
         height: 100%;
         color: var(--greyish-blue);
         width: fit-content;
-        padding: 0.6rem 1.2rem;
+        padding: 0.6rem 0.8rem;
 
         min-width: 120px;
         justify-content: center;

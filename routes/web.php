@@ -71,6 +71,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.', 'na
     Route::put('parse', 'ParseController@store');
 });
 
+Route::get('/main', 'Front\MapController@main');
 Route::get('/profile', 'Front\MapController@profile');
 Route::get('/profile/{page}', 'Front\MapController@profile');
 Route::get('/advert/create', 'Front\MapController@createAdvert');
@@ -80,3 +81,5 @@ Route::get('/{city}-{params}', 'Front\MapController@index');
 Route::get('/{city}', 'Front\MapController@index');
 Route::get('/{city}/{advertId}', 'Front\MapController@viewAdvert');
 Route::get('/adverts/preview/{advertId}', 'Front\MapController@preview');
+
+
