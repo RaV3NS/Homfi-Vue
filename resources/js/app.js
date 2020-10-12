@@ -234,7 +234,8 @@ export const store = new Vuex.Store({
             nolast: {
                 value: false
             }
-        }
+        },
+        favourites: [],
     },
     mutations: {
         setCity(state, city) {
@@ -261,6 +262,9 @@ export const store = new Vuex.Store({
         },
         setAltFilter(state, obj) {
             state.alt_filters[obj.prop][obj.field] = obj.value;
+        },
+        setFavourites(state, arr) {
+            state.favourites = arr;
         }
     },
     actions: {
@@ -278,6 +282,9 @@ export const store = new Vuex.Store({
         },
         setAltFilter({ commit }, newValue) {
             commit("setAltFilter", newValue);
+        },
+        setFavourites({ commit }, value) {
+            commit("setFavourites", value);
         }
     }
 });

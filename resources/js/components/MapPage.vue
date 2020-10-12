@@ -107,7 +107,7 @@
                 this.$store.dispatch("setCity", JSON.parse(this.city));
 
             this.getMarkers(null);
-            this.getAdverts();
+            this.getFavourites();
 
             this.$nextTick(() => {
                 window.addEventListener('resize', this.onResize);
@@ -167,6 +167,13 @@
             }
         },
         methods: {
+            getFavourites() {
+                axios.get(window.backend_url + `api/user/${window.user.id}/favorites/ids`).then((response) => {
+                    this.$store.dispatch('setFavourites', response.data);
+                });
+
+                this.getAdverts();
+            },
             onResize() {
                 this.windowWidth = window.innerWidth;
             },

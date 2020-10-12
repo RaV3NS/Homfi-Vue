@@ -19,16 +19,22 @@
 
         <div class="gallery-container">
             <div class="gallery" v-if="windowWidth > 1280">
-                <div v-for="(img, index) in main_images" :class="`gallery-item gallery-item-${index + 1}`">
+                <div v-for="(img, index) in main_images" :class="`gallery-item gallery-item-${index + 1}`" :key="index">
                     <img class="gallery-image" :src="img.src" decoding="async" loading="lazy" :alt="img.alt" @click="openCarouselModal(index)">
-                    <button type="button" class="btn-favourites" v-if="index === 0">
-                        <svg viewBox="0 0 26 22" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(#filter0_d)"><path d="M11.9029 19.0207L11.8813 18.9991L11.8584 18.9788C9.16904 16.5979 6.93836 14.6188 5.36799 12.7092C3.80984 10.8144 3 9.10239 3 7.27308C3 4.30715 5.30623 2 8.26799 2C9.74942 2 11.2282 2.62176 12.2929 3.68646L13 4.39352L13.7071 3.68646C14.7718 2.62176 16.2506 2 17.732 2C20.6938 2 23 4.30715 23 7.27308C23 9.10361 22.189 10.8168 20.6288 12.7131C19.0563 14.6244 16.8228 16.6053 14.1304 18.989L14.1074 19.0094L14.0857 19.0311L12.9998 20.1184L11.9029 19.0207Z" stroke="white" stroke-width="2"></path></g><defs><filter id="filter0_d" x="0" y="0" width="26" height="24.5333" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></feColorMatrix><feOffset dy="1"></feOffset><feGaussianBlur stdDeviation="1"></feGaussianBlur><feColorMatrix type="matrix" values="0 0 0 0 0.416476 0 0 0 0 0.484595 0 0 0 0 0.620833 0 0 0 0.5 0"></feColorMatrix><feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"></feBlend></filter></defs></svg>
+                    
+                    <button type="button" class="btn-favourites" v-if="index === 0" @click="favourites">
+                        <svg v-if="!isFavourite" viewBox="0 0 26 22" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(#filter0_d)"><path d="M11.9029 19.0207L11.8813 18.9991L11.8584 18.9788C9.16904 16.5979 6.93836 14.6188 5.36799 12.7092C3.80984 10.8144 3 9.10239 3 7.27308C3 4.30715 5.30623 2 8.26799 2C9.74942 2 11.2282 2.62176 12.2929 3.68646L13 4.39352L13.7071 3.68646C14.7718 2.62176 16.2506 2 17.732 2C20.6938 2 23 4.30715 23 7.27308C23 9.10361 22.189 10.8168 20.6288 12.7131C19.0563 14.6244 16.8228 16.6053 14.1304 18.989L14.1074 19.0094L14.0857 19.0311L12.9998 20.1184L11.9029 19.0207Z" stroke="white" stroke-width="2"></path></g><defs><filter id="filter0_d" x="0" y="0" width="26" height="24.5333" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></feColorMatrix><feOffset dy="1"></feOffset><feGaussianBlur stdDeviation="1"></feGaussianBlur><feColorMatrix type="matrix" values="0 0 0 0 0.416476 0 0 0 0 0.484595 0 0 0 0 0.620833 0 0 0 0.5 0"></feColorMatrix><feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"></feBlend></filter></defs></svg>
+                        <svg v-else viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.19558 18.7276L11 20.5333L12.7933 18.7378C18.1382 14.0057 22 10.5867 22 6.27308C22 2.75565 19.2469 0 15.732 0C13.9789 0 12.2477 0.731706 11 1.97934C9.75231 0.731706 8.02106 0 6.26799 0C2.75315 0 0 2.75565 0 6.27308C0 10.5838 3.85644 14.0008 9.19558 18.7276Z" fill="#FF8C42"></path></svg>
                     </button>
                 </div>
                 <button type="button" class="btn-light btn-wishlist" @click="openCarouselModal(0)"> Все фотографии </button>
             </div>
             <div v-else>
                 <carousel :autoplay="false" :data="carousel_images" indicator-type="disc" ref="carousel_modal"></carousel>
+                <button type="button" class="btn-favourites" @click="favourites">
+                    <svg v-if="!isFavourite" viewBox="0 0 26 22" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(#filter0_d)"><path d="M11.9029 19.0207L11.8813 18.9991L11.8584 18.9788C9.16904 16.5979 6.93836 14.6188 5.36799 12.7092C3.80984 10.8144 3 9.10239 3 7.27308C3 4.30715 5.30623 2 8.26799 2C9.74942 2 11.2282 2.62176 12.2929 3.68646L13 4.39352L13.7071 3.68646C14.7718 2.62176 16.2506 2 17.732 2C20.6938 2 23 4.30715 23 7.27308C23 9.10361 22.189 10.8168 20.6288 12.7131C19.0563 14.6244 16.8228 16.6053 14.1304 18.989L14.1074 19.0094L14.0857 19.0311L12.9998 20.1184L11.9029 19.0207Z" stroke="white" stroke-width="2"></path></g><defs><filter id="filter0_d" x="0" y="0" width="26" height="24.5333" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></feColorMatrix><feOffset dy="1"></feOffset><feGaussianBlur stdDeviation="1"></feGaussianBlur><feColorMatrix type="matrix" values="0 0 0 0 0.416476 0 0 0 0 0.484595 0 0 0 0 0.620833 0 0 0 0.5 0"></feColorMatrix><feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"></feBlend></filter></defs></svg>
+                    <svg v-else viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.19558 18.7276L11 20.5333L12.7933 18.7378C18.1382 14.0057 22 10.5867 22 6.27308C22 2.75565 19.2469 0 15.732 0C13.9789 0 12.2477 0.731706 11 1.97934C9.75231 0.731706 8.02106 0 6.26799 0C2.75315 0 0 2.75565 0 6.27308C0 10.5838 3.85644 14.0008 9.19558 18.7276Z" fill="#FF8C42"></path></svg>
+                </button>
                 <button type="button" class="btn-mobile" @click="openCarouselModal(0)"> Все фотографии </button>
             </div>
         </div>
@@ -50,20 +56,20 @@
 
                     <div class="chars">
                         <ul>
-                            <li class="list-item" v-for="item in chars_left">
+                            <li class="list-item" v-for="item in chars_left" :key="item.value">
                                 <img :src="`/icons/${item.icon}.svg`" decoding="async" loading="lazy" alt="characteristics icon">
                                 <span>{{ item.value }}</span>
                             </li>
                         </ul>
 
                         <ul>
-                            <li class="list-item" v-for="item in chars_right">
+                            <li class="list-item" v-for="item in chars_right" :key="item.value">
                                 <img :src="`/icons/${item.icon}.svg`" decoding="async" loading="lazy" alt="characteristics icon">
                                 <span>{{ item.value }}</span>
                             </li>
 
                             <div class="chars-flex">
-                                <li class="list-item" v-for="item in chars_communals">
+                                <li class="list-item" v-for="item in chars_communals" :key="item.value">
                                     <img :src="`/icons/${item.icon}.svg`" decoding="async" loading="lazy" alt="characteristics icon">
                                     <span>{{ item.value }}</span>
                                 </li>
@@ -81,7 +87,7 @@
                     <div class="ad-details-title">Удобства</div>
 
                     <ul class="main-facilities">
-                        <li class="list-item" v-for="option in options_main">
+                        <li class="list-item" v-for="option in options_main" :key="option.name_ru">
                             <img src="/icons/check-circle.svg" decoding="async" loading="lazy" alt="facilities icon">
                             <span>{{ option.name_ru }}</span>
                         </li>
@@ -96,7 +102,7 @@
                             <div class="facilities-group" v-if="options_additional.length > 0">
                                 <h6 class="title">Дополнительные удобства</h6>
                                 <ul class="list">
-                                    <li class="list-item" v-for="option in options_additional">{{ option.name_ru }}</li>
+                                    <li class="list-item" v-for="option in options_additional" :key="option.name_ru">{{ option.name_ru }}</li>
                                 </ul>
                             </div>
 
@@ -104,21 +110,21 @@
                                 <div class="list-wrap" v-if="options_infrastructure.length > 0">
                                     <h6 class="title">Инфраструктура</h6>
                                     <ul class="list">
-                                        <li class="list-item" v-for="option in options_infrastructure">{{ option.name_ru }}</li>
+                                        <li class="list-item" v-for="option in options_infrastructure" :key="option.name_ru">{{ option.name_ru }}</li>
                                     </ul>
                                 </div>
 
                                 <div class="list-wrap"  v-if="options_household.length > 0">
                                     <h6 class="title">Бытовые удобства</h6>
                                     <ul class="list">
-                                        <li class="list-item" v-for="option in options_household">{{ option.name_ru }}</li>
+                                        <li class="list-item" v-for="option in options_household" :key="option.name_ru">{{ option.name_ru }}</li>
                                     </ul>
                                 </div>
 
                                 <div class="list-wrap"  v-if="options_other.length > 0">
                                     <h6 class="title">Другое</h6>
                                     <ul class="list">
-                                        <li class="list-item" v-for="option in options_other">{{ option.name_ru }}</li>
+                                        <li class="list-item" v-for="option in options_other" :key="option.name_ru">{{ option.name_ru }}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -217,16 +223,16 @@
                         <hr>
                     </div>
                     <div v-if="phones.length > 0">
-                        <div class="phone-line" v-for="phone in phones">
+                        <div class="phone-line" v-for="phone in phones" :key="phone.number">
                             <a :href="`tel:${phone.number}`">{{ phone.number }}</a>
-                            <img v-for="img in phone.messengers" :src="`/icons/socials/${img}.svg`" :alt="img">
+                            <img v-for="img in phone.messengers" :src="`/icons/socials/${img}.svg`" :alt="img" :key="img">
                         </div>
                     </div>
                     <div v-if="social_links.length > 0">
                         <hr>
                         <div class="contacts-extra-title">Дополнительные каналы связи</div>
                         <div class="extra-flex">
-                            <a v-for="link in social_links" :href="getContactsHrefTemplate(link)" target="_blank">
+                            <a v-for="link in social_links" :href="getContactsHrefTemplate(link)" target="_blank" :key="link">
                                 <img :src="`/icons/socials/${getContactsImg(link)}.svg`" alt="social link">
                             </a>
                         </div>
@@ -254,7 +260,7 @@
             <div class="complain-wrapper">
                 <div class="complain-modal-title">Причина жалобы</div>
 
-                <label class="radio-text-label" v-for="reason in complain_reasons">
+                <label class="radio-text-label" v-for="reason in complain_reasons" :key="reason.ru">
                     <input type="radio" class="radio-input" name="reason" :value="reason.ru" v-model="complain_reason">
                     <span class="radio-text">{{ reason.ru }}</span>
                 </label>
@@ -289,7 +295,7 @@
                         id="email"
                         placeholder="example@gmail.com"
                         v-model="complain_email"
-                        :class="{ error: error_email }"></input>
+                        :class="{ error: error_email }" />
                     <span class="form-error">{{ error_email }}</span>
                 </div>
 
@@ -301,7 +307,7 @@
                         v-mask="'+380 ## ### ## ##'"
                         placeholder="+380 --- -- --"
                         v-model="complain_phone"
-                        :class="{ error: error_phone }"></input>
+                        :class="{ error: error_phone }" />
                     <span class="form-error">{{ error_phone }}</span>
                 </div>
 
@@ -385,18 +391,50 @@
                 error_phone: null,
                 error_email: null,
                 loading: true,
-                contactsLoading: true
+                contactsLoading: true,
+
+                favouritesList: []
             }
         },
         props: ["id"],
         mounted() {
             this.getAdvert();
-
+            this.getFavourites();
             this.$nextTick(() => {
                 window.addEventListener('resize', this.onResize);
             })
         },
         methods: {
+            getFavourites() {
+                axios.get(window.backend_url + `api/user/${window.user.id}/favorites/ids`).then((response) => {
+                    this.favouritesList = response.data;
+                });
+            },
+            favourites() {
+                if (this.isFavourite) {
+                    axios.delete(window.backend_url + `api/user/${window.user.id}/favorites/${this.advert.id}`).then((response) => {
+                        if (response.status === 200) {
+                            this.favouritesList.splice(this.favouritesList.indexOf(this.advert.id), 1);
+                            this.$toast.warning( 'Объявление удалено из избранного' , {
+                                position: 'top-right',
+                                duration: 3000,
+                                dismissible: true
+                            });
+                        }
+                    });
+                } else {
+                    axios.post(window.backend_url + `api/user/${window.user.id}/favorites`, { advert_id: this.advert.id }).then((response) => {
+                        if (response.status === 200) {
+                            this.$toast.info( 'Объявление добавлено в избранное' , {
+                                position: 'top-right',
+                                duration: 3000,
+                                dismissible: true
+                            });
+                            this.favouritesList.push(this.advert.id);
+                        };   
+                    });
+                }
+            },
             onResize() {
                 this.windowWidth = window.innerWidth;
             },
@@ -674,6 +712,10 @@
         computed: {
             price: function() {
                 return this.advert ? this.advert.price_month : 0;
+            },
+            isFavourite: function() {
+                if (this.advert)
+                    return this.favouritesList.includes(this.advert.id);
             }
         },
         watch: {

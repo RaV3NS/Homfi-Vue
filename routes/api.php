@@ -122,12 +122,15 @@ Route::group(['middleware'=>['auth:api'], 'namespace'=>'API'], function(){
     //Route::put('/user/{user}/notifications/{notification_id}', 'User\NotificationUpdateController@execute');
 
     //Route::get('/user/{user}/favorites', 'User\Favorite\ListController@execute');
-    Route::post('/user/{user}/favorites', 'User\Favorite\CreateController@execute');
-    Route::delete('/user/{user}/favorites/{advert}', 'User\Favorite\DeleteController@execute');
-    Route::get('/user/{user}/favorites/ids', 'User\Favorite\ListIdController@execute');
+    //Route::post('/user/{user}/favorites', 'User\Favorite\CreateController@execute');
+    //Route::delete('/user/{user}/favorites/{advert}', 'User\Favorite\DeleteController@execute');
+    //Route::get('/user/{user}/favorites/ids', 'User\Favorite\ListIdController@execute');
 });
 
 Route::group(['namespace' => 'API'], function () {
+    Route::get('/user/{user}/favorites/ids', 'User\Favorite\ListIdController@execute');
+    Route::post('/user/{user}/favorites', 'User\Favorite\CreateController@execute');
+    Route::delete('/user/{user}/favorites/{advert}', 'User\Favorite\DeleteController@execute');
     Route::get('/user/{user}/adverts', 'User\Advert\ListController@execute');
     Route::put('/user/{user}/notifications/{notification_id}', 'User\NotificationUpdateController@execute');
     Route::get('/user/{user}/notifications', 'User\NotificationListController@execute');

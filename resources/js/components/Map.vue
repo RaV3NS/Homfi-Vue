@@ -17,8 +17,13 @@
                     </div>
                     <div v-else>
                         <div v-if="activeMapAdvert">
-
-                            <carousel :data="carouselData" :autoplay="false" indicator-type="disc"></carousel>
+                            <div style="position: relative">
+                                <carousel :data="carouselData" :autoplay="false" indicator-type="disc"></carousel>
+                                <button type="button" class="btn-favourites" @click="favourites(activeMapAdvert)">
+                                    <svg v-if="!isFavourite(activeMapAdvert)" viewBox="0 0 26 22" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(#filter0_d)"><path d="M11.9029 19.0207L11.8813 18.9991L11.8584 18.9788C9.16904 16.5979 6.93836 14.6188 5.36799 12.7092C3.80984 10.8144 3 9.10239 3 7.27308C3 4.30715 5.30623 2 8.26799 2C9.74942 2 11.2282 2.62176 12.2929 3.68646L13 4.39352L13.7071 3.68646C14.7718 2.62176 16.2506 2 17.732 2C20.6938 2 23 4.30715 23 7.27308C23 9.10361 22.189 10.8168 20.6288 12.7131C19.0563 14.6244 16.8228 16.6053 14.1304 18.989L14.1074 19.0094L14.0857 19.0311L12.9998 20.1184L11.9029 19.0207Z" stroke="white" stroke-width="2"></path></g><defs><filter id="filter0_d" x="0" y="0" width="26" height="24.5333" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></feColorMatrix><feOffset dy="1"></feOffset><feGaussianBlur stdDeviation="1"></feGaussianBlur><feColorMatrix type="matrix" values="0 0 0 0 0.416476 0 0 0 0 0.484595 0 0 0 0 0.620833 0 0 0 0.5 0"></feColorMatrix><feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"></feBlend></filter></defs></svg>
+                                    <svg v-else viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.19558 18.7276L11 20.5333L12.7933 18.7378C18.1382 14.0057 22 10.5867 22 6.27308C22 2.75565 19.2469 0 15.732 0C13.9789 0 12.2477 0.731706 11 1.97934C9.75231 0.731706 8.02106 0 6.26799 0C2.75315 0 0 2.75565 0 6.27308C0 10.5838 3.85644 14.0008 9.19558 18.7276Z" fill="#FF8C42"></path></svg>
+                                </button>
+                            </div>
                             <div class="advertInfo">
                                 <div class="title_wrap">
                                     <a :href="`/${activeMapAdvert.city.translit}/${activeMapAdvert.id}`"
@@ -91,6 +96,7 @@ export default {
 
             hover: false,
             hover_coords: [],
+            favouritesList: [],
 
             carouselData: [
                 '<div class="slide"><img class="slide_img" src="https://i1.wp.com/itc.ua/wp-content/uploads/2019/11/google-photos.jpg?fit=1000%2C600&quality=100&strip=all&ssl=1" alt="img"></div>',
@@ -102,11 +108,49 @@ export default {
         this.center = [this.city.lat, this.city.lng];
         //this.markers = JSON.parse(this._markers);
         this.markers = this._markers;
+        this.favouritesList = this.$store.state.favourites;
     },
     props: ['_markers', 'city'],
     methods: {
+        favourites(advert) {
+            if (this.isFavourite(advert)) {
+                axios.delete(window.backend_url + `api/user/${window.user.id}/favorites/${advert.id}`).then((response) => {
+                    if (response.status === 200) {
+                        let favourites = this.$store.state.favourites;
+                        let index = this.favouritesList.indexOf(advert.id);
+                        if (index !== -1)
+                            favourites.splice(index, 1);
+                        this.$store.dispatch("setFavourites", favourites);
+                        
+                        this.$toast.warning( 'Объявление ' + advert.id + ' удалено из избранного' , {
+                            position: 'top-right',
+                            duration: 3000,
+                            dismissible: true
+                        });
+                    }
+                });
+            } else {
+                axios.post(window.backend_url + `api/user/${window.user.id}/favorites`, { advert_id: advert.id }).then((response) => {
+                    if (response.status === 200) {
+                        this.$toast.info( 'Объявление ' + advert.id + ' добавлено в избранное' , {
+                            position: 'top-right',
+                            duration: 3000,
+                            dismissible: true
+                        });
+
+                        let favourites = this.$store.state.favourites;
+                        favourites.push(advert.id);
+                        this.$store.dispatch("setFavourites", favourites);
+                    };   
+                });
+            }
+        },
         getLatLng: function(object) {
             return [object.lat, object.lng];
+        },
+        isFavourite(advert) {
+            if (advert)
+                return this.favouritesList.includes(advert.id);
         },
         getAdvert: function (marker) {
             this.isAdvertLoading = true;
@@ -192,6 +236,41 @@ export default {
 </script>
 
 <style>
+    .btn-favourites {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 36px;
+        height: 36px;
+        display: -webkit-inline-flex;
+        display: -moz-inline-box;
+        display: inline-flex;
+        -webkit-justify-content: center;
+        -moz-box-pack: center;
+        justify-content: center;
+        -webkit-align-items: center;
+        -moz-box-align: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: none;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .btn-favourites:hover {
+        background: hsla(0,0%,100%,.5);
+        -webkit-filter: drop-shadow(0 0 20px rgba(100,110,148,.2));
+        filter: drop-shadow(0 0 20px rgba(100,110,148,.2))
+    }
+
+    .btn-favourites svg {
+        width: 22px;
+        height: 21px;
+    }
+
     .more-filters {
         position: absolute;
         top: 1.5rem;
